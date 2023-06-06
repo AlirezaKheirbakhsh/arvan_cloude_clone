@@ -22,5 +22,3 @@ class _Login_mobileState extends State<Login_mobile> {
     );
   }
 }
-
-
