@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Responsive Test',
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: 'YekanBakh'),
       // home: const home(),
       initialRoute: '/Login',
 

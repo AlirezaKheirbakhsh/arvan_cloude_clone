@@ -95,7 +95,7 @@ class _Login_desktopState extends State<Login_desktop> {
                     children: [
                       Container(
                         margin: EdgeInsets.only(
-                            right: ((_wh * 23) - 200),
+                            right: ((_wh * 23) - 200)<0?0:((_wh * 23) - 200),
                             top: ((_hg * 50) - 325) < 0
                                 ? 0
                                 : ((_hg * 50) - 325)),
