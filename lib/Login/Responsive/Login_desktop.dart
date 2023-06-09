@@ -59,7 +59,7 @@ class _Login_desktopState extends State<Login_desktop> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(right:210),
+                                  margin: EdgeInsets.only(right: 210),
                                   child: SvgPicture.asset(
                                       "assets/images/Banner.svg"),
                                   // color: Colors.black,
@@ -82,35 +82,37 @@ class _Login_desktopState extends State<Login_desktop> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                      margin: EdgeInsets.only(right:210),
+                                        margin: EdgeInsets.only(right: 210),
 
-                                      // color: Colors.red,
-                                      width: 250,
-                                      height: (_hg*10<60)?_hg*10:60,
-                                      child: TextButton(
-                          child: const Text("ورود به انجمن",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                  fontSize: 20,
-                                  color: Color.fromARGB(255, 10, 58, 65))),
-                          style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsets>(
-                                  const EdgeInsets.all(0)),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color.fromARGB(255, 255, 163, 0)),
-                              // foregroundColor:
-                              //     // MaterialStateProperty.all<Color>(
-                              //     //     Colors.red) ,
-                              shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18.0),
-                                // side: BorderSide(color: Colors.red)
-                              ))),
-                          onPressed: () => null)
-
-                                      
-                                    ),
+                                        // color: Colors.red,
+                                        width: 250,
+                                        height: (_hg * 10 < 60) ? _hg * 10 : 60,
+                                        child: TextButton(
+                                            child: const Text("ورود به انجمن",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 20,
+                                                    color: Color.fromARGB(
+                                                        255, 10, 58, 65))),
+                                            style: ButtonStyle(
+                                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                                    const EdgeInsets.all(0)),
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<Color>(
+                                                        const Color.fromARGB(
+                                                            255, 255, 163, 0)),
+                                                // foregroundColor:
+                                                //     // MaterialStateProperty.all<Color>(
+                                                //     //     Colors.red) ,
+                                                shape: MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                    RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          18.0),
+                                                  // side: BorderSide(color: Colors.red)
+                                                ))),
+                                            onPressed: () => null)),
                                   ],
                                 ),
                               ],
@@ -175,77 +177,123 @@ class _Login_desktopState extends State<Login_desktop> {
                         ),
                         child: Container(
                           child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  
-                                  width: 300,
-                                  height: 50,
-                                  // color: Colors.amberAccent,
-                                  margin: const EdgeInsets.only(top: 40,bottom: 0),
-                                  child: Center(child: const Text("ورود", style: TextStyle(color: Color.fromARGB(255, 0, 186, 186),fontSize: 40,fontWeight: FontWeight.w800),)),
-                                ),
-                                Container(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 300,
+                                height: 50,
+                                // color: Colors.amberAccent,
+                                margin:
+                                    const EdgeInsets.only(top: 40, bottom: 0),
+                                child: Center(
+                                    child: const Text(
+                                  "ورود",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 186, 186),
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w800),
+                                )),
+                              ),
+                              Container(
                                   width: 300,
                                   height: 40,
-                                  margin: const EdgeInsets.only(top: 60,bottom: 0),
+                                  margin:
+                                      const EdgeInsets.only(top: 60, bottom: 0),
 
                                   // color: const Color.fromARGB(255, 134, 255, 64),
-                                  child: TextField(
-                                  
-                                  decoration: const InputDecoration(
-                                   enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: 3,color: Colors.red) ), 
-                                  border: UnderlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                                  labelText: 'Enter your username'
+                                  child: const TextField(
+                                    //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
+                                    decoration: InputDecoration(
+                                      isCollapsed: true,
+                                          isDense: true,
+                                          
 
-                                  ),
-                                )
-                                ),
-                                Container(
-                                  width: 300,
-                                  height: 40,
-                                  margin: const EdgeInsets.only(top: 10,bottom: 0),
-                                  color: const Color.fromARGB(255, 64, 255, 255),
-                                ),
-                                Container(
-                                  width: 300,
-                                  height: 40,
-                                  margin: const EdgeInsets.only(top: 10,bottom: 0),
-                                  color: const Color.fromARGB(255, 64, 169, 255),
-                                ),
-                                Container(
-                                  width: 300,
-                                  height: 40,
-                                  margin: const EdgeInsets.only(top: 5,bottom: 0),
-                                  color: const Color.fromARGB(255, 64, 83, 255),
-                                ),
-                                Container(
-                                  width: 300,
-                                  height: 40,
-                                  margin: const EdgeInsets.only(top: 60,bottom: 0),
-                                  color: const Color.fromARGB(255, 137, 64, 255),
-                                ),
-                                Container(
-                                  width: 300,
-                                  height: 40,
-                                  margin: const EdgeInsets.only(top: 10,bottom: 0),
-                                  color: const Color.fromARGB(255, 255, 64, 239),
-                                ),
-                                Container(
-                                  width: 300,
-                                  height: 40,
-                                  margin: const EdgeInsets.only(top: 20,bottom: 20),
-                                  color: Color.fromARGB(255, 255, 64, 128),
-                                ),
-                                Container(
-                                  width: 300,
-                                  height: 40,
-                                  margin: const EdgeInsets.only(top: 0,bottom: 0),
-                                  color: Color.fromARGB(255, 255, 0, 0),
-                                ),
-                                
-                              ],
-                        
+                                  contentPadding: EdgeInsets.only(top: 10,bottom: 10,right: 10,left: 10 ),
+
+                                      filled: true,
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.never,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                          color: Color.fromARGB(0, 76, 175, 79),
+                                          width: 0.0,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10)),
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromARGB(255, 0, 186, 186),
+                                          width: 1.0,
+                                        ),
+                                        
+                                      ),
+
+                                      hintTextDirection: TextDirection.rtl,
+                                      // enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: 1,color: Color.fromARGB(255, 12, 73, 58),strokeAlign: BorderSide.strokeAlignCenter) ),
+                                      // border: UnderlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+                                      // labelText: 'Enter your username',
+                                      hintText: 'نشانی ایمیل',
+                                      hintStyle: TextStyle(
+                                          decoration: TextDecoration.none,
+                                          color:
+                                              Color.fromARGB(255, 57, 100, 98)
+                                              ),
+                                    ),
+                                  )),
+                              Container(
+                                width: 300,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 10, bottom: 0),
+                                color: const Color.fromARGB(255, 64, 255, 255),
+                              ),
+                              Container(
+                                width: 300,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 10, bottom: 0),
+                                color: const Color.fromARGB(255, 64, 169, 255),
+                              ),
+                              Container(
+                                width: 300,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 5, bottom: 0),
+                                color: const Color.fromARGB(255, 64, 83, 255),
+                              ),
+                              Container(
+                                width: 300,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 60, bottom: 0),
+                                color: const Color.fromARGB(255, 137, 64, 255),
+                              ),
+                              Container(
+                                width: 300,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 10, bottom: 0),
+                                color: const Color.fromARGB(255, 255, 64, 239),
+                              ),
+                              Container(
+                                width: 300,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
+                                color: Color.fromARGB(255, 255, 64, 128),
+                              ),
+                              Container(
+                                width: 300,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 0, bottom: 0),
+                                color: Color.fromARGB(255, 255, 0, 0),
+                              ),
+                            ],
                           ),
                         ),
                       ),
