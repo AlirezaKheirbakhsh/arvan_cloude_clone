@@ -1,5 +1,8 @@
 // ignore_for_file: sort_child_properties_last
 
+import 'dart:html';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,8 +18,25 @@ class _Login_desktopState extends State<Login_desktop> {
   Widget build(BuildContext context) {
     double _wh = MediaQuery.of(context).size.width / 100;
     double _hg = MediaQuery.of(context).size.height / 100;
-
+Material(
+              elevation: 20.0,
+              shadowColor: const Color.fromARGB(255, 243, 33, 33),
+                          child: TextFormField(
+                obscureText: true,
+                autofocus: false,
+                decoration: InputDecoration(
+                    icon: new Icon(Icons.lock, color: Color(0xff224597)),
+                    hintText: 'Password',
+                    fillColor: Color.fromARGB(255, 0, 0, 0),
+                    filled: true,
+                    contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                    enabledBorder: OutlineInputBorder(borderRadius:BorderRadius.circular(5.0),
+                    borderSide: BorderSide(color: Color.fromARGB(255, 0, 119, 255), width: 3.0))
+                ),
+              ),
+);
     return Scaffold(
+      
       body: Container(
         width: _wh * 100,
         height: _hg * 100,
@@ -185,8 +205,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                 // color: Colors.amberAccent,
                                 margin:
                                     const EdgeInsets.only(top: 40, bottom: 0),
-                                child: Center(
-                                    child: const Text(
+                                child: const Center(
+                                    child: Text(
                                   "ورود",
                                   style: TextStyle(
                                       color: Color.fromARGB(255, 0, 186, 186),
@@ -196,35 +216,45 @@ class _Login_desktopState extends State<Login_desktop> {
                               ),
                               Container(
                                   width: 300,
-                                  height: 40,
+                                  height: 45,
                                   margin:
                                       const EdgeInsets.only(top: 60, bottom: 0),
 
                                   // color: const Color.fromARGB(255, 134, 255, 64),
-                                  child: const TextField(
+                                  child:  const TextField(
                                     //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
-                                    decoration: InputDecoration(
-                                      isCollapsed: true,
-                                          isDense: true,
-                                          
+                                    decoration: 
 
-                                  contentPadding: EdgeInsets.only(top: 10,bottom: 10,right: 10,left: 10 ),
-
+                                     InputDecoration(
+                                      
+                                     
+  
+                                      // contentPadding: EdgeInsets.only(top: 10,bottom: 10,right: 10,left: 10 ),
+                                      // suffixIcon: Icon(Icons.remove_red_eye,color: Color.fromARGB(52, 0, 0, 0),),
                                       filled: true,
+                                      // isCollapsed: true,//make fild 0 padding
+                                      // isDense: true,
+                                      hintTextDirection: TextDirection.rtl,
+
                                       floatingLabelBehavior:
+                                      
                                           FloatingLabelBehavior.never,
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
+                                            Radius.circular(12)),
                                         borderSide: BorderSide(
                                           color: Color.fromARGB(0, 76, 175, 79),
                                           width: 0.0,
                                         ),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
+                                      focusedBorder: 
+                                      
+                                      OutlineInputBorder(
+                                        
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(10)),
+                                            Radius.circular(12)),
                                         borderSide: BorderSide(
+                                          style:BorderStyle.solid,
                                           color:
                                               Color.fromARGB(255, 0, 186, 186),
                                           width: 1.0,
@@ -232,31 +262,117 @@ class _Login_desktopState extends State<Login_desktop> {
                                         
                                       ),
 
-                                      hintTextDirection: TextDirection.rtl,
                                       // enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: 1,color: Color.fromARGB(255, 12, 73, 58),strokeAlign: BorderSide.strokeAlignCenter) ),
                                       // border: UnderlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                                       // labelText: 'Enter your username',
                                       hintText: 'نشانی ایمیل',
                                       hintStyle: TextStyle(
-                                          decoration: TextDecoration.none,
+                                        fontSize: 14,
+                                          fontFamily: "YekanX",
+                                          fontWeight: FontWeight.w600,
+                                          // decoration: TextDecoration.none,
                                           color:
-                                              Color.fromARGB(255, 57, 100, 98)
+                                              Color.fromARGB(106, 57, 100, 98)
                                               ),
+                                              
                                     ),
+                                    
                                   )),
                               Container(
                                 width: 300,
-                                height: 40,
+                                height: 45,
                                 margin:
-                                    const EdgeInsets.only(top: 10, bottom: 0),
-                                color: const Color.fromARGB(255, 64, 255, 255),
+                                const EdgeInsets.only(top: 10, bottom: 0),
+                                // color: const Color.fromARGB(255, 64, 255, 255),
+                               child:  const TextField(
+                                textAlign: TextAlign.start,
+                                obscureText: true,
+                                    //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
+                                    decoration: 
+  
+                                     InputDecoration(
+                                      
+                                     
+                                      
+                                      // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
+                                      suffixIcon: Icon(Icons.remove_red_eye,color: Color.fromARGB(52, 0, 0, 0),),
+                                      filled: true,
+                                      // isCollapsed: true,//make fild 0 padding
+                                      // isDense: true,
+                                      hintTextDirection: TextDirection.rtl,
+
+                                      floatingLabelBehavior:
+                                      
+                                          FloatingLabelBehavior.never,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(12)),
+                                        borderSide: BorderSide(
+                                          color: Color.fromARGB(0, 76, 175, 79),
+                                          width: 0.0,
+                                        ),
+                                      ),
+                                      focusedBorder: 
+                                      
+                                      OutlineInputBorder(
+                                        
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(12)),
+                                        borderSide: BorderSide(
+                                          style:BorderStyle.solid,
+                                          color:
+                                              Color.fromARGB(255, 0, 186, 186),
+                                          width: 1.0,
+                                        ),
+                                        
+                                      ),
+
+                                  
+                                      hintText: 'رمز',
+                                      hintStyle: TextStyle(
+                                        fontFamily: "YekanX",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          decoration: TextDecoration.none,
+                                          color:
+                                              Color.fromARGB(106, 57, 100, 98)
+                                              ),
+                                              
+                                    ),
+                                    
+                                  )
+                                
                               ),
                               Container(
                                 width: 300,
-                                height: 40,
+                                height: 50,
                                 margin:
-                                    const EdgeInsets.only(top: 10, bottom: 0),
-                                color: const Color.fromARGB(255, 64, 169, 255),
+                                    const EdgeInsets.only(top: 15, bottom: 0),
+                                // color: const Color.fromARGB(255, 64, 169, 255),
+                                child: TextButton(
+                                            child: const Text("ورود",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 20,
+                                                    color: Color.fromARGB(255, 255, 255, 255))),
+                                            style: ButtonStyle(
+                                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                                    const EdgeInsets.all(0)),
+                                                backgroundColor:
+                                                    MaterialStateProperty.all<Color>(
+                                                        Color.fromARGB(255, 0, 186, 186)),
+                                                // foregroundColor:
+                                                //     // MaterialStateProperty.all<Color>(
+                                                //     //     Colors.red) ,
+                                                shape: MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                    RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  // side: BorderSide(color: Colors.red)
+                                                ))),
+                                            onPressed: () => null)
                               ),
                               Container(
                                 width: 300,
@@ -264,6 +380,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                 margin:
                                     const EdgeInsets.only(top: 5, bottom: 0),
                                 color: const Color.fromARGB(255, 64, 83, 255),
+                                
+                      
+    
                               ),
                               Container(
                                 width: 300,
