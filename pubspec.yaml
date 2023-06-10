@@ -77,6 +77,13 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: YekanX
+      fonts:
+        - asset: assets/fonts/IRANYekanX-Bold.ttf
+          weight: 600
+        - asset: assets/fonts/IRANYekanX-Regular.ttf
+          weight: 400
+          
     - family: YekanBakh
       fonts:
         - asset: assets/fonts/YekanBakh-Regular.ttf
