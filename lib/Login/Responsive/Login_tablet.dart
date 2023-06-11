@@ -354,6 +354,20 @@ class LoginetState extends State<Login_tablet> {
                     // color: Colors.amber,
                     margin: EdgeInsets.only(right: _wh * 2, top: 0),
                     child: TextButton(
+                        style: ButtonStyle(
+                            padding: MaterialStateProperty.all<EdgeInsets>(
+                                const EdgeInsets.all(0)),
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                                const Color.fromARGB(255, 233, 237, 245)),
+                            // foregroundColor:
+                            //     // MaterialStateProperty.all<Color>(
+                            //     //     Colors.red) ,
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              // side: BorderSide(color: Colors.red)
+                            ))),
+                        onPressed: () {},
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -368,21 +382,7 @@ class LoginetState extends State<Login_tablet> {
                               color: Color.fromARGB(150, 138, 138, 138),
                             ),
                           ],
-                        ),
-                        style: ButtonStyle(
-                            padding: MaterialStateProperty.all<EdgeInsets>(
-                                const EdgeInsets.all(0)),
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color.fromARGB(255, 233, 237, 245)),
-                            // foregroundColor:
-                            //     // MaterialStateProperty.all<Color>(
-                            //     //     Colors.red) ,
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              // side: BorderSide(color: Colors.red)
-                            ))),
-                        onPressed: () {}),
+                        )),
                   ),
                 ],
               ),

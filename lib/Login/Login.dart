@@ -15,8 +15,8 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
-    double wh = MediaQuery.of(context).size.width / 100;
-    double hg = MediaQuery.of(context).size.height / 100;
+    // double _wh = MediaQuery.of(context).size.width / 100;
+    // double _hg = MediaQuery.of(context).size.height / 100;
 
     if (ResponsiveBreakpoints.of(context).isDesktop) {
       return const Login_desktop();

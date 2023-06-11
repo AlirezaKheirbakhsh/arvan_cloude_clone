@@ -16,24 +16,6 @@ class _Login_desktopState extends State<Login_desktop> {
   Widget build(BuildContext context) {
     double wh = MediaQuery.of(context).size.width / 100;
     double hg = MediaQuery.of(context).size.height / 100;
-    // Material(
-    //   elevation: 20.0,
-    //   shadowColor: const Color.fromARGB(255, 243, 33, 33),
-    //   child: TextFormField(
-    //     obscureText: true,
-    //     autofocus: false,
-    //     decoration: InputDecoration(
-    //         icon: const Icon(Icons.lock, color: Color(0xff224597)),
-    //         hintText: 'Password',
-    //         fillColor: const Color.fromARGB(255, 0, 0, 0),
-    //         filled: true,
-    //         contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-    //         enabledBorder: OutlineInputBorder(
-    //             borderRadius: BorderRadius.circular(5.0),
-    //             borderSide: const BorderSide(
-    //                 color: Color.fromARGB(255, 0, 119, 255), width: 3.0))),
-    //   ),
-    // );
     return Scaffold(
       body: Container(
         width: wh * 100,
