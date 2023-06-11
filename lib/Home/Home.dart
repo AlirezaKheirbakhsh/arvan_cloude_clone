@@ -15,8 +15,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    double _wh = MediaQuery.of(context).size.width / 100;
-    double _hg = MediaQuery.of(context).size.height / 100;
+    double wh = MediaQuery.of(context).size.width / 100;
+    double hg = MediaQuery.of(context).size.height / 100;
 
     if (ResponsiveBreakpoints.of(context).isDesktop) {
       return const Home_desktop();

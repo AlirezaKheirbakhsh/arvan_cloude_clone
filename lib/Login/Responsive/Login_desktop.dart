@@ -1,10 +1,6 @@
 // ignore_for_file: sort_child_properties_last
 
-import 'dart:html';
-import 'package:flutter/gestures.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -18,31 +14,31 @@ class Login_desktop extends StatefulWidget {
 class _Login_desktopState extends State<Login_desktop> {
   @override
   Widget build(BuildContext context) {
-    double _wh = MediaQuery.of(context).size.width / 100;
-    double _hg = MediaQuery.of(context).size.height / 100;
-    Material(
-      elevation: 20.0,
-      shadowColor: const Color.fromARGB(255, 243, 33, 33),
-      child: TextFormField(
-        obscureText: true,
-        autofocus: false,
-        decoration: InputDecoration(
-            icon: new Icon(Icons.lock, color: Color(0xff224597)),
-            hintText: 'Password',
-            fillColor: Color.fromARGB(255, 0, 0, 0),
-            filled: true,
-            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5.0),
-                borderSide: BorderSide(
-                    color: Color.fromARGB(255, 0, 119, 255), width: 3.0))),
-      ),
-    );
+    double wh = MediaQuery.of(context).size.width / 100;
+    double hg = MediaQuery.of(context).size.height / 100;
+    // Material(
+    //   elevation: 20.0,
+    //   shadowColor: const Color.fromARGB(255, 243, 33, 33),
+    //   child: TextFormField(
+    //     obscureText: true,
+    //     autofocus: false,
+    //     decoration: InputDecoration(
+    //         icon: const Icon(Icons.lock, color: Color(0xff224597)),
+    //         hintText: 'Password',
+    //         fillColor: const Color.fromARGB(255, 0, 0, 0),
+    //         filled: true,
+    //         contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+    //         enabledBorder: OutlineInputBorder(
+    //             borderRadius: BorderRadius.circular(5.0),
+    //             borderSide: const BorderSide(
+    //                 color: Color.fromARGB(255, 0, 119, 255), width: 3.0))),
+    //   ),
+    // );
     return Scaffold(
       body: Container(
-        width: _wh * 100,
-        height: _hg * 100,
-        color: const Color(0xf5f7fa),
+        width: wh * 100,
+        height: hg * 100,
+        color: const Color(0x00f5f7fa),
         child: SingleChildScrollView(
           child: Stack(
             children: [
@@ -50,7 +46,7 @@ class _Login_desktopState extends State<Login_desktop> {
                 child: Row(
                   children: [
                     Container(
-                      width: _wh * 77,
+                      width: wh * 77,
                       // height: _hg * 100,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -73,29 +69,29 @@ class _Login_desktopState extends State<Login_desktop> {
                       child: Column(
                         // mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Container(
+                          SizedBox(
                             // color: Color.fromARGB(255, 255, 0, 0),
-                            height: _hg * 80,
-                            width: _wh * 80,
+                            height: hg * 80,
+                            width: wh * 80,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(right: 210),
+                                  margin: const EdgeInsets.only(right: 210),
                                   child: SvgPicture.asset(
                                       "assets/images/Banner.svg"),
                                   // color: Colors.black,
-                                  width: _wh * 100,
-                                  height: _hg * 70,
+                                  width: wh * 100,
+                                  height: hg * 70,
                                 )
                               ],
                             ),
                           ),
-                          Container(
+                          SizedBox(
                             // color: const Color.fromARGB(255, 255, 217, 0),
 
-                            height: _hg * 10,
-                            width: _wh * 80,
+                            height: hg * 10,
+                            width: wh * 80,
 
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -104,11 +100,11 @@ class _Login_desktopState extends State<Login_desktop> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                        margin: EdgeInsets.only(right: 210),
+                                        margin: const EdgeInsets.only(right: 210),
 
                                         // color: Colors.red,
                                         width: 250,
-                                        height: (_hg * 10 < 60) ? _hg * 10 : 60,
+                                        height: (hg * 10 < 60) ? hg * 10 : 60,
                                         child: TextButton(
                                             child: const Text("ورود به انجمن",
                                                 style: TextStyle(
@@ -134,7 +130,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           18.0),
                                                   // side: BorderSide(color: Colors.red)
                                                 ))),
-                                            onPressed: () => null)),
+                                            onPressed: () {})),
                                   ],
                                 ),
                               ],
@@ -142,14 +138,14 @@ class _Login_desktopState extends State<Login_desktop> {
                           ),
                           Container(
                             // color: Color.fromARGB(255, 234, 0, 255),
-                            height: _hg * 10,
+                            height: hg * 10,
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      width: _wh * 23,
-                      height: _hg * 100,
+                    SizedBox(
+                      width: wh * 23,
+                      height: hg * 100,
                       // color: Colors.red,
                       child: const Column(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -176,10 +172,10 @@ class _Login_desktopState extends State<Login_desktop> {
                       Container(
                         margin: EdgeInsets.only(
                             right:
-                                ((_wh * 23) - 184) < 0 ? 0 : ((_wh * 23) - 184),
-                            top: ((_hg * 50) - 300) < 0
+                                ((wh * 23) - 184) < 0 ? 0 : ((wh * 23) - 184),
+                            top: ((hg * 50) - 300) < 0
                                 ? 0
-                                : ((_hg * 50) - 300)),
+                                : ((hg * 50) - 300)),
                         width: 368,
                         height: 600,
                         decoration: const BoxDecoration(
@@ -337,7 +333,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                               const EdgeInsets.all(0)),
                                           backgroundColor:
                                               MaterialStateProperty.all<Color>(
-                                                  Color.fromARGB(
+                                                  const Color.fromARGB(
                                                       255, 0, 186, 186)),
                                           // foregroundColor:
                                           //     MaterialStateProperty.all<Color>(
@@ -349,7 +345,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 BorderRadius.circular(10.0),
                                             // side: BorderSide(color: Colors.red)
                                           ))),
-                                      onPressed: () => null)),
+                                      onPressed: () {})),
                               Container(
                                 width: 280,
                                 height: 0,
@@ -369,12 +365,12 @@ class _Login_desktopState extends State<Login_desktop> {
                                     children: [
                                       TextButton(
                                           onPressed: () {},
-                                          child: Text(
+                                          child: const Text(
                                             "ثبت نام",
                                             style:
                                                 TextStyle(color: Colors.black),
                                           )),
-                                      Text("حساب کاربری ندارید؟"),
+                                      const Text("حساب کاربری ندارید؟"),
                                     ],
                                   ),
                                 ),
@@ -391,12 +387,12 @@ class _Login_desktopState extends State<Login_desktop> {
                                     children: [
                                       TextButton(
                                           onPressed: () {},
-                                          child: Text(
+                                          child: const Text(
                                             "ایجاد رمز جدید",
                                             style:
                                                 TextStyle(color: Colors.black),
                                           )),
-                                      Text("رمز عبورتان را گم کرده اید؟"),
+                                      const Text("رمز عبورتان را گم کرده اید؟"),
                                     ],
                                   ),
                                 ),
@@ -414,13 +410,13 @@ class _Login_desktopState extends State<Login_desktop> {
                                       Container(
                                           width: 100,
                                           height: 1,
-                                          color: Color.fromARGB(
+                                          color: const Color.fromARGB(
                                               255, 209, 219, 232)),
-                                      Text("   یا   "),
+                                      const Text("   یا   "),
                                       Container(
                                           width: 100,
                                           height: 1,
-                                          color: Color.fromARGB(
+                                          color: const Color.fromARGB(
                                               255, 209, 219, 232)),
                                     ],
                                   ),
@@ -438,20 +434,20 @@ class _Login_desktopState extends State<Login_desktop> {
                                   children: [
                                     
                                     Container(
-                                      padding: EdgeInsets.all(6),
+                                      padding: const EdgeInsets.all(6),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: Color.fromARGB(255, 233, 237, 245),
+                                        color: const Color.fromARGB(255, 233, 237, 245),
                                       ),
                                       child: Image.asset('assets/images/G.png'),
                                     ) 
                                     
                                     ,Container(
-                                      margin: EdgeInsets.only(left: 10),
-                                      padding: EdgeInsets.all(6),
+                                      margin: const EdgeInsets.only(left: 10),
+                                      padding: const EdgeInsets.all(6),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color: Color.fromARGB(255, 233, 237, 245),
+                                        color: const Color.fromARGB(255, 233, 237, 245),
                                       ),
                                       child: Image.asset('assets/images/pod.png'),
                                     )
@@ -473,7 +469,7 @@ class _Login_desktopState extends State<Login_desktop> {
                     height: 24,
                     width: 104,
                     // color: Colors.amber,
-                    margin: EdgeInsets.only(right: _wh * 2, top: 27),
+                    margin: EdgeInsets.only(right: wh * 2, top: 27),
                     child: TextButton(
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -492,9 +488,9 @@ class _Login_desktopState extends State<Login_desktop> {
                         ),
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsets>(
-                                EdgeInsets.all(0)),
+                                const EdgeInsets.all(0)),
                             backgroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromARGB(255, 233, 237, 245)),
+                                const Color.fromARGB(255, 233, 237, 245)),
                             // foregroundColor:
                             //     // MaterialStateProperty.all<Color>(
                             //     //     Colors.red) ,
@@ -503,7 +499,7 @@ class _Login_desktopState extends State<Login_desktop> {
                               borderRadius: BorderRadius.circular(18.0),
                               // side: BorderSide(color: Colors.red)
                             ))),
-                        onPressed: () => null),
+                        onPressed: () {}),
                   ),
                 ],
               ),
@@ -515,7 +511,7 @@ class _Login_desktopState extends State<Login_desktop> {
                   // mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(left: _wh * 2, top: 27),
+                      margin: EdgeInsets.only(left: wh * 2, top: 27),
                       height: 24,
                       width: 104,
                       decoration: const BoxDecoration(
@@ -532,7 +528,7 @@ class _Login_desktopState extends State<Login_desktop> {
                               padding: MaterialStateProperty.all<EdgeInsets>(
                                   const EdgeInsets.all(0)),
                               backgroundColor: MaterialStateProperty.all<Color>(
-                                  Color.fromARGB(31, 255, 255, 255)),
+                                  const Color.fromARGB(31, 255, 255, 255)),
                               // foregroundColor:
                               //     // MaterialStateProperty.all<Color>(
                               //     //     Colors.red) ,
@@ -542,7 +538,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                 borderRadius: BorderRadius.circular(18.0),
                                 // side: BorderSide(color: Colors.red)
                               ))),
-                          onPressed: () => null),
+                          onPressed: () {}),
                     )
                   ],
                 ),

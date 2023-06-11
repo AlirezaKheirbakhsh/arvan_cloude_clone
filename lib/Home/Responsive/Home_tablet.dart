@@ -10,14 +10,14 @@ class Home_tablet extends StatefulWidget {
 class _Home_tabletState extends State<Home_tablet> {
   @override
   Widget build(BuildContext context) {
-    double _wh = MediaQuery.of(context).size.width / 100;
-    double _hg = MediaQuery.of(context).size.height / 100;
+    double wh = MediaQuery.of(context).size.width / 100;
+    double hg = MediaQuery.of(context).size.height / 100;
 
     return Scaffold(
       body: Container(
-        width: _wh * 100,
-        height: _hg * 100,
-        color: Color.fromARGB(255, 255, 234, 0),
+        width: wh * 100,
+        height: hg * 100,
+        color: const Color.fromARGB(255, 255, 234, 0),
       ),
     );
   }
