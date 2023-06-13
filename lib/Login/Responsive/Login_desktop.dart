@@ -19,6 +19,7 @@ class _Login_desktopState extends State<Login_desktop> {
   bool ho_pass = false;
   bool of_email = false;
   bool of_pass = false;
+  bool is_pass_hide = true;
 
   @override
   void initState() {
@@ -378,7 +379,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                         focusNode: passFocus,
                                     
                                         textAlign: TextAlign.start,
-                                        obscureText: true,
+                                        obscureText: is_pass_hide,
                                         //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                         decoration: InputDecoration(
                                           fillColor: !of_pass
@@ -387,9 +388,18 @@ class _Login_desktopState extends State<Login_desktop> {
                                           hoverColor: Colors.transparent,
                                     
                                           // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
-                                          suffixIcon: const Icon(
-                                            Icons.remove_red_eye_outlined,
-                                            color: Color.fromARGB(130, 57, 100, 98),
+                                          suffixIcon:  InkWell(
+                                            onTap: () {
+                                              // print("iss password");
+                                              setState(() {
+  is_pass_hide=!is_pass_hide;
+});
+
+                                            },
+                                            child:  Icon(
+                                             !is_pass_hide? Icons.remove_red_eye_outlined:Icons.password,
+                                              color: Color.fromARGB(130, 57, 100, 98),
+                                            ),
                                           ),
                                           filled: true,
                                           // isCollapsed: true,//make fild 0 padding
