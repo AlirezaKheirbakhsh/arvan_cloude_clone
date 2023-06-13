@@ -235,8 +235,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                 ),
                                 InkWell(
                                   onHover: (value) {},
-                                  child: Container(
-                                      width: 280,
+                                  child: AnimatedContainer(
+                                    duration: Duration(milliseconds: 300),
+                                      width: 283,
                                       height: 45,
                                       margin: const EdgeInsets.only(
                                           top: 60, bottom: 0),
@@ -276,6 +277,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                           filled: true,
                                           // isCollapsed: true,//make fild 0 padding
                                           // isDense: true,
+                                          hoverColor: Colors.transparent,
                                           hintTextDirection: TextDirection.rtl,
 
                                           floatingLabelBehavior:
@@ -316,7 +318,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                         ),
                                       )),
                                 ),
-                                Container(
+                                AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
                                     width: 280,
                                     height: 45,
                                     margin: const EdgeInsets.only(
@@ -355,6 +358,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                         fillColor: !of_pass
                                             ? Color.fromARGB(255, 245, 247, 250)
                                             : Colors.transparent,
+                                            hoverColor: Colors.transparent,
 
                                         // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
                                         suffixIcon: const Icon(
