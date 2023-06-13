@@ -392,8 +392,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                             onTap: () {
                                               // print("iss password");
                                               setState(() {
-  is_pass_hide=!is_pass_hide;
-});
+                                                is_pass_hide=!is_pass_hide;
+                                              });
 
                                             },
                                             child:  Icon(

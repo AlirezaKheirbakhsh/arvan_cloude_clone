@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:test_responsive/Home/Home.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:test_responsive/Login/Login.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Color.fromARGB(255, 255, 255, 255),systemNavigationBarColor: Color.fromARGB(255, 255, 255, 255)));
   runApp(const MyApp());
 }
 
@@ -12,10 +14,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Responsive Test',
-      theme: ThemeData(fontFamily: 'YekanBakh'),
+      theme: ThemeData(fontFamily: 'YekanBakh',
+      ),
       // home: const home(),
       initialRoute: '/Login',
 
