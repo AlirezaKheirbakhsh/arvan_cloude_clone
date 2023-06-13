@@ -15,7 +15,8 @@ class _Login_desktopState extends State<Login_desktop> {
   FocusNode passFocus = FocusNode();
 
   bool isFirst = true;
-
+  bool ho_email = false;
+  bool ho_pass = false;
   bool of_email = false;
   bool of_pass = false;
 
@@ -213,59 +214,68 @@ class _Login_desktopState extends State<Login_desktop> {
                             ),
                           ],
                         ),
-                        child: InkWell(
-                          child: Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  width: 300,
-                                  height: 50,
-                                  // color: Colors.amberAccent,
-                                  margin:
-                                      const EdgeInsets.only(top: 40, bottom: 0),
-                                  child: const Center(
-                                      child: Text(
-                                    "ورود",
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 0, 186, 186),
-                                        fontSize: 35,
-                                        fontWeight: FontWeight.w800),
-                                  )),
-                                ),
-                                InkWell(
-                                  onHover: (value) {},
-                                  child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 300),
-                                      width: 283,
-                                      height: 45,
-                                      margin: const EdgeInsets.only(
-                                          top: 60, bottom: 0),
-                                      decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10)),
-                                          color: Colors.white,
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: of_email
-                                                  ? const Color.fromARGB(
-                                                      150, 4, 189, 158)
-                                                  : Colors.transparent,
-                                              blurRadius:
-                                                  20.0, // soften the shadow
-                                              spreadRadius:
-                                                  -10.0, //extend the shadow
-                                              offset: const Offset(
-                                                0.0, // Move to right 5  horizontally
-                                                8.0, // Move to bottom 5 Vertically
-                                              ),
-                                            ),
-                                          ]),
-                                      // color: const Color.fromARGB(255, 134, 255, 64),
+                        child: Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 300,
+                                height: 50,
+                                // color: Colors.amberAccent,
+                                margin:
+                                    const EdgeInsets.only(top: 40, bottom: 0),
+                                child: const Center(
+                                    child: Text(
+                                  "ورود",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 0, 186, 186),
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.w800),
+                                )),
+                              ),
+                              AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
+                                  width: 283,
+                                  height: 45,
+                                  margin: const EdgeInsets.only(
+                                      top: 60, bottom: 0),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: of_email
+                                              ? const Color.fromARGB(
+                                                  150, 4, 189, 158)
+                                              : Colors.transparent,
+                                          blurRadius:
+                                              20.0, // soften the shadow
+                                          spreadRadius:
+                                              -10.0, //extend the shadow
+                                          offset: const Offset(
+                                            0.0, // Move to right 5  horizontally
+                                            8.0, // Move to bottom 5 Vertically
+                                          ),
+                                        ),
+                                      ]),
+                                  // color: const Color.fromARGB(255, 134, 255, 64),
+                                  child: MouseRegion(
+                                      onHover: (value) {
+                                setState(() {
+                                  ho_email = true;
+                                });
+                              },
+                                 onExit: (value) {
+                                setState(() {
+                                  ho_email = false;
+                                });
+                              },
+                                    child: Container(
                                       child: TextField(
                                         //email-textfild
                                         focusNode: emailFocus,
-
+                                      
                                         //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                         decoration: InputDecoration(
                                           fillColor: !of_email
@@ -279,21 +289,19 @@ class _Login_desktopState extends State<Login_desktop> {
                                           // isDense: true,
                                           hoverColor: Colors.transparent,
                                           hintTextDirection: TextDirection.rtl,
-
+                                      
                                           floatingLabelBehavior:
                                               FloatingLabelBehavior.never,
-                                          enabledBorder:
-                                              const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
+                                          enabledBorder:  OutlineInputBorder(
+                                            borderRadius: const BorderRadius.all(
                                                 Radius.circular(12)),
                                             borderSide: BorderSide(
-                                              color: Color.fromARGB(
-                                                  0, 76, 175, 79),
+                                              color:
+                                                 !ho_email ?Color.fromARGB(0, 76, 175, 79):Color.fromARGB(108, 0, 186, 186),
                                               width: 0.0,
                                             ),
                                           ),
-                                          focusedBorder:
-                                              const OutlineInputBorder(
+                                          focusedBorder: const OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(12)),
                                             borderSide: BorderSide(
@@ -303,7 +311,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                               width: 1.0,
                                             ),
                                           ),
-
+                                      
                                           // enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: 1,color: Color.fromARGB(255, 12, 73, 58),strokeAlign: BorderSide.strokeAlignCenter) ),
                                           // border: UnderlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                                           // labelText: 'Enter your username',
@@ -316,259 +324,279 @@ class _Login_desktopState extends State<Login_desktop> {
                                               color: Color.fromARGB(
                                                   130, 57, 100, 98)),
                                         ),
-                                      )),
-                                ),
-                                AnimatedContainer(
+                                      ),
+                                    ),
+                                  )),
+
+
+
+
+
+
+                              AnimatedContainer(
                                   duration: Duration(milliseconds: 300),
-                                    width: 280,
-                                    height: 45,
-                                    margin: const EdgeInsets.only(
-                                        top: 20, bottom: 0),
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                        color: Colors.white,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: of_pass
-                                                ? const Color.fromARGB(
-                                                    150, 4, 189, 158)
-                                                : Colors.transparent,
-                                            blurRadius:
-                                                20.0, // soften the shadow
-                                            spreadRadius:
-                                                -10.0, //extend the shadow
-                                            offset: const Offset(
-                                              0.0, // Move to right 5  horizontally
-                                              8.0, // Move to bottom 5 Vertically
+                                  width: 280,
+                                  height: 45,
+                                  margin:
+                                      const EdgeInsets.only(top: 20, bottom: 0),
+                                  decoration: BoxDecoration(
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: of_pass
+                                              ? const Color.fromARGB(
+                                                  150, 4, 189, 158)
+                                              : Colors.transparent,
+                                          blurRadius: 20.0, // soften the shadow
+                                          spreadRadius:
+                                              -10.0, //extend the shadow
+                                          offset: const Offset(
+                                            0.0, // Move to right 5  horizontally
+                                            8.0, // Move to bottom 5 Vertically
+                                          ),
+                                        ),
+                                      ]),
+                                  // color: const Color.fromARGB(255, 64, 255, 255),
+                                  child: MouseRegion(
+                                    onHover: (value) {
+                                setState(() {
+                                  ho_pass = true;
+                                });
+                              },
+                                 onExit: (value) {
+                                setState(() {
+                                  ho_pass = false;
+                                });
+                              },
+                                    child: Container(
+                                      child: TextField(
+                                        //textfild-pass
+                                        textInputAction: TextInputAction.send,
+                                    
+                                        focusNode: passFocus,
+                                    
+                                        textAlign: TextAlign.start,
+                                        obscureText: true,
+                                        //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
+                                        decoration: InputDecoration(
+                                          fillColor: !of_pass
+                                              ? Color.fromARGB(255, 245, 247, 250)
+                                              : Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                    
+                                          // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
+                                          suffixIcon: const Icon(
+                                            Icons.remove_red_eye_outlined,
+                                            color: Color.fromARGB(130, 57, 100, 98),
+                                          ),
+                                          filled: true,
+                                          // isCollapsed: true,//make fild 0 padding
+                                          // isDense: true,
+                                          hintTextDirection: TextDirection.rtl,
+                                    
+                                          floatingLabelBehavior:
+                                              FloatingLabelBehavior.never,
+                                          enabledBorder:  OutlineInputBorder(
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(12)),
+                                            borderSide: BorderSide(
+                                              color: !ho_pass ?const Color.fromARGB(0, 76, 175, 79):const Color.fromARGB(108, 0, 186, 186),
+                                    
+                                              width: 0.0,
                                             ),
                                           ),
-                                        ]),
-                                    // color: const Color.fromARGB(255, 64, 255, 255),
-                                    child: TextField(
-                                      //textfild-pass
-                                      textInputAction: TextInputAction.send,
-
-                                      focusNode: passFocus,
-
-                                      textAlign: TextAlign.start,
-                                      obscureText: true,
-                                      //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
-                                      decoration: InputDecoration(
-                                        fillColor: !of_pass
-                                            ? Color.fromARGB(255, 245, 247, 250)
-                                            : Colors.transparent,
-                                            hoverColor: Colors.transparent,
-
-                                        // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
-                                        suffixIcon: const Icon(
-                                          Icons.remove_red_eye_outlined,
-                                          color:
-                                              Color.fromARGB(130, 57, 100, 98),
-                                        ),
-                                        filled: true,
-                                        // isCollapsed: true,//make fild 0 padding
-                                        // isDense: true,
-                                        hintTextDirection: TextDirection.rtl,
-
-                                        floatingLabelBehavior:
-                                            FloatingLabelBehavior.never,
-                                        enabledBorder: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          borderSide: BorderSide(
-                                            color:
-                                                Color.fromARGB(0, 76, 175, 79),
-                                            width: 0.0,
+                                    
+                                          focusedBorder: const OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(12)),
+                                            borderSide: BorderSide(
+                                              style: BorderStyle.solid,
+                                              color:
+                                                  Color.fromARGB(255, 0, 186, 186),
+                                              width: 1.0,
+                                            ),
                                           ),
+                                    
+                                          hintText: 'رمز',
+                                          hintStyle: const TextStyle(
+                                              fontFamily: "YekanX",
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              decoration: TextDecoration.none,
+                                              color:
+                                                  Color.fromARGB(130, 57, 100, 98)),
                                         ),
-                                        focusedBorder: const OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          borderSide: BorderSide(
-                                            style: BorderStyle.solid,
-                                            color: Color.fromARGB(
-                                                255, 0, 186, 186),
-                                            width: 1.0,
-                                          ),
-                                        ),
-
-                                        hintText: 'رمز',
-                                        hintStyle: const TextStyle(
-                                            fontFamily: "YekanX",
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            decoration: TextDecoration.none,
-                                            color: Color.fromARGB(
-                                                130, 57, 100, 98)),
                                       ),
-                                    )),
-                                Container(
-                                    width: 280,
-                                    height: 40,
-                                    margin: const EdgeInsets.only(
-                                        top: 30, bottom: 0),
-                                    // color: const Color.fromARGB(255, 64, 169, 255),
-                                    child: TextButton(
-                                        child: const Text("ورود",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18,
-                                                color: Color.fromARGB(
-                                                    255, 255, 255, 255))),
-                                        style: ButtonStyle(
-                                            padding:
-                                                MaterialStateProperty.all<EdgeInsets>(
-                                                    const EdgeInsets.all(0)),
-                                            backgroundColor:
-                                                MaterialStateProperty.all<Color>(
-                                                    const Color.fromARGB(
-                                                        255, 0, 186, 186)),
-                                            // foregroundColor:
-                                            //     MaterialStateProperty.all<Color>(
-                                            //         Colors.red) ,
-                                            shape: MaterialStateProperty.all<
-                                                RoundedRectangleBorder>(RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              // side: BorderSide(color: Colors.red)
-                                            ))),
-                                        onPressed: () {})),
-                                Container(
-                                  width: 280,
-                                  height: 0,
-                                  margin:
-                                      const EdgeInsets.only(top: 0, bottom: 0),
-                                  // color: const Color.fromARGB(255, 64, 83, 255),
-                                ),
-                                Container(
+                                    ),
+                                  )),
+
+
+
+
+
+
+                              Container(
                                   width: 280,
                                   height: 40,
                                   margin:
                                       const EdgeInsets.only(top: 30, bottom: 0),
-                                  // color: const Color.fromARGB(255, 137, 64, 255),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {},
-                                            child: const Text(
-                                              "ثبت نام",
-                                              style: TextStyle(
-                                                  color: Colors.black),
-                                            )),
-                                        const Text("حساب کاربری ندارید؟"),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 280,
-                                  // height: 0,
-                                  margin:
-                                      const EdgeInsets.only(top: 0, bottom: 0),
-                                  // color: const Color.fromARGB(255, 255, 64, 239),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {},
-                                            child: const Text(
-                                              "ایجاد رمز جدید",
-                                              style: TextStyle(
-                                                  color: Colors.black),
-                                            )),
-                                        const Text(
-                                            "رمز عبورتان را گم کرده اید؟"),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 280,
-                                  height: 40,
-                                  margin: const EdgeInsets.only(
-                                      top: 20, bottom: 20),
-                                  // color: Color.fromARGB(255, 255, 64, 128),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                            width: 100,
-                                            height: 1,
-                                            color: const Color.fromARGB(
-                                                255, 209, 219, 232)),
-                                        const Text("   یا   "),
-                                        Container(
-                                            width: 100,
-                                            height: 1,
-                                            color: const Color.fromARGB(
-                                                255, 209, 219, 232)),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 300,
-                                  height: 50,
-
-                                  margin:
-                                      const EdgeInsets.only(top: 10, bottom: 0),
-                                  // color: Color.fromARGB(255, 255, 0, 0),
+                                  // color: const Color.fromARGB(255, 64, 169, 255),
+                                  child: TextButton(
+                                      child: const Text("ورود",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18,
+                                              color: Color.fromARGB(
+                                                  255, 255, 255, 255))),
+                                      style: ButtonStyle(
+                                          padding: MaterialStateProperty.all<EdgeInsets>(
+                                              const EdgeInsets.all(0)),
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  const Color.fromARGB(
+                                                      255, 0, 186, 186)),
+                                          // foregroundColor:
+                                          //     MaterialStateProperty.all<Color>(
+                                          //         Colors.red) ,
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            // side: BorderSide(color: Colors.red)
+                                          ))),
+                                      onPressed: () {})),
+                              Container(
+                                width: 280,
+                                height: 0,
+                                margin:
+                                    const EdgeInsets.only(top: 0, bottom: 0),
+                                // color: const Color.fromARGB(255, 64, 83, 255),
+                              ),
+                              Container(
+                                width: 280,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 30, bottom: 0),
+                                // color: const Color.fromARGB(255, 137, 64, 255),
+                                child: Center(
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      InkWell(
-                                        onTap: () {
-                                          print("Google-tap");
-                                        },
-                                        onHover: (value) {
-                                          print(value);
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.all(6),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: const Color.fromARGB(
-                                                255, 233, 237, 245),
-                                          ),
-                                          child: Image.asset(
-                                              'assets/images/G.png'),
-                                        ),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          print("Pod Tap");
-                                        },
-                                        onHover: (value) {
-                                          print(value);
-                                        },
-                                        child: Container(
-                                          margin:
-                                              const EdgeInsets.only(left: 10),
-                                          padding: const EdgeInsets.all(6),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            color: const Color.fromARGB(
-                                                255, 233, 237, 245),
-                                          ),
-                                          child: Image.asset(
-                                              'assets/images/pod.png'),
-                                        ),
-                                      )
+                                      TextButton(
+                                          onPressed: () {},
+                                          child: const Text(
+                                            "ثبت نام",
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          )),
+                                      const Text("حساب کاربری ندارید؟"),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              Container(
+                                width: 280,
+                                // height: 0,
+                                margin:
+                                    const EdgeInsets.only(top: 0, bottom: 0),
+                                // color: const Color.fromARGB(255, 255, 64, 239),
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      TextButton(
+                                          onPressed: () {},
+                                          child: const Text(
+                                            "ایجاد رمز جدید",
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          )),
+                                      const Text("رمز عبورتان را گم کرده اید؟"),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 280,
+                                height: 40,
+                                margin:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
+                                // color: Color.fromARGB(255, 255, 64, 128),
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          width: 100,
+                                          height: 1,
+                                          color: const Color.fromARGB(
+                                              255, 209, 219, 232)),
+                                      const Text("   یا   "),
+                                      Container(
+                                          width: 100,
+                                          height: 1,
+                                          color: const Color.fromARGB(
+                                              255, 209, 219, 232)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                width: 300,
+                                height: 50,
+
+                                margin:
+                                    const EdgeInsets.only(top: 10, bottom: 0),
+                                // color: Color.fromARGB(255, 255, 0, 0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        print("Google-tap");
+                                      },
+                                      onHover: (value) {
+                                        print(value);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: const Color.fromARGB(
+                                              255, 233, 237, 245),
+                                        ),
+                                        child:
+                                            Image.asset('assets/images/G.png'),
+                                      ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        print("Pod Tap");
+                                      },
+                                      onHover: (value) {
+                                        print(value);
+                                      },
+                                      child: Container(
+                                        margin: const EdgeInsets.only(left: 10),
+                                        padding: const EdgeInsets.all(6),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: const Color.fromARGB(
+                                              255, 233, 237, 245),
+                                        ),
+                                        child: Image.asset(
+                                            'assets/images/pod.png'),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
