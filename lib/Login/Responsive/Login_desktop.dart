@@ -20,7 +20,10 @@ class _Login_desktopState extends State<Login_desktop> {
   bool of_email = false;
   bool of_pass = false;
   bool is_pass_hide = true;
-
+  double login_hg = 600;
+  double error_hg = 15;
+  bool error=false;
+  
   @override
   void initState() {
     super.initState();
@@ -102,8 +105,8 @@ class _Login_desktopState extends State<Login_desktop> {
                               children: [
                                 Container(
                                   margin: const EdgeInsets.only(right: 210),
-                                  child: SvgPicture.asset(
-                                      "assets/images/Banner.svg"),
+                                  // child: SvgPicture.asset(
+                                  //     "assets/images/Banner.svg"),
                                   // color: Colors.black,
                                   width: wh * 100,
                                   height: hg * 70,
@@ -193,13 +196,16 @@ class _Login_desktopState extends State<Login_desktop> {
                     // mainAxisAlignment: MainAxisAlignment.center,
 
                     children: [
-                      Container(
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 50),
                         margin: EdgeInsets.only(
                             right:
                                 ((wh * 23) - 184) < 0 ? 0 : ((wh * 23) - 184),
-                            top: ((hg * 50) - 300) < 0 ? 0 : ((hg * 50) - 300)),
+                            top: ((hg * 50) - login_hg / 2) < 0
+                                ? 0
+                                : ((hg * 50) - login_hg / 2)),
                         width: 368,
-                        height: 600,
+                        height: login_hg,
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           color: Color.fromARGB(255, 255, 255, 255),
@@ -238,8 +244,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                   duration: Duration(milliseconds: 300),
                                   width: 283,
                                   height: 45,
-                                  margin: const EdgeInsets.only(
-                                      top: 60, bottom: 0),
+                                  margin:
+                                      const EdgeInsets.only(top: 60, bottom: 0),
                                   decoration: BoxDecoration(
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(10)),
@@ -250,8 +256,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                               ? const Color.fromARGB(
                                                   150, 4, 189, 158)
                                               : Colors.transparent,
-                                          blurRadius:
-                                              20.0, // soften the shadow
+                                          blurRadius: 20.0, // soften the shadow
                                           spreadRadius:
                                               -10.0, //extend the shadow
                                           offset: const Offset(
@@ -262,21 +267,21 @@ class _Login_desktopState extends State<Login_desktop> {
                                       ]),
                                   // color: const Color.fromARGB(255, 134, 255, 64),
                                   child: MouseRegion(
-                                      onHover: (value) {
-                                setState(() {
-                                  ho_email = true;
-                                });
-                              },
-                                 onExit: (value) {
-                                setState(() {
-                                  ho_email = false;
-                                });
-                              },
+                                    onHover: (value) {
+                                      setState(() {
+                                        ho_email = true;
+                                      });
+                                    },
+                                    onExit: (value) {
+                                      setState(() {
+                                        ho_email = false;
+                                      });
+                                    },
                                     child: Container(
                                       child: TextField(
                                         //email-textfild
                                         focusNode: emailFocus,
-                                      
+
                                         //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                         decoration: InputDecoration(
                                           fillColor: !of_email
@@ -290,19 +295,24 @@ class _Login_desktopState extends State<Login_desktop> {
                                           // isDense: true,
                                           hoverColor: Colors.transparent,
                                           hintTextDirection: TextDirection.rtl,
-                                      
+
                                           floatingLabelBehavior:
                                               FloatingLabelBehavior.never,
-                                          enabledBorder:  OutlineInputBorder(
-                                            borderRadius: const BorderRadius.all(
-                                                Radius.circular(12)),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(12)),
                                             borderSide: BorderSide(
-                                              color:
-                                                 !ho_email ?Color.fromARGB(0, 76, 175, 79):Color.fromARGB(108, 0, 186, 186),
+                                              color: !ho_email
+                                                  ? Color.fromARGB(
+                                                      0, 76, 175, 79)
+                                                  : Color.fromARGB(
+                                                      108, 0, 186, 186),
                                               width: 0.0,
                                             ),
                                           ),
-                                          focusedBorder: const OutlineInputBorder(
+                                          focusedBorder:
+                                              const OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(12)),
                                             borderSide: BorderSide(
@@ -312,7 +322,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                               width: 1.0,
                                             ),
                                           ),
-                                      
+
                                           // enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: 1,color: Color.fromARGB(255, 12, 73, 58),strokeAlign: BorderSide.strokeAlignCenter) ),
                                           // border: UnderlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                                           // labelText: 'Enter your username',
@@ -328,12 +338,6 @@ class _Login_desktopState extends State<Login_desktop> {
                                       ),
                                     ),
                                   )),
-
-
-
-
-
-
                               AnimatedContainer(
                                   duration: Duration(milliseconds: 300),
                                   width: 280,
@@ -362,91 +366,146 @@ class _Login_desktopState extends State<Login_desktop> {
                                   // color: const Color.fromARGB(255, 64, 255, 255),
                                   child: MouseRegion(
                                     onHover: (value) {
-                                setState(() {
-                                  ho_pass = true;
-                                });
-                              },
-                                 onExit: (value) {
-                                setState(() {
-                                  ho_pass = false;
-                                });
-                              },
+                                      setState(() {
+                                        ho_pass = true;
+                                      });
+                                    },
+                                    onExit: (value) {
+                                      setState(() {
+                                        ho_pass = false;
+                                      });
+                                    },
                                     child: Container(
                                       child: TextField(
                                         //textfild-pass
                                         textInputAction: TextInputAction.send,
-                                    
+
                                         focusNode: passFocus,
-                                    
+
                                         textAlign: TextAlign.start,
                                         obscureText: is_pass_hide,
                                         //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                         decoration: InputDecoration(
                                           fillColor: !of_pass
-                                              ? Color.fromARGB(255, 245, 247, 250)
+                                              ? Color.fromARGB(
+                                                  255, 245, 247, 250)
                                               : Colors.transparent,
                                           hoverColor: Colors.transparent,
-                                    
+
                                           // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
-                                          suffixIcon:  InkWell(
+                                          suffixIcon: InkWell(
                                             onTap: () {
                                               // print("iss password");
                                               setState(() {
-                                                is_pass_hide=!is_pass_hide;
+                                                is_pass_hide = !is_pass_hide;
                                               });
-
                                             },
-                                            child:  Icon(
-                                             !is_pass_hide? Icons.remove_red_eye_outlined:Icons.password,
-                                              color: Color.fromARGB(130, 57, 100, 98),
+                                            child: Icon(
+                                              !is_pass_hide
+                                                  ? Icons
+                                                      .remove_red_eye_outlined
+                                                  : Icons.password,
+                                              color: Color.fromARGB(
+                                                  130, 57, 100, 98),
                                             ),
                                           ),
                                           filled: true,
                                           // isCollapsed: true,//make fild 0 padding
                                           // isDense: true,
                                           hintTextDirection: TextDirection.rtl,
-                                    
+
                                           floatingLabelBehavior:
                                               FloatingLabelBehavior.never,
-                                          enabledBorder:  OutlineInputBorder(
-                                            borderRadius: const BorderRadius.all(
-                                                Radius.circular(12)),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                                    Radius.circular(12)),
                                             borderSide: BorderSide(
-                                              color: !ho_pass ?const Color.fromARGB(0, 76, 175, 79):const Color.fromARGB(108, 0, 186, 186),
-                                    
+                                              color: !ho_pass
+                                                  ? const Color.fromARGB(
+                                                      0, 76, 175, 79)
+                                                  : const Color.fromARGB(
+                                                      108, 0, 186, 186),
                                               width: 0.0,
                                             ),
                                           ),
-                                    
-                                          focusedBorder: const OutlineInputBorder(
+
+                                          focusedBorder:
+                                              const OutlineInputBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(12)),
                                             borderSide: BorderSide(
                                               style: BorderStyle.solid,
-                                              color:
-                                                  Color.fromARGB(255, 0, 186, 186),
+                                              color: Color.fromARGB(
+                                                  255, 0, 186, 186),
                                               width: 1.0,
                                             ),
                                           ),
-                                    
+
                                           hintText: 'رمز',
                                           hintStyle: const TextStyle(
                                               fontFamily: "YekanX",
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
                                               decoration: TextDecoration.none,
-                                              color:
-                                                  Color.fromARGB(130, 57, 100, 98)),
+                                              color: Color.fromARGB(
+                                                  130, 57, 100, 98)),
                                         ),
                                       ),
                                     ),
                                   )),
+                              Visibility(
+                                maintainAnimation: true,
+                                maintainState: true,
+                                visible: error,
+                                child: AnimatedContainer(
 
+                                  duration: Duration(milliseconds: 50),
 
-
-
-
-
+                                  margin: EdgeInsets.only(top: 15),
+                                  width: 284,
+                                  height: error_hg,
+                                  decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    color: Color.fromARGB(255, 253, 238, 238),
+                                  ),
+                                  child: Row(
+                                    textDirection:TextDirection.rtl,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 40,
+                                        height: 40,
+                                        margin: EdgeInsets.only(left: 5),
+                                        decoration: const BoxDecoration(
+                                                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                                                        color: Color.fromARGB(31, 255, 95, 95),),
+                                        child: const Icon(
+                                          Icons.warning_amber_rounded,
+                                          color: Color.fromARGB(206, 252, 95, 95),
+                                          textDirection: TextDirection.rtl,
+                                        ),
+                                      ),
+                                      const Text(
+                                        "  .",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w800,
+                                            fontSize: 22,
+                                            color: Color.fromARGB(167, 143, 50, 50)),
+                                      ),
+                                      const Text(
+                                        ".اطلاعات وارد شده صحیح نیست",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 15,
+                                            color: Color.fromARGB(190, 194, 67, 67)),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                               Container(
                                   width: 280,
                                   height: 40,
@@ -477,7 +536,25 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 BorderRadius.circular(10.0),
                                             // side: BorderSide(color: Colors.red)
                                           ))),
-                                      onPressed: () {})),
+                                      onPressed: () {
+                                        setState(() {
+                                          error=!error;
+                                        });
+                                        setState(() {
+  
+
+  if (error) {
+    login_hg = login_hg + 100;
+    error_hg = 70;
+  }
+  else{
+    login_hg = login_hg - 100;
+    error_hg = 15;
+    
+    
+  }
+});
+                                      })),
                               Container(
                                 width: 280,
                                 height: 0,
