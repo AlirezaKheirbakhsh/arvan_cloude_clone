@@ -17,26 +17,49 @@ class _Login_desktopState extends State<Login_desktop> {
 
   FocusNode _forgetpasstextFocusNoode = FocusNode();
   FocusNode _fullnametextFocusNoode = FocusNode();
+  FocusNode _lastnametextFocusNoode = FocusNode();
+  FocusNode _emailtextFocusNoode = FocusNode();
 
 
   ArvanTextField _Forgetpass = ArvanTextField();
-  ArvanTextField _fullname = ArvanTextField();
+  bool _Forgetpasshoverborder = false;
+  bool OnHoverForgetPassTextShadow = false;
+
+
+  ArvanTextField _name = ArvanTextField();
+  bool _fullnamehoverborder = false;
+  bool OnHoverFullnameTextShadow = false;
+
+  ArvanTextField _lastname = ArvanTextField();
+  bool _lastnamehoverborder = false;
+  bool OnHoverlastnameTextShadow = false;
+
+
+  ArvanTextField _Email = ArvanTextField();
+  bool _emailhoverborder = false;
+  bool OnHoveremailTextShadow = false;
+
   bool isFirst = true;
   bool ho_email = false;
   bool ho_pass = false;
   bool of_email = false;
   bool of_pass = false;
-  bool _Forgetpasshoverborder = false;
-  bool _fullnamehoverborder = false;
-  bool OnHoverForgetPassTextShadow = false;
-  bool OnHoverFullnameTextShadow = false;
+ 
   bool is_pass_hide = true;
   double login_hg = 600;
   double error_hg = 15;
-  bool error = false;
+  bool login_error = false;
+  bool forgetpass_error = false;
   int map=0;
   double opp=1;
+  bool wrong_error=false;
+
+  bool isPass_8character=false;
+  bool isPass_SmallANDBig=false;
+  bool isPass_HaveNumbers=false;
+  bool isPass_HaveSymblCharacter=false;
   
+  bool send_email=false;
 
   @override
   void initState() {
@@ -55,7 +78,21 @@ class _Login_desktopState extends State<Login_desktop> {
 
       print(OnHoverForgetPassTextShadow);
     }
- void _OnTextFocus() {
+    void _nameTextFocus() {
+      setState(() {
+        OnHoverlastnameTextShadow = !OnHoverlastnameTextShadow;
+      });
+
+      print(OnHoverFullnameTextShadow);
+    }
+    void _emailTextFocus() {
+      setState(() {
+        OnHoveremailTextShadow = !OnHoveremailTextShadow;
+      });
+
+      print(OnHoveremailTextShadow);
+    }
+    void _OnTextFocus() {
       setState(() {
         OnHoverFullnameTextShadow = !OnHoverFullnameTextShadow;
       });
@@ -85,6 +122,8 @@ class _Login_desktopState extends State<Login_desktop> {
 
         _forgetpasstextFocusNoode.addListener(_onTextFocus);
         _fullnametextFocusNoode.addListener(_OnTextFocus);
+        _lastnametextFocusNoode.addListener(_nameTextFocus);
+         _emailtextFocusNoode.addListener(_emailTextFocus);
 
         isFirst = false;
       }
@@ -260,11 +299,566 @@ class _Login_desktopState extends State<Login_desktop> {
                             child: Column(
                               
                               children: [
-                                            
                                 Visibility(
                                   maintainAnimation: true,
                                   maintainState: true,
-                              visible: map ==1?true:false,
+                                  visible: map ==3?true:false,
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(top:25),
+                                        child: const Text(
+                                            
+                                                    "ثبت نام",
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(255, 0, 186, 186),
+                                                        fontSize: 35,
+                                                        fontWeight: FontWeight.w800),
+                                                        
+                                                  ),
+                                                  
+                                      ),
+                                       Container(
+                                        child: const Text(
+                                              ":اطلاعات حساب کاربری تان را بنویسید",
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(255, 100, 100, 100),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          
+                                                  
+                                      ),
+                                       Visibility(//bikodi
+                                          visible: true,
+                                          
+                                          child:Container(
+                                            
+                                            margin: EdgeInsets.only(top:15),
+                                            width: 283,
+                                            height: 45,
+                                            // color: Colors.black,
+                                            child: _name.ADTextfield(
+                                                    
+                                              onHover: (a) {
+                                                  setState(() {
+                                                    _fullnamehoverborder = true;
+                                                  });
+                                                },
+                                                onExit: (a) {
+                                                  _fullnamehoverborder = false;
+                                                },
+                                                hintText: "نام",
+                                                TextFocusNoode: _fullnametextFocusNoode,
+                                                borderside:_fullnamehoverborder ? (OnHoverFullnameTextShadow 
+                                                    ? Color.fromARGB(255, 243, 46, 46)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverFullnameTextShadow 
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(
+                                                        255, 0, 186, 186)), 
+                                                boxShadowColor:  OnHoverFullnameTextShadow ? (OnHoverFullnameTextShadow 
+                                                    ? Color.fromARGB(255, 231, 6, 6)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverFullnameTextShadow 
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(
+                                                        150, 4, 189, 158)),
+                                                BorderColor:_fullnamehoverborder? (_fullnamehoverborder
+                                                    ? Color.fromARGB(255, 255, 0, 0)
+                                                    : Color.fromARGB(149, 186, 0, 0)) :(!_fullnamehoverborder
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(108, 0, 186, 186)),
+                                                fillColor: !OnHoverFullnameTextShadow 
+                                                    ? Color.fromARGB(255, 245, 245, 245)
+                                                    : const Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                            ),
+                                          ),
+                                          
+                                        ),
+                                         Visibility(//bikodi
+                                          visible: true,
+                                          
+                                          child:Container(
+                                            
+                                            margin: EdgeInsets.only(top:15),
+                                            width: 283,
+                                            height: 45,
+                                            // color: Colors.black,
+                                            child: _lastname.ADTextfield(
+                                                    
+                                              onHover: (a) {
+                                                  setState(() {
+                                                    _lastnamehoverborder = true;
+                                                  });
+                                                },
+                                                onExit: (a) {
+                                                  _lastnamehoverborder = false;
+                                                },
+                                                hintText: "نام خانوادگی",
+                                                TextFocusNoode: _lastnametextFocusNoode,
+                                                borderside:_lastnamehoverborder? (OnHoverlastnameTextShadow
+                                                    ? Color.fromARGB(255, 243, 46, 46)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverlastnameTextShadow
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(
+                                                       255, 0, 186, 186)), 
+                                                boxShadowColor:  wrong_error ? (OnHoverlastnameTextShadow
+                                                    ? Color.fromARGB(255, 231, 6, 6)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverlastnameTextShadow
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(
+                                                        150, 4, 189, 158)),
+                                                BorderColor:wrong_error? (_lastnamehoverborder
+                                                    ? Color.fromARGB(255, 255, 0, 0)
+                                                    : Color.fromARGB(149, 186, 0, 0)) :(!_lastnamehoverborder
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(108, 0, 186, 186)),
+                                                fillColor: !OnHoverlastnameTextShadow
+                                                    ? Color.fromARGB(255, 245, 245, 245)
+                                                    : const Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                            ),
+                                          ),
+                                          
+                                        ),
+                                         Visibility(//bikodi
+                                          visible: true,
+                                          
+                                          child:Container(
+                                            
+                                            margin: EdgeInsets.only(top:15),
+                                            width: 283,
+                                            height: 45,
+                                            // color: Colors.black,
+                                            child: _lastname.ADTextfield(
+                                                    
+                                              onHover: (a) {
+                                                  setState(() {
+                                                    _emailhoverborder = true;
+                                                  });
+                                                },
+                                                onExit: (a) {
+                                                  _emailhoverborder = false;
+                                                },
+                                                hintText: "نشانی ایمیل",
+                                                TextFocusNoode: _emailtextFocusNoode,
+                                                borderside:wrong_error ? (OnHoveremailTextShadow
+                                                    ? Color.fromARGB(255, 243, 46, 46)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoveremailTextShadow
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(
+                                                        255, 0, 186, 186)), 
+                                                boxShadowColor:  wrong_error ? (OnHoveremailTextShadow
+                                                    ? Color.fromARGB(255, 231, 6, 6)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoveremailTextShadow
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(
+                                                        150, 4, 189, 158)),
+                                                BorderColor:wrong_error? (_emailhoverborder
+                                                    ? Color.fromARGB(255, 255, 0, 0)
+                                                    : Color.fromARGB(149, 186, 0, 0)) :(!_emailhoverborder
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(108, 0, 186, 186)),
+                                                fillColor: !OnHoveremailTextShadow
+                                                    ? Color.fromARGB(255, 245, 245, 245)
+                                                    : const Color.fromARGB(
+                                                        255, 255, 255, 255),
+                                            ),
+                                          ),
+                                          
+                                        ),
+                                       
+AnimatedContainer(
+                                            duration: Duration(milliseconds: 300),
+                                            width: 280,
+                                            height: 45,
+                                            margin:
+                                                const EdgeInsets.only(top: 20, bottom: 0),
+                                            decoration: BoxDecoration(
+                                                borderRadius: const BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: of_pass
+                                                        ? const Color.fromARGB(
+                                                            150, 4, 189, 158)
+                                                        : Colors.transparent,
+                                                    blurRadius: 20.0, // soften the shadow
+                                                    spreadRadius:
+                                                        -10.0, //extend the shadow
+                                                    offset: const Offset(
+                                                      0.0, // Move to right 5  horizontally
+                                                      8.0, // Move to bottom 5 Vertically
+                                                    ),
+                                                  ),
+                                                ]),
+                                            // color: const Color.fromARGB(255, 64, 255, 255),
+                                            child: MouseRegion(
+                                              onHover: (value) {
+                                                setState(() {
+                                                  ho_pass = true;
+                                                });
+                                              },
+                                              onExit: (value) {
+                                                setState(() {
+                                                  ho_pass = false;
+                                                });
+                                              },
+                                              child: Container(
+                                                child: TextField(
+                                                  //textfild-pass
+                                                  textInputAction: TextInputAction.send,
+                                                  
+                                                  focusNode: passFocus,
+                                                  
+                                                  textAlign: TextAlign.start,
+                                                  obscureText: is_pass_hide,
+                                                  //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
+                                                  decoration: InputDecoration(
+                                                    fillColor: !of_pass
+                                                        ? Color.fromARGB(
+                                                            255, 245, 247, 250)
+                                                        : Colors.transparent,
+                                                    hoverColor: Colors.transparent,
+                                                  
+                                                    // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
+                                                    suffixIcon: InkWell(
+                                                      onTap: () {
+                                                        // print("iss password");
+                                                        setState(() {
+                                                          is_pass_hide = !is_pass_hide;
+                                                        });
+                                                      },
+                                                      child: Icon(
+                                                        !is_pass_hide
+                                                            ? Icons
+                                                                .remove_red_eye_outlined
+                                                            : Icons.password,
+                                                        color: Color.fromARGB(
+                                                            130, 57, 100, 98),
+                                                      ),
+                                                    ),
+                                                    filled: true,
+                                                    // isCollapsed: true,//make fild 0 padding
+                                                    // isDense: true,
+                                                    hintTextDirection: TextDirection.rtl,
+                                                  
+                                                    floatingLabelBehavior:
+                                                        FloatingLabelBehavior.never,
+                                                    enabledBorder: OutlineInputBorder(
+                                                      borderRadius:
+                                                          const BorderRadius.all(
+                                                              Radius.circular(12)),
+                                                      borderSide: BorderSide(
+                                                        color: !ho_pass
+                                                            ? const Color.fromARGB(
+                                                                0, 76, 175, 79)
+                                                            : const Color.fromARGB(
+                                                                108, 0, 186, 186),
+                                                        width: 0.0,
+                                                      ),
+                                                    ),
+                                                  
+                                                    focusedBorder:
+                                                        const OutlineInputBorder(
+                                                      borderRadius: BorderRadius.all(
+                                                          Radius.circular(12)),
+                                                      borderSide: BorderSide(
+                                                        style: BorderStyle.solid,
+                                                        color: Color.fromARGB(
+                                                            255, 0, 186, 186),
+                                                        width: 1.0,
+                                                      ),
+                                                    ),
+                                                  
+                                                    hintText: 'رمز',
+                                                    hintStyle: const TextStyle(
+                                                        fontFamily: "YekanX",
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w600,
+                                                        decoration: TextDecoration.none,
+                                                        color: Color.fromARGB(
+                                                            130, 57, 100, 98)),
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
+                                            Container(
+                                                child: Column(
+                                                  children: [
+                                                    Container(
+                                                      margin: const EdgeInsets.only(top: 5),
+                                                      width: 268,
+                                                      height: 20,
+                                                      // color: Colors.black,
+                                                      child:  Row(
+
+                                                        textDirection:TextDirection.rtl,                                                      
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: [
+                                                          const Text("رمز عبور میبایست",style:TextStyle(
+                                                            fontWeight: FontWeight.w500,
+                                                          ),),
+                                                          Container(
+                                                            child: Row(
+                                                              children: [
+                                                                Container(
+                                                                  
+                                                                  width: 8,
+                                                            height: 3,
+                                                            color:isPass_8character?Color.fromARGB(255, 16, 184, 156) : const Color.fromARGB(255, 151, 151, 151),
+                                                                ),
+                                                                Container(
+                                                                  margin: const EdgeInsets.only(left:2),
+                                                                  width: 8,
+                                                            height: 3,
+                                                            color: isPass_SmallANDBig?const Color.fromARGB(255, 16, 184, 156) : const Color.fromARGB(255, 151, 151, 151),
+                                                                ),
+                                                                Container(
+                                                                  margin: const EdgeInsets.only(left:2),
+                                                                  width: 8,
+                                                            height: 3,
+                                                            color: isPass_HaveNumbers?const Color.fromARGB(255, 16, 184, 156) : const Color.fromARGB(255, 151, 151, 151),
+                                                                ),
+                                                                Container(
+                                                                  
+                                                                  margin: const EdgeInsets.only(left:2),
+                                                                  width: 8,
+                                                            height: 3,
+                                                            color:isPass_HaveSymblCharacter?const Color.fromARGB(255, 16, 184, 156) : const Color.fromARGB(255, 151, 151, 151),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      margin: const EdgeInsets.only(top:15),
+                                                      width: 268,
+                                                      child:  Column(
+                                                        children: [
+                                                          Row(textDirection: TextDirection.rtl,
+                                                         
+                                                            children: [ Visibility(
+                                                                visible: isPass_8character,
+                                                                child: Container(margin: const EdgeInsets.only(left: 5), child: const Icon(Icons.check,size: 17,color: Color.fromARGB(255, 10, 150, 126),)),
+                                                              ),
+                                                              Container(margin: const EdgeInsets.only(top:2,),
+                                                                child:  Text("حداقل ۸ کاراکتر باشد",style: TextStyle(color:isPass_8character ? Color.fromARGB(255, 10, 150, 126):const Color.fromARGB(209, 0, 0, 0)),),
+                                                              )
+                                                            ],
+                                                          ),
+                                                          Row(textDirection: TextDirection.rtl,
+                                                         
+                                                            children: [ Visibility(
+                                                                visible: isPass_SmallANDBig,
+                                                                child: Container(margin: EdgeInsets.only(left: 5), child: Icon(Icons.check,size: 17,color: Color.fromARGB(255, 10, 150, 126),)),
+                                                              ),
+                                                              Container(margin: EdgeInsets.only(top:2,),
+                                                                child:  Text("ترکیبی از حروف کوچک و بزرگ باشد",style: TextStyle(color:isPass_SmallANDBig ? Color.fromARGB(255, 10, 150, 126):const Color.fromARGB(209, 0, 0, 0)),),
+                                                              )
+                                                            ],
+                                                          ),
+                                                            Row(textDirection: TextDirection.rtl,
+                                                         
+                                                            children: [ Visibility(
+                                                                visible: isPass_HaveNumbers,
+                                                                child: Container(margin: EdgeInsets.only(left: 5), child: Icon(Icons.check,size: 17,color: Color.fromARGB(255, 10, 150, 126),)),
+                                                              ),
+                                                              Container(margin: EdgeInsets.only(top:2,),
+                                                                child:  Text("شامل اعداد باشد",style: TextStyle(color:isPass_HaveNumbers ? Color.fromARGB(255, 10, 150, 126):const Color.fromARGB(209, 0, 0, 0)),),
+                                                              )
+                                                            ],
+                                                          ),
+                                                          Row(textDirection: TextDirection.rtl,
+                                                         
+                                                            children: [ Visibility(
+                                                                visible: isPass_HaveSymblCharacter,
+                                                                child: Container(margin: EdgeInsets.only(left: 5), child: Icon(Icons.check,size: 17, color: Color.fromARGB(255, 10, 150, 126),)),
+                                                              ),
+                                                              Container(margin: EdgeInsets.only(top:2,),
+                                                                child:  Text("شامل کاراکترهای خاص (نمادها) باشد",style: TextStyle(color:isPass_HaveSymblCharacter ? Color.fromARGB(255, 10, 150, 126):const Color.fromARGB(209, 0, 0, 0)),),
+                                                              )
+                                                            ],
+                                                          ),
+                                                         
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+
+                                            ),
+                                             Container(
+                                          margin: EdgeInsets.only(top: 20),
+                                          width: 283,
+                                          height: 40,
+                                          child: TextButton(
+                                                    child: const Text("ارسال ایمیل",
+                                                        style: TextStyle(
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 18,
+                                                            color: Color.fromARGB(
+                                                                255, 255, 255, 255))),
+                                                    style: ButtonStyle(
+                                                        padding: MaterialStateProperty.all<EdgeInsets>(
+                                                            const EdgeInsets.all(0)),
+                                                        backgroundColor:
+                                                            MaterialStateProperty.all<Color>(
+                                                                const Color.fromARGB(
+                                                                    255, 0, 186, 186)),
+                                                        // foregroundColor:
+                                                        //     MaterialStateProperty.all<Color>(
+                                                        //         Colors.red) ,
+                                                        shape: MaterialStateProperty.all<
+                                                                RoundedRectangleBorder>(
+                                                            RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.circular(10.0),
+                                                          // side: BorderSide(color: Colors.red)
+                                                        ))),
+                                                    onPressed: () {
+                                                  
+                                                  
+                                                  
+                                                  setState(() {
+                                                   send_email = !send_email;
+                                                  });
+                                                  setState(() {
+                                                    if (send_email) {
+                                                      isPass_8character=true;
+                                                      isPass_HaveNumbers=true;
+                                                      isPass_HaveSymblCharacter=true;
+                                                      isPass_SmallANDBig=true;
+                                                      // login_hg =460 ;
+                                                      // error_hg = 70;
+                                                    } else {
+                                                      
+                                                      isPass_8character=false;
+                                                      isPass_HaveNumbers=false;
+                                                      isPass_HaveSymblCharacter=false;
+                                                      isPass_SmallANDBig=false;
+                                                      // login_hg =400 ;
+                                                      // error_hg = 15;
+                                                    }
+                                                  });
+                                                }),
+                                        ), 
+                                        Container(
+                                          margin: const EdgeInsets.only(top:20),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                TextButton(
+                                                   onPressed: () {setState(() {
+                                                      login_hg=600;
+                                                      opp=0;
+                                                      map=0;
+                                                      login_error=false;
+                                                      wrong_error=false;
+                                                      wrong_error=false;
+                                                      isPass_8character=false;
+                                                      isPass_HaveNumbers=false;
+                                                      isPass_HaveSymblCharacter=false;
+                                                      isPass_SmallANDBig=false;
+                                                    });
+                                                    },
+                                                    child: const Text(
+                                                      "می‌خو‌اهم وارد شوم",
+                                                      style:
+                                                          TextStyle(color: Colors.black),
+                                                    )),
+                                                const Text(".نام کاربری دارم"),
+                                              ],),
+
+                                        ),
+                                        Container(
+                                          width: 280,
+                                          height: 40,
+                                          margin:
+                                              const EdgeInsets.only(top: 0, bottom: 0),
+                                          // color: Color.fromARGB(255, 255, 64, 128),
+                                          child: Center(
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                    width: 100,
+                                                    height: 1,
+                                                    color: const Color.fromARGB(
+                                                        255, 209, 219, 232)),
+                                                const Text("   یا   "),
+                                                Container(
+                                                    width: 100,
+                                                    height: 1,
+                                                    color: const Color.fromARGB(
+                                                        255, 209, 219, 232)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: 300,
+                                          height: 50,
+                                                  
+                                          margin:
+                                              const EdgeInsets.only(top: 10, bottom: 0),
+                                          // color: Color.fromARGB(255, 255, 0, 0),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              InkWell(
+                                                onTap: () {
+                                                  print("Google-tap");
+                                                },
+                                                onHover: (value) {
+                                                  // print(value);
+                                                },
+                                                child: Container(
+                                                  padding: const EdgeInsets.all(6),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(10),
+                                                    color: const Color.fromARGB(
+                                                        255, 233, 237, 245),
+                                                  ),
+                                                  child:
+                                                      Image.asset('assets/images/G.png'),
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  print("Pod Tap");
+                                                },
+                                                onHover: (value) {
+                                                  // print(value);
+                                                },
+                                                child: Container(
+                                                  margin: const EdgeInsets.only(left: 10),
+                                                  padding: const EdgeInsets.all(6),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(10),
+                                                    color: const Color.fromARGB(
+                                                        255, 233, 237, 245),
+                                                  ),
+                                                  child: Image.asset(
+                                                      'assets/images/pod.png'),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                    ],
+                                  )
+                                  )   ,         
+                                Visibility(
+                                  maintainAnimation: true,
+                                  maintainState: true,
+                                  visible: map ==1?true:false,
                                   child: Container(
                                     margin: EdgeInsets.only(top: 40),
                                     child:  Column(
@@ -272,7 +866,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                       children: [
                                          const Text(
                                           
-                                                  "ایجاد رمز جدید",
+                                              "ایجاد رمز جدید",
                                                   style: TextStyle(
                                                       color: Color.fromARGB(255, 0, 186, 186),
                                                       fontSize: 35,
@@ -301,7 +895,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
-                                            child: _Forgetpass.ADTextfield(
+                                            child: _Email.ADTextfield(
                                                 onHover: (a) {
                                                   setState(() {
                                                     _Forgetpasshoverborder = true;
@@ -312,17 +906,28 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 },
                                                 hintText: "نشانی ایمیل",
                                                 TextFocusNoode: _forgetpasstextFocusNoode,
-                                                boxShadowColor: !OnHoverForgetPassTextShadow
+                                                borderside:wrong_error ? (OnHoverForgetPassTextShadow
+                                                    ? Color.fromARGB(255, 243, 46, 46)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverForgetPassTextShadow
                                                     ? Colors.transparent
                                                     : const Color.fromARGB(
-                                                        255, 76, 175, 137),
-                                                BorderColor: !_Forgetpasshoverborder
+                                                        255, 76, 175, 137)), 
+                                                boxShadowColor:  wrong_error ? (OnHoverForgetPassTextShadow
+                                                    ? Color.fromARGB(255, 231, 6, 6)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverForgetPassTextShadow
                                                     ? Colors.transparent
-                                                    : const Color.fromARGB(150, 0, 186, 186),
+                                                    : const Color.fromARGB(
+                                                        255, 76, 175, 137)),
+                                                BorderColor:wrong_error? (_Forgetpasshoverborder
+                                                    ? Color.fromARGB(255, 255, 0, 0)
+                                                    : Color.fromARGB(149, 186, 0, 0)) :(!_Forgetpasshoverborder
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(150, 0, 186, 186)),
                                                 fillColor: !OnHoverForgetPassTextShadow
                                                     ? Color.fromARGB(255, 245, 245, 245)
                                                     : const Color.fromARGB(
                                                         255, 255, 255, 255)),
+                                                
                                           ),
                                         Container(
                                           margin: EdgeInsets.only(top: 35),
@@ -353,22 +958,80 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           // side: BorderSide(color: Colors.red)
                                                         ))),
                                                     onPressed: () {
-                                                      String rpass = _Forgetpass.readt();
-                                                      print(rpass);
-                                                      
                                                   
-                                                      setState(() {
-                                                        
-                                                        if (error) {
-                                                          login_hg = login_hg  -200;
-                                                          
-                                                        } else {
-                                                          login_hg = login_hg + 200;
-                                                          error_hg = 15;
-                                                        }
-                                                      });
-                                                    }),
+                                                  
+                                                  
+                                                  setState(() {
+                                                   forgetpass_error = !forgetpass_error;
+                                                  });
+                                                  setState(() {
+                                                    if (forgetpass_error) {
+                                                      wrong_error=true;
+                                                      login_hg =460 ;
+                                                      error_hg = 70;
+                                                    } else {
+                                                      wrong_error=false;
+                                                      login_hg =400 ;
+                                                      error_hg = 15;
+                                                    }
+                                                  });
+                                                }),
                                         ), 
+                                        Visibility(
+                                          maintainAnimation: true,
+                                          maintainState: true,
+                                          visible: forgetpass_error,
+                                          child: AnimatedContainer(
+                                            duration: Duration(milliseconds: 50),
+                                            margin: EdgeInsets.only(top: 15),
+                                            width: 284,
+                                            height: 60,
+                                            decoration: const BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.all(Radius.circular(10)),
+                                              color: Color.fromARGB(255, 253, 238, 238),
+                                            ),
+                                            child: Row(
+                                              textDirection: TextDirection.rtl,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  width: 40,
+                                                  height: 40,
+                                                  margin: EdgeInsets.only(left: 5),
+                                                  decoration: const BoxDecoration(
+                                                    borderRadius: BorderRadius.all(
+                                                        Radius.circular(20)),
+                                                    color:
+                                                        Color.fromARGB(31, 255, 95, 95),
+                                                  ),
+                                                  child: const Icon(
+                                                    Icons.warning_amber_rounded,
+                                                    color:
+                                                        Color.fromARGB(206, 252, 95, 95),
+                                                    textDirection: TextDirection.rtl,
+                                                  ),
+                                                ),
+                                                const Text(
+                                                  "  .",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.w800,
+                                                      fontSize: 22,
+                                                      color: Color.fromARGB(
+                                                          167, 143, 50, 50)),
+                                                ),
+                                                const Text(
+                                                  ".اطلاعات وارد شده صحیح نیست",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.w600,
+                                                      fontSize: 15,
+                                                      color: Color.fromARGB(
+                                                          190, 194, 67, 67)),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                         Container(
                                           margin: EdgeInsets.only(top: 30),
                                           width: 70,
@@ -396,15 +1059,14 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           // side: BorderSide(color: Colors.red)
                                                         ))),
                                                     onPressed: () {
-                                                      String rpass = _Forgetpass.readt();
-                                                      print(rpass);
-                                                      
+                                                     
                                                   
                                                       setState(() {
                                                         login_hg=600;
                                                         map=0;
                                                         opp=1;
-                                                        error=false;
+                                                        forgetpass_error=false;
+                                                        wrong_error=false;
                                                         // if (error) {
                                                         //   login_hg = login_hg  -200;
                                                           
@@ -446,44 +1108,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 fontSize: 35,
                                                 fontWeight: FontWeight.w800),
                                           )),
-                                        ),
-                                        
-                                        Visibility(//bikodi
-                                          visible: false,
-                                          
-                                          child:Container(
-                                            
-                                            margin: EdgeInsets.only(top:15),
-                                            width: 283,
-                                            height: 45,
-                                            // color: Colors.black,
-                                            child: _fullname.ADTextfield(
-                                                    
-                                              onHover: (a) {
-                                                  setState(() {
-                                                    _fullnamehoverborder = true;
-                                                  });
-                                                },
-                                                onExit: (a) {
-                                                  _fullnamehoverborder = false;
-                                                },
-                                                hintText: "نام و نام خانوادگی",
-                                                TextFocusNoode: _fullnametextFocusNoode,
-                                                boxShadowColor: !OnHoverFullnameTextShadow
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        255, 76, 175, 137),
-                                                BorderColor: !_fullnamehoverborder
-                                                    ? Colors.transparent
-                                                    : Colors.black12,
-                                                fillColor: !OnHoverFullnameTextShadow
-                                                    ? Color.fromARGB(255, 245, 245, 245)
-                                                    : const Color.fromARGB(
-                                                        255, 255, 255, 255)
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
+                                        ),                                      
+                                          Container(
                                           width: 283,
                                           height: 45,
                                           margin:
@@ -705,7 +1331,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                         Visibility(
                                           maintainAnimation: true,
                                           maintainState: true,
-                                          visible: error,
+                                          visible: login_error,
                                           child: AnimatedContainer(
                                             duration: Duration(milliseconds: 50),
                                             margin: EdgeInsets.only(top: 15),
@@ -788,14 +1414,13 @@ class _Login_desktopState extends State<Login_desktop> {
                                                       // side: BorderSide(color: Colors.red)
                                                     ))),
                                                 onPressed: () {
-                                                  String rpass = _Forgetpass.readt();
-                                                  print(rpass);
+                                                 
                                                   
                                                   setState(() {
-                                                    error = !error;
+                                                    login_error = !login_error;
                                                   });
                                                   setState(() {
-                                                    if (error) {
+                                                    if (login_error) {
                                                       login_hg = login_hg + 100;
                                                       error_hg = 70;
                                                     } else {
@@ -822,7 +1447,13 @@ class _Login_desktopState extends State<Login_desktop> {
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
                                                 TextButton(
-                                                    onPressed: () {},
+                                                   onPressed: () {setState(() {
+                                                      login_hg=710;
+                                                      opp=0;
+                                                          map=3;
+                                                          login_error=false;
+                                                    });
+                                                    },
                                                     child: const Text(
                                                       "ثبت نام",
                                                       style:
@@ -848,6 +1479,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                       login_hg=400;
                                                       opp=0;
                                                           map=1;
+                                                          login_error=false;
                                                     });
                                                     },
                                                     child: const Text(
@@ -900,7 +1532,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   print("Google-tap");
                                                 },
                                                 onHover: (value) {
-                                                  print(value);
+                                                  // print(value);
                                                 },
                                                 child: Container(
                                                   padding: const EdgeInsets.all(6),
@@ -919,7 +1551,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   print("Pod Tap");
                                                 },
                                                 onHover: (value) {
-                                                  print(value);
+                                                  // print(value);
                                                 },
                                                 child: Container(
                                                   margin: const EdgeInsets.only(left: 10),

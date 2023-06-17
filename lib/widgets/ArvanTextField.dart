@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class ArvanTextField {
 
-  TextEditingController _textcontroller=TextEditingController();
 
  static const  TextStyle Default=  TextStyle(
                                                 fontSize: 14,
@@ -24,6 +23,7 @@ ArvanTextField()
 Widget ADTextfield (
 
   {
+    Color borderside=Colors.black,
     Color OnHoverBorderColor=Colors.red,
     TextStyle HintTextStyle=Default,
     String hintText="",
@@ -90,13 +90,12 @@ Widget ADTextfield (
                                               ),
                                             ),
                                             focusedBorder:
-                                                const OutlineInputBorder(
+                                                 OutlineInputBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(12)),
                                               borderSide: BorderSide(
                                                 style: BorderStyle.solid,
-                                                color: Color.fromARGB(
-                                                    255, 0, 186, 186),
+                                                color: borderside,
                                                 width: 1.0,
                                               ),
                                             ),
@@ -113,8 +112,6 @@ Widget ADTextfield (
                                     ));
 }
 
-String readt(){
-  return _textcontroller.text;
-}
+
   
 }
