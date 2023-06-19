@@ -36,6 +36,12 @@ Widget ADTextfield (
     Function(PointerExitEvent a)? onExit,
     FocusNode? TextFocusNoode ,
     TextEditingController?  TextFildController,
+    TextStyle? InTextStyle,
+    TextAlign IntextAlign=TextAlign.start,
+    int? MaxLenth,
+    EdgeInsetsGeometry? Continer_Padding,
+    bool isCollapsed=false,
+    bool autofocus=false,
   }
     ){
 
@@ -61,22 +67,26 @@ Widget ADTextfield (
                                     // color: const Color.fromARGB(255, 134, 255, 64),
                                     child: MouseRegion(
                                       onHover: onHover ??= (value){},
-
+                                          
                                       onExit: onExit ??= (value){} ,
                                       child: Container(
-                                        child: TextField(
+                                       
+                                        child: TextField(textAlign: IntextAlign,
+                                        maxLength: MaxLenth,
+                                        autofocus: autofocus,
+                                        style:InTextStyle,
                                           controller: TextFildController,
                                           //email-textfild
-                                          focusNode: TextFocusNoode!,
-                              
+                                          focusNode: TextFocusNoode,
+
                                           //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                           decoration: InputDecoration(
                                             fillColor:fillColor,
-                                                
-                                            // contentPadding: EdgeInsets.only(top: 10,bottom: 10,right: 10,left: 10 ),
+                                            counterText: "",    
+                                            contentPadding: Continer_Padding,
                                             // suffixIcon: Icon(Icons.remove_red_eye,color: Color.fromARGB(52, 0, 0, 0),),
                                             filled: true,
-                                            // isCollapsed: true,//make fild 0 padding
+                                            isCollapsed: isCollapsed,//make fild 0 padding
                                             // isDense: true,
                                             hoverColor: Colors.transparent,
                                             hintTextDirection: TextDirection.rtl,

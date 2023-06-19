@@ -20,24 +20,38 @@ class _Login_desktopState extends State<Login_desktop> {
   FocusNode _fullnametextFocusNoode = FocusNode();
   FocusNode _lastnametextFocusNoode = FocusNode();
   FocusNode _emailtextFocusNoode = FocusNode();
-  
-  TextEditingController login_email=TextEditingController();
-  TextEditingController login_pass=TextEditingController();
-  TextEditingController forgatpass_email=TextEditingController();
-  TextEditingController regester_email=TextEditingController();
-  TextEditingController regester_name=TextEditingController();
-  TextEditingController regester_lastnaem=TextEditingController();
-  TextEditingController regester_pass=TextEditingController();
 
+  TextEditingController login_email = TextEditingController();
+  TextEditingController login_pass = TextEditingController();
+  TextEditingController forgatpass_email = TextEditingController();
+  TextEditingController regester_email = TextEditingController();
+  TextEditingController regester_name = TextEditingController();
+  TextEditingController regester_lastnaem = TextEditingController();
+  TextEditingController regester_pass = TextEditingController();
 
+  List<TextEditingController> Email_Verify_Code = [
+    TextEditingController(text: ""),
+    TextEditingController(text: ""),
+    TextEditingController(text: ""),
+    TextEditingController(text: ""),
+    TextEditingController(text: ""),
+    TextEditingController(text: ""),
+  ];
 
+  List<bool> Verify_focus = [true, false, false, false, false, false];
 
-
+  List<FocusNode> Verify_Node = [
+    FocusNode(),
+    FocusNode(),
+    FocusNode(),
+    FocusNode(),
+    FocusNode(),
+    FocusNode(),
+  ];
 
   ArvanTextField _Forgetpass = ArvanTextField();
   bool _Forgetpasshoverborder = false;
   bool OnHoverForgetPassTextShadow = false;
-
 
   ArvanTextField _name = ArvanTextField();
   bool _fullnamehoverborder = false;
@@ -46,7 +60,6 @@ class _Login_desktopState extends State<Login_desktop> {
   ArvanTextField _lastname = ArvanTextField();
   bool _lastnamehoverborder = false;
   bool OnHoverlastnameTextShadow = false;
-
 
   ArvanTextField _Email = ArvanTextField();
   bool _emailhoverborder = false;
@@ -59,35 +72,117 @@ class _Login_desktopState extends State<Login_desktop> {
   bool of_pass = false;
   bool of_reg_pass = false;
   bool ho_reg_pass = false;
- 
+
   bool is_pass_hide = true;
   double login_hg = 600;
   double error_hg = 15;
   bool login_error = false;
   bool forgetpass_error = false;
-  int map=0;
-  double opp=1;
-  bool wrong_error=false;
-  bool wrong_reg_name=false;
-  bool wrong_reg_lastname=false;
-  bool wrong_reg_emaile=false;
-  bool worng_reg_pass=false;
-  bool wrong_reg_pass=false;
+  int map = 2;
+  double opp = 1;
+  bool wrong_error = false;
+  bool wrong_reg_name = false;
+  bool wrong_reg_lastname = false;
+  bool wrong_reg_emaile = false;
+  bool worng_reg_pass = false;
+  bool wrong_reg_pass = false;
 
-  bool isPass_8character=false;
-  bool isPass_SmallANDBig=false;
-  bool isPass_HaveNumbers=false;
-  bool isPass_HaveSymblCharacter=false;
-  
-  bool send_email=false;
+  bool email_code_error = false;
+
+  bool isPass_8character = false;
+  bool isPass_SmallANDBig = false;
+  bool isPass_HaveNumbers = false;
+  bool isPass_HaveSymblCharacter = false;
+
+  bool send_email = false;
 
   @override
   void initState() {
     super.initState();
+
+    Email_Verify_Code[0].addListener(() {
+      print(Email_Verify_Code[0].text);
+      for (var i = 0; i < 6; i++) {
+        setState(() {
+          Verify_focus[i] = false;
+        });
+      }
+      setState(() {
+        Verify_focus[0] = true;
+        Verify_Node[0].nextFocus();
+      });
+    });
+
+    Email_Verify_Code[1].addListener(() {
+      print(Email_Verify_Code[1].text);
+      for (var i = 0; i < 6; i++) {
+        setState(() {
+          Verify_focus[i] = false;
+        });
+      }
+      setState(() {
+        Verify_focus[2] = true;
+        Verify_Node[2].requestFocus();
+      });
+    });
+
+    Email_Verify_Code[2].addListener(() {
+      print(Email_Verify_Code[2].text);
+      for (var i = 0; i < 6; i++) {
+        setState(() {
+          Verify_focus[i] = false;
+        });
+      }
+      setState(() {
+        Verify_focus[3] = true;
+        Verify_Node[3].requestFocus();
+      });
+    });
+
+    Email_Verify_Code[3].addListener(() {
+      print(Email_Verify_Code[3].text);
+      for (var i = 0; i < 6; i++) {
+        setState(() {
+          Verify_focus[i] = false;
+        });
+      }
+      setState(() {
+        Verify_focus[4] = true;
+        Verify_Node[4].requestFocus();
+      });
+    });
+
+    Email_Verify_Code[4].addListener(() {
+      print(Email_Verify_Code[4].text);
+      for (var i = 0; i < 6; i++) {
+        setState(() {
+          Verify_focus[i] = false;
+        });
+      }
+      setState(() {
+        Verify_focus[5] = true;
+        Verify_Node[5].requestFocus();
+      });
+    });
+
+    Email_Verify_Code[5].addListener(() {
+
+
+      print(Email_Verify_Code[5].text);
+      for (var i = 0; i < 6; i++) {
+        setState(() {
+          Verify_focus[i] = false;
+          Verify_Node[0].requestFocus();
+        });
+      }
+
+
+
+    });
   }
 
   @override
-    Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     double wh = MediaQuery.of(context).size.width / 100;
     double hg = MediaQuery.of(context).size.height / 100;
 
@@ -98,6 +193,7 @@ class _Login_desktopState extends State<Login_desktop> {
 
       print(OnHoverForgetPassTextShadow);
     }
+
     void _nameTextFocus() {
       setState(() {
         OnHoverlastnameTextShadow = !OnHoverlastnameTextShadow;
@@ -105,6 +201,7 @@ class _Login_desktopState extends State<Login_desktop> {
 
       print(OnHoverFullnameTextShadow);
     }
+
     void _emailTextFocus() {
       setState(() {
         OnHoveremailTextShadow = !OnHoveremailTextShadow;
@@ -112,6 +209,7 @@ class _Login_desktopState extends State<Login_desktop> {
 
       print(OnHoveremailTextShadow);
     }
+
     void _OnTextFocus() {
       setState(() {
         OnHoverFullnameTextShadow = !OnHoverFullnameTextShadow;
@@ -119,6 +217,7 @@ class _Login_desktopState extends State<Login_desktop> {
 
       print(OnHoverFullnameTextShadow);
     }
+
     void _onEmailFocus() {
       setState(() {
         of_email = !of_email;
@@ -134,13 +233,15 @@ class _Login_desktopState extends State<Login_desktop> {
 
       print(of_pass);
     }
-void _reg_onPassFocus() {
+
+    void _reg_onPassFocus() {
       setState(() {
         of_reg_pass = !of_reg_pass;
       });
 
       print(of_reg_pass);
     }
+
     customInit() {
       if (isFirst) {
         emailFocus.addListener(_onEmailFocus);
@@ -150,7 +251,7 @@ void _reg_onPassFocus() {
         _forgetpasstextFocusNoode.addListener(_onTextFocus);
         _fullnametextFocusNoode.addListener(_OnTextFocus);
         _lastnametextFocusNoode.addListener(_nameTextFocus);
-         _emailtextFocusNoode.addListener(_emailTextFocus);
+        _emailtextFocusNoode.addListener(_emailTextFocus);
 
         isFirst = false;
       }
@@ -159,8 +260,7 @@ void _reg_onPassFocus() {
     customInit();
 
     return Scaffold(
-                resizeToAvoidBottomInset : false,
-
+      resizeToAvoidBottomInset: false,
       body: Container(
         width: wh * 100,
         height: hg * 100,
@@ -292,10 +392,9 @@ void _reg_onPassFocus() {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    
                     child: Column(
                       // mainAxisAlignment: MainAxisAlignment.center,
-                                    
+
                       children: [
                         AnimatedContainer(
                           duration: Duration(milliseconds: 100),
@@ -324,198 +423,248 @@ void _reg_onPassFocus() {
                           ),
                           child: SingleChildScrollView(
                             child: Column(
-                              
                               children: [
                                 Visibility(
-                                  maintainAnimation: true,
-                                  maintainState: true,
-                                  visible: map ==3?true:false,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.only(top:25),
-                                        child: const Text(
-                                            
-                                                    "ثبت نام",
-                                                    style: TextStyle(
-                                                        color: Color.fromARGB(255, 0, 186, 186),
-                                                        fontSize: 35,
-                                                        fontWeight: FontWeight.w800),
-                                                        
-                                                  ),
-                                                  
-                                      ),
-                                       Container(
-                                        child: const Text(
-                                              ":اطلاعات حساب کاربری تان را بنویسید",
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(255, 100, 100, 100),
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          
-                                                  
-                                      ),
-                                       Visibility(//bikodi
+                                    maintainAnimation: true,
+                                    maintainState: true,
+                                    visible: map == 3 ? true : false,
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          margin: EdgeInsets.only(top: 25),
+                                          child: const Text(
+                                            "ثبت نام",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 0, 186, 186),
+                                                fontSize: 35,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: const Text(
+                                            ":اطلاعات حساب کاربری تان را بنویسید",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 100, 100, 100),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                        Visibility(
+                                          //bikodi
                                           visible: true,
-                                          
-                                          child:Container(
-                                            
-                                            margin: EdgeInsets.only(top:15),
+
+                                          child: Container(
+                                            margin: EdgeInsets.only(top: 15),
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
                                             child: _name.ADTextfield(
-                                              TextFildController: regester_name,                                                    
+                                              TextFildController: regester_name,
                                               onHover: (a) {
-                                                  setState(() {
-                                                    _fullnamehoverborder = true;
-                                                  });
-                                                },
-                                                onExit: (a) {
-                                                  _fullnamehoverborder = false;
-                                                },
-                                                hintText: "نام",
-                                                TextFocusNoode: _fullnametextFocusNoode,
-                                                borderside:wrong_reg_name ? (OnHoverFullnameTextShadow 
-                                                    ? Color.fromARGB(255, 243, 46, 46)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverFullnameTextShadow 
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        255, 0, 186, 186)), 
-                                                boxShadowColor:wrong_reg_name ? (OnHoverFullnameTextShadow 
-                                                    ? Color.fromARGB(255, 231, 6, 6)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverFullnameTextShadow 
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        150, 4, 189, 158)),
-                                                BorderColor:wrong_reg_name? (_fullnamehoverborder
-                                                    ? Color.fromARGB(255, 255, 0, 0)
-                                                    : Color.fromARGB(149, 186, 0, 0)) :(!_fullnamehoverborder
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(108, 0, 186, 186)),
-                                                fillColor: !OnHoverFullnameTextShadow 
-                                                    ? Color.fromARGB(255, 245, 245, 245)
-                                                    : const Color.fromARGB(
-                                                        255, 255, 255, 255),
+                                                setState(() {
+                                                  _fullnamehoverborder = true;
+                                                });
+                                              },
+                                              onExit: (a) {
+                                                _fullnamehoverborder = false;
+                                              },
+                                              hintText: "نام",
+                                              TextFocusNoode:
+                                                  _fullnametextFocusNoode,
+                                              borderside: wrong_reg_name
+                                                  ? (OnHoverFullnameTextShadow
+                                                      ? Color.fromARGB(
+                                                          255, 243, 46, 46)
+                                                      : Color.fromARGB(
+                                                          0, 90, 0, 0))
+                                                  : (!OnHoverFullnameTextShadow
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          255, 0, 186, 186)),
+                                              boxShadowColor: wrong_reg_name
+                                                  ? (OnHoverFullnameTextShadow
+                                                      ? Color.fromARGB(
+                                                          255, 231, 6, 6)
+                                                      : Color.fromARGB(
+                                                          0, 90, 0, 0))
+                                                  : (!OnHoverFullnameTextShadow
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          150, 4, 189, 158)),
+                                              BorderColor: wrong_reg_name
+                                                  ? (_fullnamehoverborder
+                                                      ? Color.fromARGB(
+                                                          255, 255, 0, 0)
+                                                      : Color.fromARGB(
+                                                          149, 186, 0, 0))
+                                                  : (!_fullnamehoverborder
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          108, 0, 186, 186)),
+                                              fillColor:
+                                                  !OnHoverFullnameTextShadow
+                                                      ? Color.fromARGB(
+                                                          255, 245, 245, 245)
+                                                      : const Color.fromARGB(
+                                                          255, 255, 255, 255),
                                             ),
                                           ),
-                                          
                                         ),
-                                         Visibility(//bikodi
+                                        Visibility(
+                                          //bikodi
                                           visible: true,
-                                          
-                                          child:Container(
-                                            
-                                            margin: EdgeInsets.only(top:15),
+
+                                          child: Container(
+                                            margin: EdgeInsets.only(top: 15),
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
                                             child: _lastname.ADTextfield(
-                                              TextFildController: regester_lastnaem,
-                                                    
+                                              TextFildController:
+                                                  regester_lastnaem,
                                               onHover: (a) {
-                                                  setState(() {
-                                                    _lastnamehoverborder = true;
-                                                  });
-                                                },
-                                                onExit: (a) {
-                                                  _lastnamehoverborder = false;
-                                                },
-                                                hintText: "نام خانوادگی",
-                                                TextFocusNoode: _lastnametextFocusNoode,
-                                                borderside:wrong_reg_lastname? (OnHoverlastnameTextShadow
-                                                    ? Color.fromARGB(255, 243, 46, 46)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverlastnameTextShadow
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                       255, 0, 186, 186)), 
-                                                boxShadowColor:  wrong_reg_lastname ? (OnHoverlastnameTextShadow
-                                                    ? Color.fromARGB(255, 231, 6, 6)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverlastnameTextShadow
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        150, 4, 189, 158)),
-                                                BorderColor:wrong_reg_lastname? (_lastnamehoverborder
-                                                    ? Color.fromARGB(255, 255, 0, 0)
-                                                    : Color.fromARGB(149, 186, 0, 0)) :(!_lastnamehoverborder
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(108, 0, 186, 186)),
-                                                fillColor: !OnHoverlastnameTextShadow
-                                                    ? Color.fromARGB(255, 245, 245, 245)
-                                                    : const Color.fromARGB(
-                                                        255, 255, 255, 255),
+                                                setState(() {
+                                                  _lastnamehoverborder = true;
+                                                });
+                                              },
+                                              onExit: (a) {
+                                                _lastnamehoverborder = false;
+                                              },
+                                              hintText: "نام خانوادگی",
+                                              TextFocusNoode:
+                                                  _lastnametextFocusNoode,
+                                              borderside: wrong_reg_lastname
+                                                  ? (OnHoverlastnameTextShadow
+                                                      ? Color.fromARGB(
+                                                          255, 243, 46, 46)
+                                                      : Color.fromARGB(
+                                                          0, 90, 0, 0))
+                                                  : (!OnHoverlastnameTextShadow
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          255, 0, 186, 186)),
+                                              boxShadowColor: wrong_reg_lastname
+                                                  ? (OnHoverlastnameTextShadow
+                                                      ? Color.fromARGB(
+                                                          255, 231, 6, 6)
+                                                      : Color.fromARGB(
+                                                          0, 90, 0, 0))
+                                                  : (!OnHoverlastnameTextShadow
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          150, 4, 189, 158)),
+                                              BorderColor: wrong_reg_lastname
+                                                  ? (_lastnamehoverborder
+                                                      ? Color.fromARGB(
+                                                          255, 255, 0, 0)
+                                                      : Color.fromARGB(
+                                                          149, 186, 0, 0))
+                                                  : (!_lastnamehoverborder
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          108, 0, 186, 186)),
+                                              fillColor:
+                                                  !OnHoverlastnameTextShadow
+                                                      ? Color.fromARGB(
+                                                          255, 245, 245, 245)
+                                                      : const Color.fromARGB(
+                                                          255, 255, 255, 255),
                                             ),
                                           ),
-                                          
                                         ),
-                                         Visibility(//bikodi
+                                        Visibility(
+                                          //bikodi
                                           visible: true,
-                                          
-                                          child:Container(
-                                            
-                                            margin: EdgeInsets.only(top:15),
+
+                                          child: Container(
+                                            margin: EdgeInsets.only(top: 15),
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
                                             child: _lastname.ADTextfield(
-                                              TextFildController: regester_email,
-                                                    
+                                              TextFildController:
+                                                  regester_email,
                                               onHover: (a) {
-                                                  setState(() {
-                                                    _emailhoverborder = true;
-                                                  });
-                                                },
-                                                onExit: (a) {
-                                                  _emailhoverborder = false;
-                                                },
-                                                hintText: "نشانی ایمیل",
-                                                TextFocusNoode: _emailtextFocusNoode,
-                                                borderside:wrong_reg_emaile ? (OnHoveremailTextShadow
-                                                    ? Color.fromARGB(255, 243, 46, 46)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoveremailTextShadow
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        255, 0, 186, 186)), 
-                                                boxShadowColor:  wrong_reg_emaile ? (OnHoveremailTextShadow
-                                                    ? Color.fromARGB(255, 231, 6, 6)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoveremailTextShadow
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        150, 4, 189, 158)),
-                                                BorderColor:wrong_reg_emaile? (_emailhoverborder
-                                                    ? Color.fromARGB(255, 255, 0, 0)
-                                                    : Color.fromARGB(149, 186, 0, 0)) :(!_emailhoverborder
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(108, 0, 186, 186)),
-                                                fillColor: !OnHoveremailTextShadow
-                                                    ? Color.fromARGB(255, 245, 245, 245)
-                                                    : const Color.fromARGB(
-                                                        255, 255, 255, 255),
+                                                setState(() {
+                                                  _emailhoverborder = true;
+                                                });
+                                              },
+                                              onExit: (a) {
+                                                _emailhoverborder = false;
+                                              },
+                                              hintText: "نشانی ایمیل",
+                                              TextFocusNoode:
+                                                  _emailtextFocusNoode,
+                                              borderside: wrong_reg_emaile
+                                                  ? (OnHoveremailTextShadow
+                                                      ? Color.fromARGB(
+                                                          255, 243, 46, 46)
+                                                      : Color.fromARGB(
+                                                          0, 90, 0, 0))
+                                                  : (!OnHoveremailTextShadow
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          255, 0, 186, 186)),
+                                              boxShadowColor: wrong_reg_emaile
+                                                  ? (OnHoveremailTextShadow
+                                                      ? Color.fromARGB(
+                                                          255, 231, 6, 6)
+                                                      : Color.fromARGB(
+                                                          0, 90, 0, 0))
+                                                  : (!OnHoveremailTextShadow
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          150, 4, 189, 158)),
+                                              BorderColor: wrong_reg_emaile
+                                                  ? (_emailhoverborder
+                                                      ? Color.fromARGB(
+                                                          255, 255, 0, 0)
+                                                      : Color.fromARGB(
+                                                          149, 186, 0, 0))
+                                                  : (!_emailhoverborder
+                                                      ? Colors.transparent
+                                                      : const Color.fromARGB(
+                                                          108, 0, 186, 186)),
+                                              fillColor: !OnHoveremailTextShadow
+                                                  ? Color.fromARGB(
+                                                      255, 245, 245, 245)
+                                                  : const Color.fromARGB(
+                                                      255, 255, 255, 255),
                                             ),
                                           ),
-                                          
                                         ),
-                                       
-AnimatedContainer(
-                                            duration: Duration(milliseconds: 300),
+                                        AnimatedContainer(
+                                            duration:
+                                                Duration(milliseconds: 300),
                                             width: 280,
                                             height: 45,
-                                            margin:
-                                                const EdgeInsets.only(top: 20, bottom: 0),
+                                            margin: const EdgeInsets.only(
+                                                top: 20, bottom: 0),
                                             decoration: BoxDecoration(
-                                                borderRadius: const BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(10)),
                                                 color: Colors.white,
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    color: wrong_reg_pass ? (of_reg_pass
-                                                    ? Color.fromARGB(255, 231, 6, 6)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!of_reg_pass
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        150, 4, 189, 158)),
-                                                    blurRadius: 20.0, // soften the shadow
+                                                    color: wrong_reg_pass
+                                                        ? (of_reg_pass
+                                                            ? Color.fromARGB(
+                                                                255, 231, 6, 6)
+                                                            : Color.fromARGB(
+                                                                0, 90, 0, 0))
+                                                        : (!of_reg_pass
+                                                            ? Colors.transparent
+                                                            : const Color
+                                                                    .fromARGB(
+                                                                150,
+                                                                4,
+                                                                189,
+                                                                158)),
+                                                    blurRadius:
+                                                        20.0, // soften the shadow
                                                     spreadRadius:
                                                         -10.0, //extend the shadow
                                                     offset: const Offset(
@@ -529,7 +678,6 @@ AnimatedContainer(
                                               onHover: (value) {
                                                 setState(() {
                                                   ho_reg_pass = true;
-                                                  
                                                 });
                                               },
                                               onExit: (value) {
@@ -541,10 +689,11 @@ AnimatedContainer(
                                                 child: TextField(
                                                   controller: regester_pass,
                                                   //textfild-pass
-                                                  textInputAction: TextInputAction.send,
-                                                  
+                                                  textInputAction:
+                                                      TextInputAction.send,
+
                                                   focusNode: reg_passFocus,
-                                                  
+
                                                   textAlign: TextAlign.start,
                                                   obscureText: is_pass_hide,
                                                   //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
@@ -553,14 +702,16 @@ AnimatedContainer(
                                                         ? Color.fromARGB(
                                                             255, 245, 247, 250)
                                                         : Colors.transparent,
-                                                    hoverColor: Colors.transparent,
-                                                  
+                                                    hoverColor:
+                                                        Colors.transparent,
+
                                                     // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
                                                     suffixIcon: InkWell(
                                                       onTap: () {
                                                         // print("iss password");
                                                         setState(() {
-                                                          is_pass_hide = !is_pass_hide;
+                                                          is_pass_hide =
+                                                              !is_pass_hide;
                                                         });
                                                       },
                                                       child: Icon(
@@ -575,262 +726,520 @@ AnimatedContainer(
                                                     filled: true,
                                                     // isCollapsed: true,//make fild 0 padding
                                                     // isDense: true,
-                                                    hintTextDirection: TextDirection.rtl,
-                                                  
+                                                    hintTextDirection:
+                                                        TextDirection.rtl,
+
                                                     floatingLabelBehavior:
-                                                        FloatingLabelBehavior.never,
-                                                    enabledBorder: OutlineInputBorder(
+                                                        FloatingLabelBehavior
+                                                            .never,
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
                                                       borderRadius:
-                                                          const BorderRadius.all(
-                                                              Radius.circular(12)),
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
+                                                                  12)),
                                                       borderSide: BorderSide(
-                                                        color: wrong_reg_pass? (ho_reg_pass
-                                                    ? Color.fromARGB(255, 255, 0, 0)
-                                                    : Color.fromARGB(149, 186, 0, 0)) :(!ho_reg_pass
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(108, 0, 186, 186)),
+                                                        color: wrong_reg_pass
+                                                            ? (ho_reg_pass
+                                                                ? Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        255,
+                                                                        0,
+                                                                        0)
+                                                                : Color
+                                                                    .fromARGB(
+                                                                        149,
+                                                                        186,
+                                                                        0,
+                                                                        0))
+                                                            : (!ho_reg_pass
+                                                                ? Colors
+                                                                    .transparent
+                                                                : const Color
+                                                                        .fromARGB(
+                                                                    108,
+                                                                    0,
+                                                                    186,
+                                                                    186)),
                                                         width: 0.0,
                                                       ),
                                                     ),
-                                                  
+
                                                     focusedBorder:
-                                                         OutlineInputBorder(
-                                                      borderRadius: const BorderRadius.all(
-                                                          Radius.circular(12)),
+                                                        OutlineInputBorder(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
+                                                                  12)),
                                                       borderSide: BorderSide(
-                                                        style: BorderStyle.solid,
-                                                        color: wrong_reg_pass? (of_reg_pass
-                                                    ? Color.fromARGB(255, 243, 46, 46)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!of_reg_pass
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                       255, 0, 186, 186)),
+                                                        style:
+                                                            BorderStyle.solid,
+                                                        color: wrong_reg_pass
+                                                            ? (of_reg_pass
+                                                                ? Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        243,
+                                                                        46,
+                                                                        46)
+                                                                : Color
+                                                                    .fromARGB(
+                                                                        0,
+                                                                        90,
+                                                                        0,
+                                                                        0))
+                                                            : (!of_reg_pass
+                                                                ? Colors
+                                                                    .transparent
+                                                                : const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    0,
+                                                                    186,
+                                                                    186)),
                                                         width: 1.0,
                                                       ),
                                                     ),
-                                                  
+
                                                     hintText: 'رمز',
                                                     hintStyle: const TextStyle(
                                                         fontFamily: "YekanX",
                                                         fontSize: 14,
-                                                        fontWeight: FontWeight.w600,
-                                                        decoration: TextDecoration.none,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        decoration:
+                                                            TextDecoration.none,
                                                         color: Color.fromARGB(
                                                             130, 57, 100, 98)),
                                                   ),
                                                 ),
                                               ),
                                             )),
-                                            Container(
-                                                child: Column(
+                                        Container(
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    top: 5),
+                                                width: 268,
+                                                height: 20,
+                                                // color: Colors.black,
+                                                child: Row(
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    Container(
-                                                      margin: const EdgeInsets.only(top: 5),
-                                                      width: 268,
-                                                      height: 20,
-                                                      // color: Colors.black,
-                                                      child:  Row(
-
-                                                        textDirection:TextDirection.rtl,                                                      
-                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                        children: [
-                                                          const Text("رمز عبور میبایست",style:TextStyle(
-                                                            fontWeight: FontWeight.w500,
-                                                          ),),
-                                                          Container(
-                                                            child: Row(
-                                                              children: [
-                                                                Container(
-                                                                  
-                                                                  width: 8,
-                                                            height: 3,
-                                                            color:isPass_8character?Color.fromARGB(255, 16, 184, 156) : const Color.fromARGB(255, 151, 151, 151),
-                                                                ),
-                                                                Container(
-                                                                  margin: const EdgeInsets.only(left:2),
-                                                                  width: 8,
-                                                            height: 3,
-                                                            color: isPass_SmallANDBig?const Color.fromARGB(255, 16, 184, 156) : const Color.fromARGB(255, 151, 151, 151),
-                                                                ),
-                                                                Container(
-                                                                  margin: const EdgeInsets.only(left:2),
-                                                                  width: 8,
-                                                            height: 3,
-                                                            color: isPass_HaveNumbers?const Color.fromARGB(255, 16, 184, 156) : const Color.fromARGB(255, 151, 151, 151),
-                                                                ),
-                                                                Container(
-                                                                  
-                                                                  margin: const EdgeInsets.only(left:2),
-                                                                  width: 8,
-                                                            height: 3,
-                                                            color:isPass_HaveSymblCharacter?const Color.fromARGB(255, 16, 184, 156) : const Color.fromARGB(255, 151, 151, 151),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            
-                                                          ),
-                                                        ],
+                                                    const Text(
+                                                      "رمز عبور میبایست",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                       ),
                                                     ),
                                                     Container(
-                                                      margin: const EdgeInsets.only(top:15),
-                                                      width: 268,
-                                                      child:  Column(
+                                                      child: Row(
                                                         children: [
-                                                          Row(textDirection: TextDirection.rtl,
-                                                         
-                                                            children: [ Visibility(
-                                                                visible: isPass_8character,
-                                                                child: Container(margin: const EdgeInsets.only(left: 5), child: const Icon(Icons.check,size: 17,color: Color.fromARGB(255, 10, 150, 126),)),
-                                                              ),
-                                                              Container(margin: const EdgeInsets.only(top:2,),
-                                                                child:  Text("حداقل ۸ کاراکتر باشد",style: TextStyle(color:isPass_8character ? Color.fromARGB(255, 10, 150, 126):const Color.fromARGB(209, 0, 0, 0)),),
-                                                              )
-                                                            ],
+                                                          Container(
+                                                            width: 8,
+                                                            height: 3,
+                                                            color: isPass_8character
+                                                                ? Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        16,
+                                                                        184,
+                                                                        156)
+                                                                : const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    151,
+                                                                    151,
+                                                                    151),
                                                           ),
-                                                          Row(textDirection: TextDirection.rtl,
-                                                         
-                                                            children: [ Visibility(
-                                                                visible: isPass_SmallANDBig,
-                                                                child: Container(margin: EdgeInsets.only(left: 5), child: Icon(Icons.check,size: 17,color: Color.fromARGB(255, 10, 150, 126),)),
-                                                              ),
-                                                              Container(margin: EdgeInsets.only(top:2,),
-                                                                child:  Text("ترکیبی از حروف کوچک و بزرگ باشد",style: TextStyle(color:isPass_SmallANDBig ? Color.fromARGB(255, 10, 150, 126):const Color.fromARGB(209, 0, 0, 0)),),
-                                                              )
-                                                            ],
+                                                          Container(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 2),
+                                                            width: 8,
+                                                            height: 3,
+                                                            color: isPass_SmallANDBig
+                                                                ? const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    16,
+                                                                    184,
+                                                                    156)
+                                                                : const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    151,
+                                                                    151,
+                                                                    151),
                                                           ),
-                                                            Row(textDirection: TextDirection.rtl,
-                                                         
-                                                            children: [ Visibility(
-                                                                visible: isPass_HaveNumbers,
-                                                                child: Container(margin: EdgeInsets.only(left: 5), child: Icon(Icons.check,size: 17,color: Color.fromARGB(255, 10, 150, 126),)),
-                                                              ),
-                                                              Container(margin: EdgeInsets.only(top:2,),
-                                                                child:  Text("شامل اعداد باشد",style: TextStyle(color:isPass_HaveNumbers ? Color.fromARGB(255, 10, 150, 126):const Color.fromARGB(209, 0, 0, 0)),),
-                                                              )
-                                                            ],
+                                                          Container(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 2),
+                                                            width: 8,
+                                                            height: 3,
+                                                            color: isPass_HaveNumbers
+                                                                ? const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    16,
+                                                                    184,
+                                                                    156)
+                                                                : const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    151,
+                                                                    151,
+                                                                    151),
                                                           ),
-                                                          Row(textDirection: TextDirection.rtl,
-                                                         
-                                                            children: [ Visibility(
-                                                                visible: isPass_HaveSymblCharacter,
-                                                                child: Container(margin: EdgeInsets.only(left: 5), child: Icon(Icons.check,size: 17, color: Color.fromARGB(255, 10, 150, 126),)),
-                                                              ),
-                                                              Container(margin: EdgeInsets.only(top:2,),
-                                                                child:  Text("شامل کاراکترهای خاص (نمادها) باشد",style: TextStyle(color:isPass_HaveSymblCharacter ? Color.fromARGB(255, 10, 150, 126):const Color.fromARGB(209, 0, 0, 0)),),
-                                                              )
-                                                            ],
+                                                          Container(
+                                                            margin:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 2),
+                                                            width: 8,
+                                                            height: 3,
+                                                            color: isPass_HaveSymblCharacter
+                                                                ? const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    16,
+                                                                    184,
+                                                                    156)
+                                                                : const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    151,
+                                                                    151,
+                                                                    151),
                                                           ),
-                                                         
                                                         ],
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-
-                                            ),
-                                             Container(
+                                              ),
+                                              Container(
+                                                margin: const EdgeInsets.only(
+                                                    top: 15),
+                                                width: 268,
+                                                child: Column(
+                                                  children: [
+                                                    Row(
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                      children: [
+                                                        Visibility(
+                                                          visible:
+                                                              isPass_8character,
+                                                          child: Container(
+                                                              margin:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 5),
+                                                              child: const Icon(
+                                                                Icons.check,
+                                                                size: 17,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        10,
+                                                                        150,
+                                                                        126),
+                                                              )),
+                                                        ),
+                                                        Container(
+                                                          margin:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                            top: 2,
+                                                          ),
+                                                          child: Text(
+                                                            "حداقل ۸ کاراکتر باشد",
+                                                            style: TextStyle(
+                                                                color: isPass_8character
+                                                                    ? Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            10,
+                                                                            150,
+                                                                            126)
+                                                                    : const Color
+                                                                            .fromARGB(
+                                                                        209,
+                                                                        0,
+                                                                        0,
+                                                                        0)),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                      children: [
+                                                        Visibility(
+                                                          visible:
+                                                              isPass_SmallANDBig,
+                                                          child: Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      left: 5),
+                                                              child: Icon(
+                                                                Icons.check,
+                                                                size: 17,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        10,
+                                                                        150,
+                                                                        126),
+                                                              )),
+                                                        ),
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                            top: 2,
+                                                          ),
+                                                          child: Text(
+                                                            "ترکیبی از حروف کوچک و بزرگ باشد",
+                                                            style: TextStyle(
+                                                                color: isPass_SmallANDBig
+                                                                    ? Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            10,
+                                                                            150,
+                                                                            126)
+                                                                    : const Color
+                                                                            .fromARGB(
+                                                                        209,
+                                                                        0,
+                                                                        0,
+                                                                        0)),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                      children: [
+                                                        Visibility(
+                                                          visible:
+                                                              isPass_HaveNumbers,
+                                                          child: Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      left: 5),
+                                                              child: Icon(
+                                                                Icons.check,
+                                                                size: 17,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        10,
+                                                                        150,
+                                                                        126),
+                                                              )),
+                                                        ),
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                            top: 2,
+                                                          ),
+                                                          child: Text(
+                                                            "شامل اعداد باشد",
+                                                            style: TextStyle(
+                                                                color: isPass_HaveNumbers
+                                                                    ? Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            10,
+                                                                            150,
+                                                                            126)
+                                                                    : const Color
+                                                                            .fromARGB(
+                                                                        209,
+                                                                        0,
+                                                                        0,
+                                                                        0)),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                      children: [
+                                                        Visibility(
+                                                          visible:
+                                                              isPass_HaveSymblCharacter,
+                                                          child: Container(
+                                                              margin: EdgeInsets
+                                                                  .only(
+                                                                      left: 5),
+                                                              child: Icon(
+                                                                Icons.check,
+                                                                size: 17,
+                                                                color: Color
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        10,
+                                                                        150,
+                                                                        126),
+                                                              )),
+                                                        ),
+                                                        Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                            top: 2,
+                                                          ),
+                                                          child: Text(
+                                                            "شامل کاراکترهای خاص (نمادها) باشد",
+                                                            style: TextStyle(
+                                                                color: isPass_HaveSymblCharacter
+                                                                    ? Color
+                                                                        .fromARGB(
+                                                                            255,
+                                                                            10,
+                                                                            150,
+                                                                            126)
+                                                                    : const Color
+                                                                            .fromARGB(
+                                                                        209,
+                                                                        0,
+                                                                        0,
+                                                                        0)),
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
                                           margin: EdgeInsets.only(top: 20),
                                           width: 283,
                                           height: 40,
                                           child: TextButton(
-                                                    child: const Text("ارسال ایمیل",
-                                                        style: TextStyle(
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: 18,
-                                                            color: Color.fromARGB(
-                                                                255, 255, 255, 255))),
-                                                    style: ButtonStyle(
-                                                        padding: MaterialStateProperty.all<EdgeInsets>(
-                                                            const EdgeInsets.all(0)),
-                                                        backgroundColor:
-                                                            MaterialStateProperty.all<Color>(
-                                                                const Color.fromARGB(
-                                                                    255, 0, 186, 186)),
-                                                        // foregroundColor:
-                                                        //     MaterialStateProperty.all<Color>(
-                                                        //         Colors.red) ,
-                                                        shape: MaterialStateProperty.all<
-                                                                RoundedRectangleBorder>(
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.circular(10.0),
-                                                          // side: BorderSide(color: Colors.red)
-                                                        ))),
-                                                    onPressed: () {
-                                                  
-                                                  
-                                                  
-                                                  setState(() {
-                                                   send_email = !send_email;
-                                                  });
-                                                  setState(() {
-                                                    if (send_email) {
-                                                      isPass_8character=true;
-                                                      isPass_HaveNumbers=true;
-                                                      isPass_HaveSymblCharacter=true;
-                                                      isPass_SmallANDBig=true;
-                                                      wrong_reg_name=true;
-                                                      wrong_reg_lastname=true;
-                                                      wrong_reg_emaile=true;
-                                                      wrong_reg_pass=true;
-                                                      // wrong_reg_pass=true
-                                                      // login_hg =460 ;
-                                                      // error_hg = 70;
-                                                    } else {
-                                                      
-                                                      isPass_8character=false;
-                                                      isPass_HaveNumbers=false;
-                                                      isPass_HaveSymblCharacter=false;
-                                                      isPass_SmallANDBig=false;
-                                                      wrong_reg_name=false;
-                                                      wrong_reg_lastname=false;
-                                                      wrong_reg_emaile=false;
-                                                      wrong_reg_pass=false;
+                                              child: const Text("ارسال ایمیل",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 18,
+                                                      color: Color.fromARGB(
+                                                          255, 255, 255, 255))),
+                                              style: ButtonStyle(
+                                                  padding: MaterialStateProperty.all<EdgeInsets>(
+                                                      const EdgeInsets.all(0)),
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all<Color>(
+                                                          const Color.fromARGB(
+                                                              255, 0, 186, 186)),
+                                                  // foregroundColor:
+                                                  //     MaterialStateProperty.all<Color>(
+                                                  //         Colors.red) ,
+                                                  shape: MaterialStateProperty.all<
+                                                      RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10.0),
+                                                    // side: BorderSide(color: Colors.red)
+                                                  ))),
+                                              onPressed: () {
+                                                setState(() {
+                                                  send_email = !send_email;
+                                                });
+                                                setState(() {
+                                                  if (send_email) {
+                                                    isPass_8character = true;
+                                                    isPass_HaveNumbers = true;
+                                                    isPass_HaveSymblCharacter =
+                                                        true;
+                                                    isPass_SmallANDBig = true;
+                                                    wrong_reg_name = true;
+                                                    wrong_reg_lastname = true;
+                                                    wrong_reg_emaile = true;
+                                                    wrong_reg_pass = true;
+                                                    // wrong_reg_pass=true
+                                                    // login_hg =460 ;
+                                                    // error_hg = 70;
+                                                  } else {
+                                                    isPass_8character = false;
+                                                    isPass_HaveNumbers = false;
+                                                    isPass_HaveSymblCharacter =
+                                                        false;
+                                                    isPass_SmallANDBig = false;
+                                                    wrong_reg_name = false;
+                                                    wrong_reg_lastname = false;
+                                                    wrong_reg_emaile = false;
+                                                    wrong_reg_pass = false;
 
-                                                      // login_hg =400 ;
-                                                      // error_hg = 15;
-                                                    }
-                                                  });
-                                                }),
-                                        ), 
+                                                    // login_hg =400 ;
+                                                    // error_hg = 15;
+                                                  }
+                                                });
+                                              }),
+                                        ),
                                         Container(
-                                          margin: const EdgeInsets.only(top:20),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                TextButton(
-                                                   onPressed: () {setState(() {
-                                                      login_hg=600;
-                                                      opp=0;
-                                                      map=0;
-                                                      login_error=false;
-                                                      wrong_error=false;
-                                                      wrong_error=false;
-                                                      isPass_8character=false;
-                                                      isPass_HaveNumbers=false;
-                                                      isPass_HaveSymblCharacter=false;
-                                                      isPass_SmallANDBig=false;
+                                          margin:
+                                              const EdgeInsets.only(top: 20),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              TextButton(
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      login_hg = 600;
+                                                      opp = 0;
+                                                      map = 0;
+                                                      login_error = false;
+                                                      wrong_error = false;
+                                                      wrong_error = false;
+                                                      isPass_8character = false;
+                                                      isPass_HaveNumbers =
+                                                          false;
+                                                      isPass_HaveSymblCharacter =
+                                                          false;
+                                                      isPass_SmallANDBig =
+                                                          false;
                                                     });
-                                                    },
-                                                    child: const Text(
-                                                      "می‌خو‌اهم وارد شوم",
-                                                      style:
-                                                          TextStyle(color: Colors.black),
-                                                    )),
-                                                const Text(".نام کاربری دارم"),
-                                              ],),
-
+                                                  },
+                                                  child: const Text(
+                                                    "می‌خو‌اهم وارد شوم",
+                                                    style: TextStyle(
+                                                        color: Colors.black),
+                                                  )),
+                                              const Text(".نام کاربری دارم"),
+                                            ],
+                                          ),
                                         ),
                                         Container(
                                           width: 280,
                                           height: 40,
-                                          margin:
-                                              const EdgeInsets.only(top: 0, bottom: 0),
+                                          margin: const EdgeInsets.only(
+                                              top: 0, bottom: 0),
                                           // color: Color.fromARGB(255, 255, 64, 128),
                                           child: Center(
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Container(
                                                     width: 100,
@@ -850,12 +1259,13 @@ AnimatedContainer(
                                         Container(
                                           width: 300,
                                           height: 50,
-                                                  
-                                          margin:
-                                              const EdgeInsets.only(top: 10, bottom: 0),
+
+                                          margin: const EdgeInsets.only(
+                                              top: 10, bottom: 0),
                                           // color: Color.fromARGB(255, 255, 0, 0),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               InkWell(
                                                 onTap: () {
@@ -865,15 +1275,17 @@ AnimatedContainer(
                                                   // print(value);
                                                 },
                                                 child: Container(
-                                                  padding: const EdgeInsets.all(6),
+                                                  padding:
+                                                      const EdgeInsets.all(6),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(10),
+                                                        BorderRadius.circular(
+                                                            10),
                                                     color: const Color.fromARGB(
                                                         255, 233, 237, 245),
                                                   ),
-                                                  child:
-                                                      Image.asset('assets/images/G.png'),
+                                                  child: Image.asset(
+                                                      'assets/images/G.png'),
                                                 ),
                                               ),
                                               InkWell(
@@ -884,11 +1296,14 @@ AnimatedContainer(
                                                   // print(value);
                                                 },
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(left: 10),
-                                                  padding: const EdgeInsets.all(6),
+                                                  margin: const EdgeInsets.only(
+                                                      left: 10),
+                                                  padding:
+                                                      const EdgeInsets.all(6),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(10),
+                                                        BorderRadius.circular(
+                                                            10),
                                                     color: const Color.fromARGB(
                                                         255, 233, 237, 245),
                                                   ),
@@ -899,280 +1314,878 @@ AnimatedContainer(
                                             ],
                                           ),
                                         ),
-                                    ],
-                                  )
-                                  )   ,         
-                                Visibility(//forgetpass
+                                      ],
+                                    )),
+                                Visibility(
+                                  //forgetpass
                                   maintainAnimation: true,
                                   maintainState: true,
-                                  visible: map ==1?true:false,
+                                  visible: map == 1 ? true : false,
                                   child: Container(
-                                    margin: EdgeInsets.only(top: 40),
-                                    child:  Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                         const Text(
-                                          
-                                              "ایجاد رمز جدید",
-                                                  style: TextStyle(
-                                                      color: Color.fromARGB(255, 0, 186, 186),
-                                                      fontSize: 35,
-                                                      fontWeight: FontWeight.w800),
-                                                ),
+                                      margin: EdgeInsets.only(top: 40),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
                                           const Text(
-                                              "برای ایجاد رمز جدید لطفا ایمیل مرتبط با",
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(255, 56, 56, 56),
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                             const Text(
-                                              ".کاربری خود را وارد کنید",
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(255, 56, 56, 56),
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                
-                                        
-                                          
-                                          
+                                            "ایجاد رمز جدید",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 0, 186, 186),
+                                                fontSize: 35,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                          const Text(
+                                            "برای ایجاد رمز جدید لطفا ایمیل مرتبط با",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 56, 56, 56),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          const Text(
+                                            ".کاربری خود را وارد کنید",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 56, 56, 56),
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w500),
+                                          ),
                                           Container(
                                             margin: EdgeInsets.only(top: 30),
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
                                             child: _Forgetpass.ADTextfield(
-                                              TextFildController: forgatpass_email,
+                                                TextFildController:
+                                                    forgatpass_email,
                                                 onHover: (a) {
                                                   setState(() {
-                                                    _Forgetpasshoverborder = true;
+                                                    _Forgetpasshoverborder =
+                                                        true;
                                                   });
                                                 },
                                                 onExit: (a) {
-                                                  _Forgetpasshoverborder = false;
+                                                  _Forgetpasshoverborder =
+                                                      false;
                                                 },
                                                 hintText: "نشانی ایمیل",
-                                                TextFocusNoode: _forgetpasstextFocusNoode,
-                                                borderside:wrong_error ? (OnHoverForgetPassTextShadow
-                                                    ? Color.fromARGB(255, 243, 46, 46)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverForgetPassTextShadow
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        255, 76, 175, 137)), 
-                                                boxShadowColor:  wrong_error ? (OnHoverForgetPassTextShadow
-                                                    ? Color.fromARGB(255, 231, 6, 6)
-                                                    : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverForgetPassTextShadow
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(
-                                                        255, 76, 175, 137)),
-                                                BorderColor:wrong_error? (_Forgetpasshoverborder
-                                                    ? Color.fromARGB(255, 255, 0, 0)
-                                                    : Color.fromARGB(149, 186, 0, 0)) :(!_Forgetpasshoverborder
-                                                    ? Colors.transparent
-                                                    : const Color.fromARGB(150, 0, 186, 186)),
-                                                fillColor: !OnHoverForgetPassTextShadow
-                                                    ? Color.fromARGB(255, 245, 245, 245)
-                                                    : const Color.fromARGB(
-                                                        255, 255, 255, 255)),
-                                                
+                                                TextFocusNoode:
+                                                    _forgetpasstextFocusNoode,
+                                                borderside: wrong_error
+                                                    ? (OnHoverForgetPassTextShadow
+                                                        ? Color.fromARGB(
+                                                            255, 243, 46, 46)
+                                                        : Color.fromARGB(
+                                                            0, 90, 0, 0))
+                                                    : (!OnHoverForgetPassTextShadow
+                                                        ? Colors.transparent
+                                                        : const Color.fromARGB(
+                                                            255, 76, 175, 137)),
+                                                boxShadowColor: wrong_error
+                                                    ? (OnHoverForgetPassTextShadow
+                                                        ? Color.fromARGB(
+                                                            255, 231, 6, 6)
+                                                        : Color.fromARGB(
+                                                            0, 90, 0, 0))
+                                                    : (!OnHoverForgetPassTextShadow
+                                                        ? Colors.transparent
+                                                        : const Color.fromARGB(
+                                                            255, 76, 175, 137)),
+                                                BorderColor: wrong_error
+                                                    ? (_Forgetpasshoverborder
+                                                        ? Color.fromARGB(
+                                                            255, 255, 0, 0)
+                                                        : Color.fromARGB(149, 186, 0, 0))
+                                                    : (!_Forgetpasshoverborder ? Colors.transparent : const Color.fromARGB(150, 0, 186, 186)),
+                                                fillColor: !OnHoverForgetPassTextShadow ? Color.fromARGB(255, 245, 245, 245) : const Color.fromARGB(255, 255, 255, 255)),
                                           ),
-                                        Container(
-                                          margin: EdgeInsets.only(top: 35),
-                                          width: 283,
-                                          height: 40,
-                                          child: TextButton(
-                                                    child: const Text("تایید",
-                                                        style: TextStyle(
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: 18,
-                                                            color: Color.fromARGB(
-                                                                255, 255, 255, 255))),
-                                                    style: ButtonStyle(
-                                                        padding: MaterialStateProperty.all<EdgeInsets>(
-                                                            const EdgeInsets.all(0)),
-                                                        backgroundColor:
-                                                            MaterialStateProperty.all<Color>(
-                                                                const Color.fromARGB(
-                                                                    255, 0, 186, 186)),
-                                                        // foregroundColor:
-                                                        //     MaterialStateProperty.all<Color>(
-                                                        //         Colors.red) ,
-                                                        shape: MaterialStateProperty.all<
-                                                                RoundedRectangleBorder>(
-                                                            RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.circular(10.0),
-                                                          // side: BorderSide(color: Colors.red)
-                                                        ))),
-                                                    onPressed: () {
-                                                  
-                                                  
-                                                  
+                                          Container(
+                                            margin: EdgeInsets.only(top: 35),
+                                            width: 283,
+                                            height: 40,
+                                            child: TextButton(
+                                                child: const Text("تایید",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 18,
+                                                        color: Color.fromARGB(
+                                                            255, 255, 255, 255))),
+                                                style: ButtonStyle(
+                                                    padding:
+                                                        MaterialStateProperty.all<EdgeInsets>(
+                                                            const EdgeInsets.all(
+                                                                0)),
+                                                    backgroundColor:
+                                                        MaterialStateProperty.all<Color>(
+                                                            const Color.fromARGB(
+                                                                255, 0, 186, 186)),
+                                                    // foregroundColor:
+                                                    //     MaterialStateProperty.all<Color>(
+                                                    //         Colors.red) ,
+                                                    shape:
+                                                        MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0),
+                                                      // side: BorderSide(color: Colors.red)
+                                                    ))),
+                                                onPressed: () {
                                                   setState(() {
-                                                   forgetpass_error = !forgetpass_error;
+                                                    forgetpass_error =
+                                                        !forgetpass_error;
                                                   });
                                                   setState(() {
                                                     if (forgetpass_error) {
-                                                      wrong_error=true;
-                                                      login_hg =460 ;
+                                                      wrong_error = true;
+                                                      login_hg = 550;
                                                       error_hg = 70;
+                                                      map = 2;
                                                     } else {
-                                                      wrong_error=false;
-                                                      login_hg =400 ;
+                                                      wrong_error = false;
+                                                      login_hg = 400;
                                                       error_hg = 15;
                                                     }
                                                   });
                                                 }),
-                                        ), 
-                                        Visibility(
-                                          maintainAnimation: true,
-                                          maintainState: true,
-                                          visible: forgetpass_error,
-                                          child: AnimatedContainer(
-                                            duration: Duration(milliseconds: 50),
-                                            margin: EdgeInsets.only(top: 15),
-                                            width: 284,
-                                            height: 60,
-                                            decoration: const BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.all(Radius.circular(10)),
-                                              color: Color.fromARGB(255, 253, 238, 238),
+                                          ),
+                                          Visibility(
+                                            maintainAnimation: true,
+                                            maintainState: true,
+                                            visible: forgetpass_error,
+                                            child: AnimatedContainer(
+                                              duration:
+                                                  Duration(milliseconds: 50),
+                                              margin: EdgeInsets.only(top: 15),
+                                              width: 284,
+                                              height: 60,
+                                              decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                color: Color.fromARGB(
+                                                    255, 253, 238, 238),
+                                              ),
+                                              child: Row(
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Container(
+                                                    width: 40,
+                                                    height: 40,
+                                                    margin: EdgeInsets.only(
+                                                        left: 5),
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  20)),
+                                                      color: Color.fromARGB(
+                                                          31, 255, 95, 95),
+                                                    ),
+                                                    child: const Icon(
+                                                      Icons
+                                                          .warning_amber_rounded,
+                                                      color: Color.fromARGB(
+                                                          206, 252, 95, 95),
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                    ),
+                                                  ),
+                                                  const Text(
+                                                    "  .",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w800,
+                                                        fontSize: 22,
+                                                        color: Color.fromARGB(
+                                                            167, 143, 50, 50)),
+                                                  ),
+                                                  const Text(
+                                                    ".اطلاعات وارد شده صحیح نیست",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                        color: Color.fromARGB(
+                                                            190, 194, 67, 67)),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 30),
+                                            width: 70,
+                                            height: 30,
+                                            child: TextButton(
+                                                child: const Text("بازگشت >",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 13,
+                                                        color: Color.fromARGB(
+                                                            255, 124, 124, 124))),
+                                                style: ButtonStyle(
+                                                    padding:
+                                                        MaterialStateProperty.all<EdgeInsets>(
+                                                            const EdgeInsets.all(
+                                                                0)),
+                                                    backgroundColor:
+                                                        MaterialStateProperty.all<Color>(
+                                                            Color.fromARGB(40,
+                                                                175, 175, 175)),
+                                                    // foregroundColor:
+                                                    //     MaterialStateProperty.all<Color>(
+                                                    //         Colors.red) ,
+                                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100.0),
+                                                      // side: BorderSide(color: Colors.red)
+                                                    ))),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    login_hg = 600;
+                                                    map = 0;
+                                                    opp = 1;
+                                                    forgetpass_error = false;
+                                                    wrong_error = false;
+                                                    // if (error) {
+                                                    //   login_hg = login_hg  -200;
+
+                                                    // } else {
+                                                    //   login_hg = login_hg + 200;
+                                                    //   error_hg = 15;
+                                                    // }
+                                                  });
+                                                }),
+                                          ),
+                                        ],
+                                      )),
+                                ),
+                                Visibility(
+                                  //forgetpass-2
+                                  maintainAnimation: true,
+                                  maintainState: true,
+                                  visible: map == 2 ? true : false,
+                                  child: Container(
+                                      margin: EdgeInsets.only(top: 40),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          const Text(
+                                            "تایید ایمیل",
+                                            style: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 0, 186, 186),
+                                                fontSize: 35,
+                                                fontWeight: FontWeight.w800),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top:40),
+                                            child: const Text(
+                                              ":کد تایید ارسال شده بعه ایمیل خود را در کادر زیر وارد کنید",
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 56, 56, 56),
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 100),
+                                            width: 330,
+                                            height: 60,
+                                            // color: Colors.black,
                                             child: Row(
-                                              textDirection: TextDirection.rtl,
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
                                               children: [
                                                 Container(
-                                                  width: 40,
-                                                  height: 40,
-                                                  margin: EdgeInsets.only(left: 5),
-                                                  decoration: const BoxDecoration(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(20)),
-                                                    color:
-                                                        Color.fromARGB(31, 255, 95, 95),
-                                                  ),
-                                                  child: const Icon(
-                                                    Icons.warning_amber_rounded,
-                                                    color:
-                                                        Color.fromARGB(206, 252, 95, 95),
-                                                    textDirection: TextDirection.rtl,
-                                                  ),
+                                                  // margin: EdgeInsets.only(left: 0,right: 0),
+                                                  width: 46,
+                                                  // color: const Color.fromARGB(255, 250, 0, 0),
+                                                  child:
+                                                      _Forgetpass.ADTextfield(
+                                                          autofocus: true,
+                                                          TextFocusNoode:
+                                                              Verify_Node[0],
+                                                          isCollapsed: true,
+                                                          Continer_Padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 3,
+                                                                  top: 17,
+                                                                  right: 0,
+                                                                  bottom: 13),
+                                                          InTextStyle:
+                                                              TextStyle(
+                                                            fontSize: 22,
+                                                          ),
+                                                          IntextAlign:
+                                                              TextAlign.center,
+                                                          MaxLenth: 1,
+                                                          TextFildController:
+                                                              Email_Verify_Code[
+                                                                  0],
+                                                          onHover: (a) {
+                                                            setState(() {
+                                                              _Forgetpasshoverborder =
+                                                                  true;
+                                                            });
+                                                          },
+                                                          onExit: (a) {
+                                                            _Forgetpasshoverborder =
+                                                                false;
+                                                          },
+                                                          borderside:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  35,
+                                                                  207,
+                                                                  179),
+                                                          boxShadowColor:
+                                                              Color.fromARGB(
+                                                                  0, 76, 175, 137),
+                                                          BorderColor:
+                                                              Color.fromARGB(0,
+                                                                  76, 175, 137),
+                                                          fillColor:
+                                                              const Color.fromARGB(
+                                                                  255,
+                                                                  246,
+                                                                  246,
+                                                                  246)),
                                                 ),
-                                                const Text(
-                                                  "  .",
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.w800,
-                                                      fontSize: 22,
-                                                      color: Color.fromARGB(
-                                                          167, 143, 50, 50)),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 0, right: 0),
+                                                  width: 46,
+                                                  // color: const Color.fromARGB(255, 250, 0, 0),
+                                                  child:
+                                                      _Forgetpass.ADTextfield(
+                                                          autofocus: true,
+                                                          TextFocusNoode:
+                                                              Verify_Node[1],
+                                                          isCollapsed: true,
+                                                          Continer_Padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 3,
+                                                                  top: 17,
+                                                                  right: 0,
+                                                                  bottom: 13),
+                                                          InTextStyle:
+                                                              TextStyle(
+                                                            fontSize: 22,
+                                                          ),
+                                                          IntextAlign:
+                                                              TextAlign.center,
+                                                          MaxLenth: 1,
+                                                          TextFildController:
+                                                              Email_Verify_Code[
+                                                                  1],
+                                                          onHover: (a) {
+                                                            setState(() {
+                                                              _Forgetpasshoverborder =
+                                                                  true;
+                                                            });
+                                                          },
+                                                          onExit: (a) {
+                                                            _Forgetpasshoverborder =
+                                                                false;
+                                                          },
+                                                          borderside:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  35,
+                                                                  207,
+                                                                  179),
+                                                          boxShadowColor:
+                                                              Color.fromARGB(
+                                                                  0, 76, 175, 137),
+                                                          BorderColor:
+                                                              Color.fromARGB(0,
+                                                                  76, 175, 137),
+                                                          fillColor:
+                                                              const Color.fromARGB(
+                                                                  255,
+                                                                  246,
+                                                                  246,
+                                                                  246)),
                                                 ),
-                                                const Text(
-                                                  ".اطلاعات وارد شده صحیح نیست",
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.w600,
-                                                      fontSize: 15,
-                                                      color: Color.fromARGB(
-                                                          190, 194, 67, 67)),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 0, right: 0),
+                                                  width: 46,
+                                                  // color: const Color.fromARGB(255, 250, 0, 0),
+                                                  child:
+                                                      _Forgetpass.ADTextfield(
+                                                          autofocus: true,
+                                                          TextFocusNoode:
+                                                              Verify_Node[2],
+                                                          isCollapsed: true,
+                                                          Continer_Padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 3,
+                                                                  top: 17,
+                                                                  right: 0,
+                                                                  bottom: 13),
+                                                          InTextStyle:
+                                                              TextStyle(
+                                                            fontSize: 22,
+                                                          ),
+                                                          IntextAlign:
+                                                              TextAlign.center,
+                                                          MaxLenth: 1,
+                                                          TextFildController:
+                                                              Email_Verify_Code[
+                                                                  2],
+                                                          onHover: (a) {
+                                                            setState(() {
+                                                              _Forgetpasshoverborder =
+                                                                  true;
+                                                            });
+                                                          },
+                                                          onExit: (a) {
+                                                            _Forgetpasshoverborder =
+                                                                false;
+                                                          },
+                                                          borderside:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  35,
+                                                                  207,
+                                                                  179),
+                                                          boxShadowColor:
+                                                              Color.fromARGB(
+                                                                  0, 76, 175, 137),
+                                                          BorderColor:
+                                                              Color.fromARGB(0,
+                                                                  76, 175, 137),
+                                                          fillColor:
+                                                              const Color.fromARGB(
+                                                                  255,
+                                                                  246,
+                                                                  246,
+                                                                  246)),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 0, right: 0),
+                                                  width: 46,
+                                                  // color: const Color.fromARGB(255, 250, 0, 0),
+                                                  child:
+                                                      _Forgetpass.ADTextfield(
+                                                          autofocus: true,
+                                                          TextFocusNoode:
+                                                              Verify_Node[3],
+                                                          isCollapsed: true,
+                                                          Continer_Padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 3,
+                                                                  top: 17,
+                                                                  right: 0,
+                                                                  bottom: 13),
+                                                          InTextStyle:
+                                                              TextStyle(
+                                                            fontSize: 22,
+                                                          ),
+                                                          IntextAlign:
+                                                              TextAlign.center,
+                                                          MaxLenth: 1,
+                                                          TextFildController:
+                                                              Email_Verify_Code[
+                                                                  3],
+                                                          onHover: (a) {
+                                                            setState(() {
+                                                              _Forgetpasshoverborder =
+                                                                  true;
+                                                            });
+                                                          },
+                                                          onExit: (a) {
+                                                            _Forgetpasshoverborder =
+                                                                false;
+                                                          },
+                                                          borderside:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  35,
+                                                                  207,
+                                                                  179),
+                                                          boxShadowColor:
+                                                              Color.fromARGB(
+                                                                  0, 76, 175, 137),
+                                                          BorderColor:
+                                                              Color.fromARGB(0,
+                                                                  76, 175, 137),
+                                                          fillColor:
+                                                              const Color.fromARGB(
+                                                                  255,
+                                                                  246,
+                                                                  246,
+                                                                  246)),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 0, right: 0),
+                                                  width: 46,
+                                                  // color: const Color.fromARGB(255, 250, 0, 0),
+                                                  child:
+                                                      _Forgetpass.ADTextfield(
+                                                          autofocus: true,
+                                                          TextFocusNoode:
+                                                              Verify_Node[4],
+                                                          isCollapsed: true,
+                                                          Continer_Padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 3,
+                                                                  top: 17,
+                                                                  right: 0,
+                                                                  bottom: 13),
+                                                          InTextStyle:
+                                                              TextStyle(
+                                                            fontSize: 22,
+                                                          ),
+                                                          IntextAlign:
+                                                              TextAlign.center,
+                                                          MaxLenth: 1,
+                                                          TextFildController:
+                                                              Email_Verify_Code[
+                                                                  4],
+                                                          onHover: (a) {
+                                                            setState(() {
+                                                              _Forgetpasshoverborder =
+                                                                  true;
+                                                            });
+                                                          },
+                                                          onExit: (a) {
+                                                            _Forgetpasshoverborder =
+                                                                false;
+                                                          },
+                                                          borderside:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  35,
+                                                                  207,
+                                                                  179),
+                                                          boxShadowColor:
+                                                              Color.fromARGB(
+                                                                  0, 76, 175, 137),
+                                                          BorderColor:
+                                                              Color.fromARGB(0,
+                                                                  76, 175, 137),
+                                                          fillColor:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  246,
+                                                                  246,
+                                                                  246)),
+                                                ),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      left: 0, right: 0),
+                                                  width: 46,
+                                                  // color: const Color.fromARGB(255, 250, 0, 0),
+                                                  child:
+                                                      _Forgetpass.ADTextfield(
+                                                          autofocus: true,
+                                                          TextFocusNoode:
+                                                              Verify_Node[5],
+                                                          isCollapsed: true,
+                                                          Continer_Padding:
+                                                              const EdgeInsets.only(
+                                                                  left: 3,
+                                                                  top: 17,
+                                                                  right: 0,
+                                                                  bottom: 13),
+                                                          InTextStyle:
+                                                              TextStyle(
+                                                            fontSize: 22,
+                                                          ),
+                                                          IntextAlign:
+                                                              TextAlign.center,
+                                                          MaxLenth: 1,
+                                                          TextFildController:
+                                                              Email_Verify_Code[
+                                                                  5],
+                                                          onHover: (a) {
+                                                            setState(() {
+                                                              _Forgetpasshoverborder =
+                                                                  true;
+                                                            });
+                                                          },
+                                                          onExit: (a) {
+                                                            _Forgetpasshoverborder =
+                                                                false;
+                                                          },
+                                                          borderside:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  35,
+                                                                  207,
+                                                                  179),
+                                                          boxShadowColor:
+                                                              Color.fromARGB(
+                                                                  0, 76, 175, 137),
+                                                          BorderColor:
+                                                              Color.fromARGB(0,
+                                                                  76, 175, 137),
+                                                          fillColor:
+                                                              const Color.fromARGB(
+                                                                  255,
+                                                                  246,
+                                                                  246,
+                                                                  246)),
                                                 ),
                                               ],
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(top: 30),
-                                          width: 70,
-                                          height: 30,
-                                          child: TextButton(
-                                                    child: const Text("بازگشت >",
+                                          Container(
+                                            margin: EdgeInsets.only(top: 20),
+                                            width: 40,
+                                            height: 20,
+                                            // color: Colors.black,
+                                            child: const Text(
+                                              "0:00",
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 0, 0, 0),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 20),
+                                            width: 100,
+                                            height: 30,
+                                            child: TextButton(
+                                                child: const Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  textDirection:
+                                                      TextDirection.rtl,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.refresh,
+                                                      color: Colors.blueGrey,
+                                                    ),
+                                                    Text("ارسال دوباره",
                                                         style: TextStyle(
-                                                            fontWeight: FontWeight.w600,
+                                                            fontWeight:
+                                                                FontWeight.w600,
                                                             fontSize: 13,
-                                                            color: Color.fromARGB(255, 124, 124, 124))),
-                                                    style: ButtonStyle(
-                                                        padding: MaterialStateProperty.all<EdgeInsets>(
-                                                            const EdgeInsets.all(0)),
-                                                        backgroundColor:
-                                                            MaterialStateProperty.all<Color>(
-                                                                Color.fromARGB(40, 175, 175, 175)),
-                                                        // foregroundColor:
-                                                        //     MaterialStateProperty.all<Color>(
-                                                        //         Colors.red) ,
-                                                        shape: MaterialStateProperty.all<
-                                                                RoundedRectangleBorder>(
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    124,
+                                                                    124,
+                                                                    124))),
+                                                  ],
+                                                ),
+                                                style: ButtonStyle(
+                                                    padding: MaterialStateProperty
+                                                        .all<EdgeInsets>(
+                                                            const EdgeInsets.all(
+                                                                0)),
+                                                    backgroundColor:
+                                                        MaterialStateProperty.all<Color>(
+                                                            Color.fromARGB(
+                                                                0, 175, 175, 175)),
+                                                    // foregroundColor:
+                                                    //     MaterialStateProperty.all<Color>(
+                                                    //         Colors.red) ,
+                                                    shape: MaterialStateProperty
+                                                        .all<RoundedRectangleBorder>(
                                                             RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.circular(100.0),
-                                                          // side: BorderSide(color: Colors.red)
-                                                        ))),
-                                                    onPressed: () {
-                                                     
-                                                  
-                                                      setState(() {
-                                                        login_hg=600;
-                                                        map=0;
-                                                        opp=1;
-                                                        forgetpass_error=false;
-                                                        wrong_error=false;
-                                                        // if (error) {
-                                                        //   login_hg = login_hg  -200;
-                                                          
-                                                        // } else {
-                                                        //   login_hg = login_hg + 200;
-                                                        //   error_hg = 15;
-                                                        // }
-                                                      });
-                                                    }),
-                                        ), 
-                                          
-                                      ],
-                                    )
-                                  ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100.0),
+                                                      // side: BorderSide(color: Colors.red)
+                                                    ))),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    email_code_error =
+                                                        !email_code_error;
+                                                    // if (error) {
+                                                    //   login_hg = login_hg  -200;
+
+                                                    // } else {
+                                                    //   login_hg = login_hg + 200;
+                                                    //   error_hg = 15;
+                                                    // }
+                                                  });
+                                                }),
+                                          ),
+                                          SizedBox(
+                                            height: 50,
+                                          ),
+                                          Visibility(
+                                            maintainAnimation: true,
+                                            maintainState: true,
+                                            visible: email_code_error,
+                                            child: AnimatedContainer(
+                                              duration:
+                                                  Duration(milliseconds: 50),
+                                              margin: EdgeInsets.only(top: 15),
+                                              width: 284,
+                                              height: 60,
+                                              decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                color: Color.fromARGB(
+                                                    255, 253, 238, 238),
+                                              ),
+                                              child: Row(
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width: 40,
+                                                    height: 40,
+                                                    margin: EdgeInsets.only(
+                                                        left: 5, right: 10),
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  20)),
+                                                      color: Color.fromARGB(
+                                                          31, 255, 95, 95),
+                                                    ),
+                                                    child: const Icon(
+                                                      Icons
+                                                          .warning_amber_rounded,
+                                                      color: Color.fromARGB(
+                                                          206, 252, 95, 95),
+                                                      textDirection:
+                                                          TextDirection.rtl,
+                                                    ),
+                                                  ),
+                                                  const Text(
+                                                    "  .",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w800,
+                                                        fontSize: 22,
+                                                        color: Color.fromARGB(
+                                                            167, 143, 50, 50)),
+                                                  ),
+                                                  const Text(
+                                                    ".کد تایید معتبر نیست",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 15,
+                                                        color: Color.fromARGB(
+                                                            190, 194, 67, 67)),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            margin: EdgeInsets.only(top: 30),
+                                            width: 70,
+                                            height: 30,
+                                            child: TextButton(
+                                                child: const Text("بازگشت >",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 13,
+                                                        color: Color.fromARGB(
+                                                            255, 124, 124, 124))),
+                                                style: ButtonStyle(
+                                                    padding:
+                                                        MaterialStateProperty.all<EdgeInsets>(
+                                                            const EdgeInsets.all(
+                                                                0)),
+                                                    backgroundColor:
+                                                        MaterialStateProperty.all<Color>(
+                                                            Color.fromARGB(40,
+                                                                175, 175, 175)),
+                                                    // foregroundColor:
+                                                    //     MaterialStateProperty.all<Color>(
+                                                    //         Colors.red) ,
+                                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100.0),
+                                                      // side: BorderSide(color: Colors.red)
+                                                    ))),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    login_hg = 400;
+
+                                                    map = 1;
+                                                    opp = 1;
+                                                    forgetpass_error = false;
+                                                    wrong_error = false;
+                                                    // if (error) {
+                                                    //   login_hg = login_hg  -200;
+
+                                                    // } else {
+                                                    //   login_hg = login_hg + 200;
+                                                    //   error_hg = 15;
+                                                    // }
+                                                  });
+                                                }),
+                                          ),
+                                        ],
+                                      )),
                                 ),
-                                            
-                                            
                                 Visibility(
                                   maintainAnimation: true,
                                   maintainState: true,
-                                  visible: map ==0?true:false,
+                                  visible: map == 0 ? true : false,
                                   child: AnimatedContainer(
-                                    
                                     duration: Duration(milliseconds: 300),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Container(
                                           width: 300,
                                           height: 50,
                                           // color: Colors.amberAccent,
-                                          margin:
-                                              const EdgeInsets.only(top: 40, bottom: 0),
+                                          margin: const EdgeInsets.only(
+                                              top: 40, bottom: 0),
                                           child: const Center(
                                               child: Text(
                                             "ورود",
                                             style: TextStyle(
-                                                color: Color.fromARGB(255, 0, 186, 186),
+                                                color: Color.fromARGB(
+                                                    255, 0, 186, 186),
                                                 fontSize: 35,
                                                 fontWeight: FontWeight.w800),
                                           )),
-                                        ),                                      
-                                          Container(
+                                        ),
+                                        Container(
                                           width: 283,
                                           height: 45,
-                                          margin:
-                                              const EdgeInsets.only(top: 60, bottom: 0),
+                                          margin: const EdgeInsets.only(
+                                              top: 60, bottom: 0),
                                           child: AnimatedContainer(
-                                              duration: Duration(milliseconds: 300),
+                                              duration:
+                                                  Duration(milliseconds: 300),
                                               decoration: BoxDecoration(
-                                                  borderRadius: const BorderRadius.all(
-                                                      Radius.circular(12)),
-                                                  color:
-                                                      Color.fromARGB(255, 255, 255, 255),
+                                                  borderRadius:
+                                                      const BorderRadius.all(
+                                                          Radius.circular(12)),
+                                                  color: Color.fromARGB(
+                                                      255, 255, 255, 255),
                                                   boxShadow: [
                                                     BoxShadow(
                                                       color: of_email
-                                                          ? const Color.fromARGB(
+                                                          ? const Color
+                                                                  .fromARGB(
                                                               150, 4, 189, 158)
                                                           : Colors.transparent,
                                                       blurRadius:
@@ -1202,74 +2215,99 @@ AnimatedContainer(
                                                     controller: login_email,
                                                     //email-textfild
                                                     focusNode: emailFocus,
-                                                  
+
                                                     //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                                     decoration: InputDecoration(
                                                       fillColor: !of_email
-                                                          ? const Color.fromARGB(
-                                                              255, 245, 247, 250)
+                                                          ? const Color
+                                                                  .fromARGB(255,
+                                                              245, 247, 250)
                                                           : Colors.transparent,
                                                       // contentPadding: EdgeInsets.only(top: 10,bottom: 10,right: 10,left: 10 ),
                                                       // suffixIcon: Icon(Icons.remove_red_eye,color: Color.fromARGB(52, 0, 0, 0),),
                                                       filled: true,
                                                       // isCollapsed: true,//make fild 0 padding
                                                       // isDense: true,
-                                                      hoverColor: Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
                                                       hintTextDirection:
                                                           TextDirection.rtl,
-                                                  
+
                                                       floatingLabelBehavior:
-                                                          FloatingLabelBehavior.never,
-                                                      enabledBorder: OutlineInputBorder(
+                                                          FloatingLabelBehavior
+                                                              .never,
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
                                                         borderRadius:
-                                                            const BorderRadius.all(
-                                                                Radius.circular(12)),
+                                                            const BorderRadius
+                                                                    .all(
+                                                                Radius.circular(
+                                                                    12)),
                                                         borderSide: BorderSide(
                                                           color: !ho_email
                                                               ? Color.fromARGB(
-                                                                  0, 76, 175, 79)
+                                                                  0,
+                                                                  76,
+                                                                  175,
+                                                                  79)
                                                               : Color.fromARGB(
-                                                                  108, 0, 186, 186),
+                                                                  108,
+                                                                  0,
+                                                                  186,
+                                                                  186),
                                                           width: 0.0,
                                                         ),
                                                       ),
                                                       focusedBorder:
                                                           const OutlineInputBorder(
-                                                        borderRadius: BorderRadius.all(
-                                                            Radius.circular(12)),
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    12)),
                                                         borderSide: BorderSide(
-                                                          style: BorderStyle.solid,
+                                                          style:
+                                                              BorderStyle.solid,
                                                           color: Color.fromARGB(
                                                               255, 0, 186, 186),
                                                           width: 1.0,
                                                         ),
                                                       ),
-                                                  
+
                                                       // enabledBorder: OutlineInputBorder(borderSide: BorderSide(width: 1,color: Color.fromARGB(255, 12, 73, 58),strokeAlign: BorderSide.strokeAlignCenter) ),
                                                       // border: UnderlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
                                                       // labelText: 'Enter your username',
                                                       hintText: 'نشانی ایمیل',
-                                                      hintStyle: const TextStyle(
-                                                          fontSize: 14,
-                                                          fontFamily: "YekanX",
-                                                          fontWeight: FontWeight.w600,
-                                                          // decoration: TextDecoration.none,
-                                                          color: Color.fromARGB(
-                                                              130, 57, 100, 98)),
+                                                      hintStyle:
+                                                          const TextStyle(
+                                                              fontSize: 14,
+                                                              fontFamily:
+                                                                  "YekanX",
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              // decoration: TextDecoration.none,
+                                                              color: Color
+                                                                  .fromARGB(
+                                                                      130,
+                                                                      57,
+                                                                      100,
+                                                                      98)),
                                                     ),
                                                   ),
                                                 ),
                                               )),
                                         ),
                                         AnimatedContainer(
-                                            duration: Duration(milliseconds: 300),
+                                            duration:
+                                                Duration(milliseconds: 300),
                                             width: 280,
                                             height: 45,
-                                            margin:
-                                                const EdgeInsets.only(top: 20, bottom: 0),
+                                            margin: const EdgeInsets.only(
+                                                top: 20, bottom: 0),
                                             decoration: BoxDecoration(
-                                                borderRadius: const BorderRadius.all(
-                                                    Radius.circular(10)),
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(10)),
                                                 color: Colors.white,
                                                 boxShadow: [
                                                   BoxShadow(
@@ -1277,7 +2315,8 @@ AnimatedContainer(
                                                         ? const Color.fromARGB(
                                                             150, 4, 189, 158)
                                                         : Colors.transparent,
-                                                    blurRadius: 20.0, // soften the shadow
+                                                    blurRadius:
+                                                        20.0, // soften the shadow
                                                     spreadRadius:
                                                         -10.0, //extend the shadow
                                                     offset: const Offset(
@@ -1302,10 +2341,11 @@ AnimatedContainer(
                                                 child: TextField(
                                                   controller: login_pass,
                                                   //textfild-pass
-                                                  textInputAction: TextInputAction.send,
-                                                  
+                                                  textInputAction:
+                                                      TextInputAction.send,
+
                                                   focusNode: passFocus,
-                                                  
+
                                                   textAlign: TextAlign.start,
                                                   obscureText: is_pass_hide,
                                                   //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
@@ -1314,14 +2354,16 @@ AnimatedContainer(
                                                         ? Color.fromARGB(
                                                             255, 245, 247, 250)
                                                         : Colors.transparent,
-                                                    hoverColor: Colors.transparent,
-                                                  
+                                                    hoverColor:
+                                                        Colors.transparent,
+
                                                     // contentPadding: EdgeInsets.only(top: 20,bottom: 10,right: 10,left: 10 ),
                                                     suffixIcon: InkWell(
                                                       onTap: () {
                                                         // print("iss password");
                                                         setState(() {
-                                                          is_pass_hide = !is_pass_hide;
+                                                          is_pass_hide =
+                                                              !is_pass_hide;
                                                         });
                                                       },
                                                       child: Icon(
@@ -1336,42 +2378,57 @@ AnimatedContainer(
                                                     filled: true,
                                                     // isCollapsed: true,//make fild 0 padding
                                                     // isDense: true,
-                                                    hintTextDirection: TextDirection.rtl,
-                                                  
+                                                    hintTextDirection:
+                                                        TextDirection.rtl,
+
                                                     floatingLabelBehavior:
-                                                        FloatingLabelBehavior.never,
-                                                    enabledBorder: OutlineInputBorder(
+                                                        FloatingLabelBehavior
+                                                            .never,
+                                                    enabledBorder:
+                                                        OutlineInputBorder(
                                                       borderRadius:
-                                                          const BorderRadius.all(
-                                                              Radius.circular(12)),
+                                                          const BorderRadius
+                                                                  .all(
+                                                              Radius.circular(
+                                                                  12)),
                                                       borderSide: BorderSide(
                                                         color: !ho_pass
-                                                            ? const Color.fromARGB(
+                                                            ? const Color
+                                                                    .fromARGB(
                                                                 0, 76, 175, 79)
-                                                            : const Color.fromARGB(
-                                                                108, 0, 186, 186),
+                                                            : const Color
+                                                                    .fromARGB(
+                                                                108,
+                                                                0,
+                                                                186,
+                                                                186),
                                                         width: 0.0,
                                                       ),
                                                     ),
-                                                  
+
                                                     focusedBorder:
                                                         const OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(
-                                                          Radius.circular(12)),
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  12)),
                                                       borderSide: BorderSide(
-                                                        style: BorderStyle.solid,
+                                                        style:
+                                                            BorderStyle.solid,
                                                         color: Color.fromARGB(
                                                             255, 0, 186, 186),
                                                         width: 1.0,
                                                       ),
                                                     ),
-                                                  
+
                                                     hintText: 'رمز',
                                                     hintStyle: const TextStyle(
                                                         fontFamily: "YekanX",
                                                         fontSize: 14,
-                                                        fontWeight: FontWeight.w600,
-                                                        decoration: TextDecoration.none,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        decoration:
+                                                            TextDecoration.none,
                                                         color: Color.fromARGB(
                                                             130, 57, 100, 98)),
                                                   ),
@@ -1383,40 +2440,49 @@ AnimatedContainer(
                                           maintainState: true,
                                           visible: login_error,
                                           child: AnimatedContainer(
-                                            duration: Duration(milliseconds: 50),
+                                            duration:
+                                                Duration(milliseconds: 50),
                                             margin: EdgeInsets.only(top: 15),
                                             width: 284,
                                             height: error_hg,
                                             decoration: const BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.all(Radius.circular(10)),
-                                              color: Color.fromARGB(255, 253, 238, 238),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10)),
+                                              color: Color.fromARGB(
+                                                  255, 253, 238, 238),
                                             ),
                                             child: Row(
                                               textDirection: TextDirection.rtl,
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Container(
                                                   width: 40,
                                                   height: 40,
-                                                  margin: EdgeInsets.only(left: 5),
-                                                  decoration: const BoxDecoration(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(20)),
-                                                    color:
-                                                        Color.fromARGB(31, 255, 95, 95),
+                                                  margin:
+                                                      EdgeInsets.only(left: 5),
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20)),
+                                                    color: Color.fromARGB(
+                                                        31, 255, 95, 95),
                                                   ),
                                                   child: const Icon(
                                                     Icons.warning_amber_rounded,
-                                                    color:
-                                                        Color.fromARGB(206, 252, 95, 95),
-                                                    textDirection: TextDirection.rtl,
+                                                    color: Color.fromARGB(
+                                                        206, 252, 95, 95),
+                                                    textDirection:
+                                                        TextDirection.rtl,
                                                   ),
                                                 ),
                                                 const Text(
                                                   "  .",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.w800,
+                                                      fontWeight:
+                                                          FontWeight.w800,
                                                       fontSize: 22,
                                                       color: Color.fromARGB(
                                                           167, 143, 50, 50)),
@@ -1424,7 +2490,8 @@ AnimatedContainer(
                                                 const Text(
                                                   ".اطلاعات وارد شده صحیح نیست",
                                                   style: TextStyle(
-                                                      fontWeight: FontWeight.w600,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                       fontSize: 15,
                                                       color: Color.fromARGB(
                                                           190, 194, 67, 67)),
@@ -1436,19 +2503,22 @@ AnimatedContainer(
                                         Container(
                                             width: 280,
                                             height: 40,
-                                            margin:
-                                                const EdgeInsets.only(top: 30, bottom: 0),
+                                            margin: const EdgeInsets.only(
+                                                top: 30, bottom: 0),
                                             // color: const Color.fromARGB(255, 64, 169, 255),
                                             child: TextButton(
                                                 child: const Text("ورود",
                                                     style: TextStyle(
-                                                        fontWeight: FontWeight.w600,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         fontSize: 18,
                                                         color: Color.fromARGB(
                                                             255, 255, 255, 255))),
                                                 style: ButtonStyle(
-                                                    padding: MaterialStateProperty.all<EdgeInsets>(
-                                                        const EdgeInsets.all(0)),
+                                                    padding:
+                                                        MaterialStateProperty.all<EdgeInsets>(
+                                                            const EdgeInsets.all(
+                                                                0)),
                                                     backgroundColor:
                                                         MaterialStateProperty.all<Color>(
                                                             const Color.fromARGB(
@@ -1456,16 +2526,13 @@ AnimatedContainer(
                                                     // foregroundColor:
                                                     //     MaterialStateProperty.all<Color>(
                                                     //         Colors.red) ,
-                                                    shape: MaterialStateProperty.all<
-                                                            RoundedRectangleBorder>(
-                                                        RoundedRectangleBorder(
+                                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(
                                                       borderRadius:
-                                                          BorderRadius.circular(10.0),
+                                                          BorderRadius.circular(
+                                                              10.0),
                                                       // side: BorderSide(color: Colors.red)
                                                     ))),
                                                 onPressed: () {
-                                                 
-                                                  
                                                   setState(() {
                                                     login_error = !login_error;
                                                   });
@@ -1482,34 +2549,37 @@ AnimatedContainer(
                                         Container(
                                           width: 280,
                                           height: 0,
-                                          margin:
-                                              const EdgeInsets.only(top: 0, bottom: 0),
+                                          margin: const EdgeInsets.only(
+                                              top: 0, bottom: 0),
                                           // color: const Color.fromARGB(255, 64, 83, 255),
                                         ),
                                         Container(
                                           width: 280,
                                           height: 40,
-                                          margin:
-                                              const EdgeInsets.only(top: 30, bottom: 0),
+                                          margin: const EdgeInsets.only(
+                                              top: 30, bottom: 0),
                                           // color: const Color.fromARGB(255, 137, 64, 255),
                                           child: Center(
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 TextButton(
-                                                   onPressed: () {setState(() {
-                                                      login_hg=710;
-                                                      opp=0;
-                                                          map=3;
-                                                          login_error=false;
-                                                    });
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        login_hg = 710;
+                                                        opp = 0;
+                                                        map = 3;
+                                                        login_error = false;
+                                                      });
                                                     },
                                                     child: const Text(
                                                       "ثبت نام",
-                                                      style:
-                                                          TextStyle(color: Colors.black),
+                                                      style: TextStyle(
+                                                          color: Colors.black),
                                                     )),
-                                                const Text("حساب کاربری ندارید؟"),
+                                                const Text(
+                                                    "حساب کاربری ندارید؟"),
                                               ],
                                             ),
                                           ),
@@ -1517,27 +2587,30 @@ AnimatedContainer(
                                         Container(
                                           width: 280,
                                           // height: 0,
-                                          margin:
-                                              const EdgeInsets.only(top: 0, bottom: 0),
+                                          margin: const EdgeInsets.only(
+                                              top: 0, bottom: 0),
                                           // color: const Color.fromARGB(255, 255, 64, 239),
                                           child: Center(
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 TextButton(
-                                                    onPressed: () {setState(() {
-                                                      login_hg=400;
-                                                      opp=0;
-                                                          map=1;
-                                                          login_error=false;
-                                                    });
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        login_hg = 400;
+                                                        opp = 0;
+                                                        map = 1;
+                                                        login_error = false;
+                                                      });
                                                     },
                                                     child: const Text(
                                                       "ایجاد رمز جدید",
-                                                      style:
-                                                          TextStyle(color: Colors.black),
+                                                      style: TextStyle(
+                                                          color: Colors.black),
                                                     )),
-                                                const Text("رمز عبورتان را گم کرده اید؟"),
+                                                const Text(
+                                                    "رمز عبورتان را گم کرده اید؟"),
                                               ],
                                             ),
                                           ),
@@ -1545,12 +2618,13 @@ AnimatedContainer(
                                         Container(
                                           width: 280,
                                           height: 40,
-                                          margin:
-                                              const EdgeInsets.only(top: 20, bottom: 20),
+                                          margin: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
                                           // color: Color.fromARGB(255, 255, 64, 128),
                                           child: Center(
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Container(
                                                     width: 100,
@@ -1570,12 +2644,13 @@ AnimatedContainer(
                                         Container(
                                           width: 300,
                                           height: 50,
-                                                  
-                                          margin:
-                                              const EdgeInsets.only(top: 10, bottom: 0),
+
+                                          margin: const EdgeInsets.only(
+                                              top: 10, bottom: 0),
                                           // color: Color.fromARGB(255, 255, 0, 0),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
                                               InkWell(
                                                 onTap: () {
@@ -1585,15 +2660,17 @@ AnimatedContainer(
                                                   // print(value);
                                                 },
                                                 child: Container(
-                                                  padding: const EdgeInsets.all(6),
+                                                  padding:
+                                                      const EdgeInsets.all(6),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(10),
+                                                        BorderRadius.circular(
+                                                            10),
                                                     color: const Color.fromARGB(
                                                         255, 233, 237, 245),
                                                   ),
-                                                  child:
-                                                      Image.asset('assets/images/G.png'),
+                                                  child: Image.asset(
+                                                      'assets/images/G.png'),
                                                 ),
                                               ),
                                               InkWell(
@@ -1604,11 +2681,14 @@ AnimatedContainer(
                                                   // print(value);
                                                 },
                                                 child: Container(
-                                                  margin: const EdgeInsets.only(left: 10),
-                                                  padding: const EdgeInsets.all(6),
+                                                  margin: const EdgeInsets.only(
+                                                      left: 10),
+                                                  padding:
+                                                      const EdgeInsets.all(6),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
-                                                        BorderRadius.circular(10),
+                                                        BorderRadius.circular(
+                                                            10),
                                                     color: const Color.fromARGB(
                                                         255, 233, 237, 245),
                                                   ),
