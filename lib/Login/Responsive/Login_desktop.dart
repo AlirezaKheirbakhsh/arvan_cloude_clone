@@ -1,7 +1,6 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:test_responsive/widgets/ArvanTextField.dart';
 
 class Login_desktop extends StatefulWidget {
@@ -16,10 +15,10 @@ class _Login_desktopState extends State<Login_desktop> {
   FocusNode passFocus = FocusNode();
   FocusNode reg_passFocus = FocusNode();
 
-  FocusNode _forgetpasstextFocusNoode = FocusNode();
-  FocusNode _fullnametextFocusNoode = FocusNode();
-  FocusNode _lastnametextFocusNoode = FocusNode();
-  FocusNode _emailtextFocusNoode = FocusNode();
+  final FocusNode _forgetpasstextFocusNoode = FocusNode();
+  final FocusNode _fullnametextFocusNoode = FocusNode();
+  final FocusNode _lastnametextFocusNoode = FocusNode();
+  final FocusNode _emailtextFocusNoode = FocusNode();
 
   TextEditingController login_email = TextEditingController();
   TextEditingController login_pass = TextEditingController();
@@ -49,19 +48,19 @@ class _Login_desktopState extends State<Login_desktop> {
     FocusNode(),
   ];
 
-  ArvanTextField _Forgetpass = ArvanTextField();
+  final ArvanTextField _Forgetpass = ArvanTextField();
   bool _Forgetpasshoverborder = false;
   bool OnHoverForgetPassTextShadow = false;
 
-  ArvanTextField _name = ArvanTextField();
+  final ArvanTextField _name = ArvanTextField();
   bool _fullnamehoverborder = false;
   bool OnHoverFullnameTextShadow = false;
 
-  ArvanTextField _lastname = ArvanTextField();
+  final ArvanTextField _lastname = ArvanTextField();
   bool _lastnamehoverborder = false;
   bool OnHoverlastnameTextShadow = false;
 
-  ArvanTextField _Email = ArvanTextField();
+  final ArvanTextField _Email = ArvanTextField();
   bool _emailhoverborder = false;
   bool OnHoveremailTextShadow = false;
 
@@ -397,7 +396,7 @@ class _Login_desktopState extends State<Login_desktop> {
 
                       children: [
                         AnimatedContainer(
-                          duration: Duration(milliseconds: 100),
+                          duration: const Duration(milliseconds: 100),
                           margin: EdgeInsets.only(
                               right:
                                   ((wh * 23) - 184) < 0 ? 0 : ((wh * 23) - 184),
@@ -431,7 +430,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                     child: Column(
                                       children: [
                                         Container(
-                                          margin: EdgeInsets.only(top: 25),
+                                          margin: const EdgeInsets.only(top: 25),
                                           child: const Text(
                                             "ثبت نام",
                                             style: TextStyle(
@@ -456,7 +455,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                           visible: true,
 
                                           child: Container(
-                                            margin: EdgeInsets.only(top: 15),
+                                            margin: const EdgeInsets.only(top: 15),
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
@@ -475,9 +474,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   _fullnametextFocusNoode,
                                               borderside: wrong_reg_name
                                                   ? (OnHoverFullnameTextShadow
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 243, 46, 46)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           0, 90, 0, 0))
                                                   : (!OnHoverFullnameTextShadow
                                                       ? Colors.transparent
@@ -485,9 +484,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           255, 0, 186, 186)),
                                               boxShadowColor: wrong_reg_name
                                                   ? (OnHoverFullnameTextShadow
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 231, 6, 6)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           0, 90, 0, 0))
                                                   : (!OnHoverFullnameTextShadow
                                                       ? Colors.transparent
@@ -495,9 +494,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           150, 4, 189, 158)),
                                               BorderColor: wrong_reg_name
                                                   ? (_fullnamehoverborder
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 255, 0, 0)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           149, 186, 0, 0))
                                                   : (!_fullnamehoverborder
                                                       ? Colors.transparent
@@ -505,7 +504,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           108, 0, 186, 186)),
                                               fillColor:
                                                   !OnHoverFullnameTextShadow
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 245, 245, 245)
                                                       : const Color.fromARGB(
                                                           255, 255, 255, 255),
@@ -517,7 +516,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                           visible: true,
 
                                           child: Container(
-                                            margin: EdgeInsets.only(top: 15),
+                                            margin: const EdgeInsets.only(top: 15),
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
@@ -537,9 +536,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   _lastnametextFocusNoode,
                                               borderside: wrong_reg_lastname
                                                   ? (OnHoverlastnameTextShadow
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 243, 46, 46)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           0, 90, 0, 0))
                                                   : (!OnHoverlastnameTextShadow
                                                       ? Colors.transparent
@@ -547,9 +546,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           255, 0, 186, 186)),
                                               boxShadowColor: wrong_reg_lastname
                                                   ? (OnHoverlastnameTextShadow
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 231, 6, 6)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           0, 90, 0, 0))
                                                   : (!OnHoverlastnameTextShadow
                                                       ? Colors.transparent
@@ -557,9 +556,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           150, 4, 189, 158)),
                                               BorderColor: wrong_reg_lastname
                                                   ? (_lastnamehoverborder
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 255, 0, 0)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           149, 186, 0, 0))
                                                   : (!_lastnamehoverborder
                                                       ? Colors.transparent
@@ -567,7 +566,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           108, 0, 186, 186)),
                                               fillColor:
                                                   !OnHoverlastnameTextShadow
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 245, 245, 245)
                                                       : const Color.fromARGB(
                                                           255, 255, 255, 255),
@@ -579,7 +578,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                           visible: true,
 
                                           child: Container(
-                                            margin: EdgeInsets.only(top: 15),
+                                            margin: const EdgeInsets.only(top: 15),
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
@@ -599,9 +598,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   _emailtextFocusNoode,
                                               borderside: wrong_reg_emaile
                                                   ? (OnHoveremailTextShadow
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 243, 46, 46)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           0, 90, 0, 0))
                                                   : (!OnHoveremailTextShadow
                                                       ? Colors.transparent
@@ -609,9 +608,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           255, 0, 186, 186)),
                                               boxShadowColor: wrong_reg_emaile
                                                   ? (OnHoveremailTextShadow
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 231, 6, 6)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           0, 90, 0, 0))
                                                   : (!OnHoveremailTextShadow
                                                       ? Colors.transparent
@@ -619,16 +618,16 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           150, 4, 189, 158)),
                                               BorderColor: wrong_reg_emaile
                                                   ? (_emailhoverborder
-                                                      ? Color.fromARGB(
+                                                      ? const Color.fromARGB(
                                                           255, 255, 0, 0)
-                                                      : Color.fromARGB(
+                                                      : const Color.fromARGB(
                                                           149, 186, 0, 0))
                                                   : (!_emailhoverborder
                                                       ? Colors.transparent
                                                       : const Color.fromARGB(
                                                           108, 0, 186, 186)),
                                               fillColor: !OnHoveremailTextShadow
-                                                  ? Color.fromARGB(
+                                                  ? const Color.fromARGB(
                                                       255, 245, 245, 245)
                                                   : const Color.fromARGB(
                                                       255, 255, 255, 255),
@@ -637,7 +636,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                         ),
                                         AnimatedContainer(
                                             duration:
-                                                Duration(milliseconds: 300),
+                                                const Duration(milliseconds: 300),
                                             width: 280,
                                             height: 45,
                                             margin: const EdgeInsets.only(
@@ -651,9 +650,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   BoxShadow(
                                                     color: wrong_reg_pass
                                                         ? (of_reg_pass
-                                                            ? Color.fromARGB(
+                                                            ? const Color.fromARGB(
                                                                 255, 231, 6, 6)
-                                                            : Color.fromARGB(
+                                                            : const Color.fromARGB(
                                                                 0, 90, 0, 0))
                                                         : (!of_reg_pass
                                                             ? Colors.transparent
@@ -699,7 +698,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                                   decoration: InputDecoration(
                                                     fillColor: !of_reg_pass
-                                                        ? Color.fromARGB(
+                                                        ? const Color.fromARGB(
                                                             255, 245, 247, 250)
                                                         : Colors.transparent,
                                                     hoverColor:
@@ -719,7 +718,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                             ? Icons
                                                                 .remove_red_eye_outlined
                                                             : Icons.password,
-                                                        color: Color.fromARGB(
+                                                        color: const Color.fromARGB(
                                                             130, 57, 100, 98),
                                                       ),
                                                     ),
@@ -742,13 +741,13 @@ class _Login_desktopState extends State<Login_desktop> {
                                                       borderSide: BorderSide(
                                                         color: wrong_reg_pass
                                                             ? (ho_reg_pass
-                                                                ? Color
+                                                                ? const Color
                                                                     .fromARGB(
                                                                         255,
                                                                         255,
                                                                         0,
                                                                         0)
-                                                                : Color
+                                                                : const Color
                                                                     .fromARGB(
                                                                         149,
                                                                         186,
@@ -779,13 +778,13 @@ class _Login_desktopState extends State<Login_desktop> {
                                                             BorderStyle.solid,
                                                         color: wrong_reg_pass
                                                             ? (of_reg_pass
-                                                                ? Color
+                                                                ? const Color
                                                                     .fromARGB(
                                                                         255,
                                                                         243,
                                                                         46,
                                                                         46)
-                                                                : Color
+                                                                : const Color
                                                                     .fromARGB(
                                                                         0,
                                                                         90,
@@ -848,7 +847,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                             width: 8,
                                                             height: 3,
                                                             color: isPass_8character
-                                                                ? Color
+                                                                ? const Color
                                                                     .fromARGB(
                                                                         255,
                                                                         16,
@@ -969,7 +968,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                             "حداقل ۸ کاراکتر باشد",
                                                             style: TextStyle(
                                                                 color: isPass_8character
-                                                                    ? Color
+                                                                    ? const Color
                                                                         .fromARGB(
                                                                             255,
                                                                             10,
@@ -993,10 +992,10 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           visible:
                                                               isPass_SmallANDBig,
                                                           child: Container(
-                                                              margin: EdgeInsets
+                                                              margin: const EdgeInsets
                                                                   .only(
                                                                       left: 5),
-                                                              child: Icon(
+                                                              child: const Icon(
                                                                 Icons.check,
                                                                 size: 17,
                                                                 color: Color
@@ -1009,14 +1008,14 @@ class _Login_desktopState extends State<Login_desktop> {
                                                         ),
                                                         Container(
                                                           margin:
-                                                              EdgeInsets.only(
+                                                              const EdgeInsets.only(
                                                             top: 2,
                                                           ),
                                                           child: Text(
                                                             "ترکیبی از حروف کوچک و بزرگ باشد",
                                                             style: TextStyle(
                                                                 color: isPass_SmallANDBig
-                                                                    ? Color
+                                                                    ? const Color
                                                                         .fromARGB(
                                                                             255,
                                                                             10,
@@ -1040,10 +1039,10 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           visible:
                                                               isPass_HaveNumbers,
                                                           child: Container(
-                                                              margin: EdgeInsets
+                                                              margin: const EdgeInsets
                                                                   .only(
                                                                       left: 5),
-                                                              child: Icon(
+                                                              child: const Icon(
                                                                 Icons.check,
                                                                 size: 17,
                                                                 color: Color
@@ -1056,14 +1055,14 @@ class _Login_desktopState extends State<Login_desktop> {
                                                         ),
                                                         Container(
                                                           margin:
-                                                              EdgeInsets.only(
+                                                              const EdgeInsets.only(
                                                             top: 2,
                                                           ),
                                                           child: Text(
                                                             "شامل اعداد باشد",
                                                             style: TextStyle(
                                                                 color: isPass_HaveNumbers
-                                                                    ? Color
+                                                                    ? const Color
                                                                         .fromARGB(
                                                                             255,
                                                                             10,
@@ -1087,10 +1086,10 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           visible:
                                                               isPass_HaveSymblCharacter,
                                                           child: Container(
-                                                              margin: EdgeInsets
+                                                              margin: const EdgeInsets
                                                                   .only(
                                                                       left: 5),
-                                                              child: Icon(
+                                                              child: const Icon(
                                                                 Icons.check,
                                                                 size: 17,
                                                                 color: Color
@@ -1103,14 +1102,14 @@ class _Login_desktopState extends State<Login_desktop> {
                                                         ),
                                                         Container(
                                                           margin:
-                                                              EdgeInsets.only(
+                                                              const EdgeInsets.only(
                                                             top: 2,
                                                           ),
                                                           child: Text(
                                                             "شامل کاراکترهای خاص (نمادها) باشد",
                                                             style: TextStyle(
                                                                 color: isPass_HaveSymblCharacter
-                                                                    ? Color
+                                                                    ? const Color
                                                                         .fromARGB(
                                                                             255,
                                                                             10,
@@ -1133,7 +1132,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                           ),
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(top: 20),
+                                          margin: const EdgeInsets.only(top: 20),
                                           width: 283,
                                           height: 40,
                                           child: TextButton(
@@ -1322,7 +1321,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                   maintainState: true,
                                   visible: map == 1 ? true : false,
                                   child: Container(
-                                      margin: EdgeInsets.only(top: 40),
+                                      margin: const EdgeInsets.only(top: 40),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -1352,7 +1351,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           Container(
-                                            margin: EdgeInsets.only(top: 30),
+                                            margin: const EdgeInsets.only(top: 30),
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
@@ -1374,9 +1373,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                     _forgetpasstextFocusNoode,
                                                 borderside: wrong_error
                                                     ? (OnHoverForgetPassTextShadow
-                                                        ? Color.fromARGB(
+                                                        ? const Color.fromARGB(
                                                             255, 243, 46, 46)
-                                                        : Color.fromARGB(
+                                                        : const Color.fromARGB(
                                                             0, 90, 0, 0))
                                                     : (!OnHoverForgetPassTextShadow
                                                         ? Colors.transparent
@@ -1384,9 +1383,9 @@ class _Login_desktopState extends State<Login_desktop> {
                                                             255, 76, 175, 137)),
                                                 boxShadowColor: wrong_error
                                                     ? (OnHoverForgetPassTextShadow
-                                                        ? Color.fromARGB(
+                                                        ? const Color.fromARGB(
                                                             255, 231, 6, 6)
-                                                        : Color.fromARGB(
+                                                        : const Color.fromARGB(
                                                             0, 90, 0, 0))
                                                     : (!OnHoverForgetPassTextShadow
                                                         ? Colors.transparent
@@ -1394,14 +1393,14 @@ class _Login_desktopState extends State<Login_desktop> {
                                                             255, 76, 175, 137)),
                                                 BorderColor: wrong_error
                                                     ? (_Forgetpasshoverborder
-                                                        ? Color.fromARGB(
+                                                        ? const Color.fromARGB(
                                                             255, 255, 0, 0)
-                                                        : Color.fromARGB(149, 186, 0, 0))
+                                                        : const Color.fromARGB(149, 186, 0, 0))
                                                     : (!_Forgetpasshoverborder ? Colors.transparent : const Color.fromARGB(150, 0, 186, 186)),
-                                                fillColor: !OnHoverForgetPassTextShadow ? Color.fromARGB(255, 245, 245, 245) : const Color.fromARGB(255, 255, 255, 255)),
+                                                fillColor: !OnHoverForgetPassTextShadow ? const Color.fromARGB(255, 245, 245, 245) : const Color.fromARGB(255, 255, 255, 255)),
                                           ),
                                           Container(
-                                            margin: EdgeInsets.only(top: 35),
+                                            margin: const EdgeInsets.only(top: 35),
                                             width: 283,
                                             height: 40,
                                             child: TextButton(
@@ -1456,8 +1455,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                             visible: forgetpass_error,
                                             child: AnimatedContainer(
                                               duration:
-                                                  Duration(milliseconds: 50),
-                                              margin: EdgeInsets.only(top: 15),
+                                                  const Duration(milliseconds: 50),
+                                              margin: const EdgeInsets.only(top: 15),
                                               width: 284,
                                               height: 60,
                                               decoration: const BoxDecoration(
@@ -1475,7 +1474,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   Container(
                                                     width: 40,
                                                     height: 40,
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         left: 5),
                                                     decoration:
                                                         const BoxDecoration(
@@ -1518,7 +1517,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                             ),
                                           ),
                                           Container(
-                                            margin: EdgeInsets.only(top: 30),
+                                            margin: const EdgeInsets.only(top: 30),
                                             width: 70,
                                             height: 30,
                                             child: TextButton(
@@ -1536,7 +1535,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 0)),
                                                     backgroundColor:
                                                         MaterialStateProperty.all<Color>(
-                                                            Color.fromARGB(40,
+                                                            const Color.fromARGB(40,
                                                                 175, 175, 175)),
                                                     // foregroundColor:
                                                     //     MaterialStateProperty.all<Color>(
@@ -1573,7 +1572,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                   maintainState: true,
                                   visible: map == 2 ? true : false,
                                   child: Container(
-                                      margin: EdgeInsets.only(top: 40),
+                                      margin: const EdgeInsets.only(top: 40),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -1587,7 +1586,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 fontWeight: FontWeight.w800),
                                           ),
                                           Container(
-                                            margin: EdgeInsets.only(top:40),
+                                            margin: const EdgeInsets.only(top:40),
                                             child: const Text(
                                               ":کد تایید ارسال شده بعه ایمیل خود را در کادر زیر وارد کنید",
                                               style: TextStyle(
@@ -1598,7 +1597,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                             ),
                                           ),
                                           Container(
-                                            margin: EdgeInsets.only(top: 100),
+                                            margin: const EdgeInsets.only(top: 100),
                                             width: 330,
                                             height: 60,
                                             // color: Colors.black,
@@ -1606,7 +1605,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
                                               children: [
-                                                Container(
+                                                SizedBox(
                                                   // margin: EdgeInsets.only(left: 0,right: 0),
                                                   width: 46,
                                                   // color: const Color.fromARGB(255, 250, 0, 0),
@@ -1623,7 +1622,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   right: 0,
                                                                   bottom: 13),
                                                           InTextStyle:
-                                                              TextStyle(
+                                                              const TextStyle(
                                                             fontSize: 22,
                                                           ),
                                                           IntextAlign:
@@ -1643,16 +1642,16 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 false;
                                                           },
                                                           borderside:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   255,
                                                                   35,
                                                                   207,
                                                                   179),
                                                           boxShadowColor:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   0, 76, 175, 137),
                                                           BorderColor:
-                                                              Color.fromARGB(0,
+                                                              const Color.fromARGB(0,
                                                                   76, 175, 137),
                                                           fillColor:
                                                               const Color.fromARGB(
@@ -1662,7 +1661,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   246)),
                                                 ),
                                                 Container(
-                                                  margin: EdgeInsets.only(
+                                                  margin: const EdgeInsets.only(
                                                       left: 0, right: 0),
                                                   width: 46,
                                                   // color: const Color.fromARGB(255, 250, 0, 0),
@@ -1679,7 +1678,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   right: 0,
                                                                   bottom: 13),
                                                           InTextStyle:
-                                                              TextStyle(
+                                                              const TextStyle(
                                                             fontSize: 22,
                                                           ),
                                                           IntextAlign:
@@ -1699,16 +1698,16 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 false;
                                                           },
                                                           borderside:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   255,
                                                                   35,
                                                                   207,
                                                                   179),
                                                           boxShadowColor:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   0, 76, 175, 137),
                                                           BorderColor:
-                                                              Color.fromARGB(0,
+                                                              const Color.fromARGB(0,
                                                                   76, 175, 137),
                                                           fillColor:
                                                               const Color.fromARGB(
@@ -1718,7 +1717,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   246)),
                                                 ),
                                                 Container(
-                                                  margin: EdgeInsets.only(
+                                                  margin: const EdgeInsets.only(
                                                       left: 0, right: 0),
                                                   width: 46,
                                                   // color: const Color.fromARGB(255, 250, 0, 0),
@@ -1735,7 +1734,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   right: 0,
                                                                   bottom: 13),
                                                           InTextStyle:
-                                                              TextStyle(
+                                                              const TextStyle(
                                                             fontSize: 22,
                                                           ),
                                                           IntextAlign:
@@ -1755,16 +1754,16 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 false;
                                                           },
                                                           borderside:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   255,
                                                                   35,
                                                                   207,
                                                                   179),
                                                           boxShadowColor:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   0, 76, 175, 137),
                                                           BorderColor:
-                                                              Color.fromARGB(0,
+                                                              const Color.fromARGB(0,
                                                                   76, 175, 137),
                                                           fillColor:
                                                               const Color.fromARGB(
@@ -1774,7 +1773,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   246)),
                                                 ),
                                                 Container(
-                                                  margin: EdgeInsets.only(
+                                                  margin: const EdgeInsets.only(
                                                       left: 0, right: 0),
                                                   width: 46,
                                                   // color: const Color.fromARGB(255, 250, 0, 0),
@@ -1791,7 +1790,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   right: 0,
                                                                   bottom: 13),
                                                           InTextStyle:
-                                                              TextStyle(
+                                                              const TextStyle(
                                                             fontSize: 22,
                                                           ),
                                                           IntextAlign:
@@ -1811,16 +1810,16 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 false;
                                                           },
                                                           borderside:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   255,
                                                                   35,
                                                                   207,
                                                                   179),
                                                           boxShadowColor:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   0, 76, 175, 137),
                                                           BorderColor:
-                                                              Color.fromARGB(0,
+                                                              const Color.fromARGB(0,
                                                                   76, 175, 137),
                                                           fillColor:
                                                               const Color.fromARGB(
@@ -1830,7 +1829,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   246)),
                                                 ),
                                                 Container(
-                                                  margin: EdgeInsets.only(
+                                                  margin: const EdgeInsets.only(
                                                       left: 0, right: 0),
                                                   width: 46,
                                                   // color: const Color.fromARGB(255, 250, 0, 0),
@@ -1847,7 +1846,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   right: 0,
                                                                   bottom: 13),
                                                           InTextStyle:
-                                                              TextStyle(
+                                                              const TextStyle(
                                                             fontSize: 22,
                                                           ),
                                                           IntextAlign:
@@ -1867,26 +1866,26 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 false;
                                                           },
                                                           borderside:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   255,
                                                                   35,
                                                                   207,
                                                                   179),
                                                           boxShadowColor:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   0, 76, 175, 137),
                                                           BorderColor:
-                                                              Color.fromARGB(0,
+                                                              const Color.fromARGB(0,
                                                                   76, 175, 137),
                                                           fillColor:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   255,
                                                                   246,
                                                                   246,
                                                                   246)),
                                                 ),
                                                 Container(
-                                                  margin: EdgeInsets.only(
+                                                  margin: const EdgeInsets.only(
                                                       left: 0, right: 0),
                                                   width: 46,
                                                   // color: const Color.fromARGB(255, 250, 0, 0),
@@ -1903,7 +1902,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                   right: 0,
                                                                   bottom: 13),
                                                           InTextStyle:
-                                                              TextStyle(
+                                                              const TextStyle(
                                                             fontSize: 22,
                                                           ),
                                                           IntextAlign:
@@ -1923,16 +1922,16 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 false;
                                                           },
                                                           borderside:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   255,
                                                                   35,
                                                                   207,
                                                                   179),
                                                           boxShadowColor:
-                                                              Color.fromARGB(
+                                                              const Color.fromARGB(
                                                                   0, 76, 175, 137),
                                                           BorderColor:
-                                                              Color.fromARGB(0,
+                                                              const Color.fromARGB(0,
                                                                   76, 175, 137),
                                                           fillColor:
                                                               const Color.fromARGB(
@@ -1945,7 +1944,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                             ),
                                           ),
                                           Container(
-                                            margin: EdgeInsets.only(top: 20),
+                                            margin: const EdgeInsets.only(top: 20),
                                             width: 40,
                                             height: 20,
                                             // color: Colors.black,
@@ -1959,7 +1958,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                             ),
                                           ),
                                           Container(
-                                            margin: EdgeInsets.only(top: 20),
+                                            margin: const EdgeInsets.only(top: 20),
                                             width: 100,
                                             height: 30,
                                             child: TextButton(
@@ -1993,7 +1992,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 0)),
                                                     backgroundColor:
                                                         MaterialStateProperty.all<Color>(
-                                                            Color.fromARGB(
+                                                            const Color.fromARGB(
                                                                 0, 175, 175, 175)),
                                                     // foregroundColor:
                                                     //     MaterialStateProperty.all<Color>(
@@ -2020,7 +2019,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   });
                                                 }),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 50,
                                           ),
                                           Visibility(
@@ -2029,8 +2028,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                             visible: email_code_error,
                                             child: AnimatedContainer(
                                               duration:
-                                                  Duration(milliseconds: 50),
-                                              margin: EdgeInsets.only(top: 15),
+                                                  const Duration(milliseconds: 50),
+                                              margin: const EdgeInsets.only(top: 15),
                                               width: 284,
                                               height: 60,
                                               decoration: const BoxDecoration(
@@ -2048,7 +2047,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   Container(
                                                     width: 40,
                                                     height: 40,
-                                                    margin: EdgeInsets.only(
+                                                    margin: const EdgeInsets.only(
                                                         left: 5, right: 10),
                                                     decoration:
                                                         const BoxDecoration(
@@ -2091,7 +2090,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                             ),
                                           ),
                                           Container(
-                                            margin: EdgeInsets.only(top: 30),
+                                            margin: const EdgeInsets.only(top: 30),
                                             width: 70,
                                             height: 30,
                                             child: TextButton(
@@ -2109,7 +2108,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                 0)),
                                                     backgroundColor:
                                                         MaterialStateProperty.all<Color>(
-                                                            Color.fromARGB(40,
+                                                            const Color.fromARGB(40,
                                                                 175, 175, 175)),
                                                     // foregroundColor:
                                                     //     MaterialStateProperty.all<Color>(
@@ -2146,7 +2145,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                   maintainState: true,
                                   visible: map == 0 ? true : false,
                                   child: AnimatedContainer(
-                                    duration: Duration(milliseconds: 300),
+                                    duration: const Duration(milliseconds: 300),
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -2174,12 +2173,12 @@ class _Login_desktopState extends State<Login_desktop> {
                                               top: 60, bottom: 0),
                                           child: AnimatedContainer(
                                               duration:
-                                                  Duration(milliseconds: 300),
+                                                  const Duration(milliseconds: 300),
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       const BorderRadius.all(
                                                           Radius.circular(12)),
-                                                  color: Color.fromARGB(
+                                                  color: const Color.fromARGB(
                                                       255, 255, 255, 255),
                                                   boxShadow: [
                                                     BoxShadow(
@@ -2245,12 +2244,12 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                     12)),
                                                         borderSide: BorderSide(
                                                           color: !ho_email
-                                                              ? Color.fromARGB(
+                                                              ? const Color.fromARGB(
                                                                   0,
                                                                   76,
                                                                   175,
                                                                   79)
-                                                              : Color.fromARGB(
+                                                              : const Color.fromARGB(
                                                                   108,
                                                                   0,
                                                                   186,
@@ -2299,7 +2298,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                         ),
                                         AnimatedContainer(
                                             duration:
-                                                Duration(milliseconds: 300),
+                                                const Duration(milliseconds: 300),
                                             width: 280,
                                             height: 45,
                                             margin: const EdgeInsets.only(
@@ -2351,7 +2350,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                                   decoration: InputDecoration(
                                                     fillColor: !of_pass
-                                                        ? Color.fromARGB(
+                                                        ? const Color.fromARGB(
                                                             255, 245, 247, 250)
                                                         : Colors.transparent,
                                                     hoverColor:
@@ -2371,7 +2370,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                             ? Icons
                                                                 .remove_red_eye_outlined
                                                             : Icons.password,
-                                                        color: Color.fromARGB(
+                                                        color: const Color.fromARGB(
                                                             130, 57, 100, 98),
                                                       ),
                                                     ),
@@ -2441,8 +2440,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                           visible: login_error,
                                           child: AnimatedContainer(
                                             duration:
-                                                Duration(milliseconds: 50),
-                                            margin: EdgeInsets.only(top: 15),
+                                                const Duration(milliseconds: 50),
+                                            margin: const EdgeInsets.only(top: 15),
                                             width: 284,
                                             height: error_hg,
                                             decoration: const BoxDecoration(
@@ -2460,7 +2459,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   width: 40,
                                                   height: 40,
                                                   margin:
-                                                      EdgeInsets.only(left: 5),
+                                                      const EdgeInsets.only(left: 5),
                                                   decoration:
                                                       const BoxDecoration(
                                                     borderRadius:

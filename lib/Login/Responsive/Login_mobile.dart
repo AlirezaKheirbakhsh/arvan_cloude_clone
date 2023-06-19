@@ -24,8 +24,8 @@ class _Login_mobileState extends State<Login_mobile> {
   }
   @override
   Widget build(BuildContext context) {
-    double _wh = MediaQuery.of(context).size.width / 100;
-    double _hg = MediaQuery.of(context).size.height / 100;
+    double wh = MediaQuery.of(context).size.width / 100;
+    double hg = MediaQuery.of(context).size.height / 100;
     void _onEmailFocus() {
       setState(() {
         of_email = !of_email;
@@ -54,15 +54,15 @@ class _Login_mobileState extends State<Login_mobile> {
     customInit();
     return Scaffold(
       body: Container(
-        width: _wh * 100,
+        width: wh * 100,
         color: const Color.fromARGB(255, 245, 247, 250),
         child: Stack(
           children: [
             Center(
               child:     Container(
-                      padding: EdgeInsets.only (top: 25),
-                      width: _wh*100,
-                      height: _hg*600,
+                      padding: const EdgeInsets.only (top: 25),
+                      width: wh*100,
+                      height: hg*600,
                       decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 255, 255, 255),
                         boxShadow: [
@@ -97,7 +97,7 @@ class _Login_mobileState extends State<Login_mobile> {
                               )),
                             ),
                             AnimatedContainer(
-                                duration: Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 300),
                                 width: 283,
                                 height: 45,
                                 margin: const EdgeInsets.only(
@@ -160,7 +160,7 @@ class _Login_mobileState extends State<Login_mobile> {
                                               Radius.circular(12)),
                                           borderSide: BorderSide(
                                             color:
-                                               !ho_email ?Color.fromARGB(0, 76, 175, 79):Color.fromARGB(108, 0, 186, 186),
+                                               !ho_email ?const Color.fromARGB(0, 76, 175, 79):const Color.fromARGB(108, 0, 186, 186),
                                             width: 0.0,
                                           ),
                                         ),
@@ -197,7 +197,7 @@ class _Login_mobileState extends State<Login_mobile> {
 
 
                             AnimatedContainer(
-                                duration: Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 300),
                                 width: 280,
                                 height: 45,
                                 margin:
@@ -245,7 +245,7 @@ class _Login_mobileState extends State<Login_mobile> {
                                       //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                       decoration: InputDecoration(
                                         fillColor: !of_pass
-                                            ? Color.fromARGB(255, 245, 247, 250)
+                                            ? const Color.fromARGB(255, 245, 247, 250)
                                             : Colors.transparent,
                                         hoverColor: Colors.transparent,
                                   
@@ -260,7 +260,7 @@ class _Login_mobileState extends State<Login_mobile> {
                                           },
                                           child:  Icon(
                                            !is_pass_hide? Icons.remove_red_eye_outlined:Icons.password,
-                                            color: Color.fromARGB(130, 57, 100, 98),
+                                            color: const Color.fromARGB(130, 57, 100, 98),
                                           ),
                                         ),
                                         filled: true,
@@ -316,12 +316,6 @@ class _Login_mobileState extends State<Login_mobile> {
                                     const EdgeInsets.only(top: 30, bottom: 0),
                                 // color: const Color.fromARGB(255, 64, 169, 255),
                                 child: TextButton(
-                                    child: const Text("ورود",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 18,
-                                            color: Color.fromARGB(
-                                                255, 255, 255, 255))),
                                     style: ButtonStyle(
                                         padding: MaterialStateProperty.all<EdgeInsets>(
                                             const EdgeInsets.all(0)),
@@ -339,7 +333,13 @@ class _Login_mobileState extends State<Login_mobile> {
                                               BorderRadius.circular(10.0),
                                           // side: BorderSide(color: Colors.red)
                                         ))),
-                                    onPressed: () {})),
+                                    onPressed: () {},
+                                    child: const Text("ورود",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 18,
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255))))),
                             Container(
                               width: 280,
                               height: 0,
@@ -473,15 +473,15 @@ class _Login_mobileState extends State<Login_mobile> {
                       ),
                     ),
                   ),
-            Container(
-              width: _wh*100,
-              height: _hg*10,
+            SizedBox(
+              width: wh*100,
+              height: hg*10,
               // color: const Color.fromARGB(255, 255, 0, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                      margin: EdgeInsets.only(left: _wh * 3, top: 0),
+                      margin: EdgeInsets.only(left: wh * 3, top: 0),
                       height: 24,
                       width: 104,
                       decoration: const BoxDecoration(
@@ -515,7 +515,7 @@ class _Login_mobileState extends State<Login_mobile> {
                     height: 24,
                     width: 104,
                     // color: Colors.amber,
-                    margin: EdgeInsets.only(right: _wh * 3, top: 0),
+                    margin: EdgeInsets.only(right: wh * 3, top: 0),
                     child: TextButton(
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all<EdgeInsets>(

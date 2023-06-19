@@ -14,12 +14,7 @@ class ArvanTextField {
                                                     130, 57, 100, 98));
 
 ArvanTextField()
-{
- 
-
-
-}
-
+;
 Widget ADTextfield (
 
   { 
@@ -46,7 +41,7 @@ Widget ADTextfield (
     ){
 
   return AnimatedContainer(
-                                    duration: Duration(milliseconds: 100),
+                                    duration: const Duration(milliseconds: 100),
                                    
                                     decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(
@@ -104,7 +99,7 @@ Widget ADTextfield (
                                             ),
                                             focusedBorder:
                                                  OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
+                                              borderRadius: const BorderRadius.all(
                                                   Radius.circular(12)),
                                               borderSide: BorderSide(
                                                 style: BorderStyle.solid,
