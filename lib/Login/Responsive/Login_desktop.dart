@@ -50,9 +50,13 @@ class _Login_desktopState extends State<Login_desktop> {
   double error_hg = 15;
   bool login_error = false;
   bool forgetpass_error = false;
-  int map=0;
+  int map=3;
   double opp=1;
   bool wrong_error=false;
+  bool wrong_reg_name=false;
+  bool wrong_reg_lastname=false;
+  bool wrong_reg_emaile=false;
+  bool worng_reg_pass=false;
 
   bool isPass_8character=false;
   bool isPass_SmallANDBig=false;
@@ -350,19 +354,19 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 },
                                                 hintText: "نام",
                                                 TextFocusNoode: _fullnametextFocusNoode,
-                                                borderside:_fullnamehoverborder ? (OnHoverFullnameTextShadow 
+                                                borderside:wrong_reg_name ? (OnHoverFullnameTextShadow 
                                                     ? Color.fromARGB(255, 243, 46, 46)
                                                     : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverFullnameTextShadow 
                                                     ? Colors.transparent
                                                     : const Color.fromARGB(
                                                         255, 0, 186, 186)), 
-                                                boxShadowColor:  OnHoverFullnameTextShadow ? (OnHoverFullnameTextShadow 
+                                                boxShadowColor:wrong_reg_name ? (OnHoverFullnameTextShadow 
                                                     ? Color.fromARGB(255, 231, 6, 6)
                                                     : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverFullnameTextShadow 
                                                     ? Colors.transparent
                                                     : const Color.fromARGB(
                                                         150, 4, 189, 158)),
-                                                BorderColor:_fullnamehoverborder? (_fullnamehoverborder
+                                                BorderColor:wrong_reg_name? (_fullnamehoverborder
                                                     ? Color.fromARGB(255, 255, 0, 0)
                                                     : Color.fromARGB(149, 186, 0, 0)) :(!_fullnamehoverborder
                                                     ? Colors.transparent
@@ -396,19 +400,19 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 },
                                                 hintText: "نام خانوادگی",
                                                 TextFocusNoode: _lastnametextFocusNoode,
-                                                borderside:_lastnamehoverborder? (OnHoverlastnameTextShadow
+                                                borderside:wrong_reg_lastname? (OnHoverlastnameTextShadow
                                                     ? Color.fromARGB(255, 243, 46, 46)
                                                     : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverlastnameTextShadow
                                                     ? Colors.transparent
                                                     : const Color.fromARGB(
                                                        255, 0, 186, 186)), 
-                                                boxShadowColor:  wrong_error ? (OnHoverlastnameTextShadow
+                                                boxShadowColor:  wrong_reg_lastname ? (OnHoverlastnameTextShadow
                                                     ? Color.fromARGB(255, 231, 6, 6)
                                                     : Color.fromARGB(0, 90, 0, 0)) : (!OnHoverlastnameTextShadow
                                                     ? Colors.transparent
                                                     : const Color.fromARGB(
                                                         150, 4, 189, 158)),
-                                                BorderColor:wrong_error? (_lastnamehoverborder
+                                                BorderColor:wrong_reg_lastname? (_lastnamehoverborder
                                                     ? Color.fromARGB(255, 255, 0, 0)
                                                     : Color.fromARGB(149, 186, 0, 0)) :(!_lastnamehoverborder
                                                     ? Colors.transparent
@@ -442,19 +446,19 @@ class _Login_desktopState extends State<Login_desktop> {
                                                 },
                                                 hintText: "نشانی ایمیل",
                                                 TextFocusNoode: _emailtextFocusNoode,
-                                                borderside:wrong_error ? (OnHoveremailTextShadow
+                                                borderside:wrong_reg_emaile ? (OnHoveremailTextShadow
                                                     ? Color.fromARGB(255, 243, 46, 46)
                                                     : Color.fromARGB(0, 90, 0, 0)) : (!OnHoveremailTextShadow
                                                     ? Colors.transparent
                                                     : const Color.fromARGB(
                                                         255, 0, 186, 186)), 
-                                                boxShadowColor:  wrong_error ? (OnHoveremailTextShadow
+                                                boxShadowColor:  wrong_reg_emaile ? (OnHoveremailTextShadow
                                                     ? Color.fromARGB(255, 231, 6, 6)
                                                     : Color.fromARGB(0, 90, 0, 0)) : (!OnHoveremailTextShadow
                                                     ? Colors.transparent
                                                     : const Color.fromARGB(
                                                         150, 4, 189, 158)),
-                                                BorderColor:wrong_error? (_emailhoverborder
+                                                BorderColor:wrong_reg_emaile? (_emailhoverborder
                                                     ? Color.fromARGB(255, 255, 0, 0)
                                                     : Color.fromARGB(149, 186, 0, 0)) :(!_emailhoverborder
                                                     ? Colors.transparent
@@ -733,6 +737,10 @@ AnimatedContainer(
                                                       isPass_HaveNumbers=true;
                                                       isPass_HaveSymblCharacter=true;
                                                       isPass_SmallANDBig=true;
+                                                      wrong_reg_name=true;
+                                                      wrong_reg_lastname=true;
+                                                      wrong_reg_emaile=true;
+                                                      // wrong_reg_pass=true
                                                       // login_hg =460 ;
                                                       // error_hg = 70;
                                                     } else {
@@ -741,6 +749,10 @@ AnimatedContainer(
                                                       isPass_HaveNumbers=false;
                                                       isPass_HaveSymblCharacter=false;
                                                       isPass_SmallANDBig=false;
+                                                      wrong_reg_name=false;
+                                                      wrong_reg_lastname=false;
+                                                      wrong_reg_emaile=false;
+
                                                       // login_hg =400 ;
                                                       // error_hg = 15;
                                                     }
