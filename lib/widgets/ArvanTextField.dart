@@ -22,7 +22,8 @@ ArvanTextField()
 
 Widget ADTextfield (
 
-  {
+  { 
+    
     Color borderside=Colors.black,
     Color OnHoverBorderColor=Colors.red,
     TextStyle HintTextStyle=Default,
@@ -34,11 +35,12 @@ Widget ADTextfield (
     Function(PointerHoverEvent a)? onHover,
     Function(PointerExitEvent a)? onExit,
     FocusNode? TextFocusNoode ,
+    TextEditingController?  TextFildController,
   }
     ){
 
   return AnimatedContainer(
-                                    duration: Duration(milliseconds: 300),
+                                    duration: Duration(milliseconds: 100),
                                    
                                     decoration: BoxDecoration(
                                         borderRadius: const BorderRadius.all(
@@ -63,6 +65,7 @@ Widget ADTextfield (
                                       onExit: onExit ??= (value){} ,
                                       child: Container(
                                         child: TextField(
+                                          controller: TextFildController,
                                           //email-textfild
                                           focusNode: TextFocusNoode!,
                               

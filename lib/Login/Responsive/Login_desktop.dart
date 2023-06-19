@@ -20,6 +20,18 @@ class _Login_desktopState extends State<Login_desktop> {
   FocusNode _fullnametextFocusNoode = FocusNode();
   FocusNode _lastnametextFocusNoode = FocusNode();
   FocusNode _emailtextFocusNoode = FocusNode();
+  
+  TextEditingController login_email=TextEditingController();
+  TextEditingController login_pass=TextEditingController();
+  TextEditingController forgatpass_email=TextEditingController();
+  TextEditingController regester_email=TextEditingController();
+  TextEditingController regester_name=TextEditingController();
+  TextEditingController regester_lastnaem=TextEditingController();
+  TextEditingController regester_pass=TextEditingController();
+
+
+
+
 
 
   ArvanTextField _Forgetpass = ArvanTextField();
@@ -53,7 +65,7 @@ class _Login_desktopState extends State<Login_desktop> {
   double error_hg = 15;
   bool login_error = false;
   bool forgetpass_error = false;
-  int map=3;
+  int map=0;
   double opp=1;
   bool wrong_error=false;
   bool wrong_reg_name=false;
@@ -354,7 +366,7 @@ void _reg_onPassFocus() {
                                             height: 45,
                                             // color: Colors.black,
                                             child: _name.ADTextfield(
-                                                    
+                                              TextFildController: regester_name,                                                    
                                               onHover: (a) {
                                                   setState(() {
                                                     _fullnamehoverborder = true;
@@ -400,6 +412,7 @@ void _reg_onPassFocus() {
                                             height: 45,
                                             // color: Colors.black,
                                             child: _lastname.ADTextfield(
+                                              TextFildController: regester_lastnaem,
                                                     
                                               onHover: (a) {
                                                   setState(() {
@@ -446,6 +459,7 @@ void _reg_onPassFocus() {
                                             height: 45,
                                             // color: Colors.black,
                                             child: _lastname.ADTextfield(
+                                              TextFildController: regester_email,
                                                     
                                               onHover: (a) {
                                                   setState(() {
@@ -525,6 +539,7 @@ AnimatedContainer(
                                               },
                                               child: Container(
                                                 child: TextField(
+                                                  controller: regester_pass,
                                                   //textfild-pass
                                                   textInputAction: TextInputAction.send,
                                                   
@@ -580,7 +595,7 @@ AnimatedContainer(
                                                   
                                                     focusedBorder:
                                                          OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(
+                                                      borderRadius: const BorderRadius.all(
                                                           Radius.circular(12)),
                                                       borderSide: BorderSide(
                                                         style: BorderStyle.solid,
@@ -887,7 +902,7 @@ AnimatedContainer(
                                     ],
                                   )
                                   )   ,         
-                                Visibility(
+                                Visibility(//forgetpass
                                   maintainAnimation: true,
                                   maintainState: true,
                                   visible: map ==1?true:false,
@@ -927,7 +942,8 @@ AnimatedContainer(
                                             width: 283,
                                             height: 45,
                                             // color: Colors.black,
-                                            child: _Email.ADTextfield(
+                                            child: _Forgetpass.ADTextfield(
+                                              TextFildController: forgatpass_email,
                                                 onHover: (a) {
                                                   setState(() {
                                                     _Forgetpasshoverborder = true;
@@ -1183,6 +1199,7 @@ AnimatedContainer(
                                                 },
                                                 child: Container(
                                                   child: TextField(
+                                                    controller: login_email,
                                                     //email-textfild
                                                     focusNode: emailFocus,
                                                   
@@ -1283,6 +1300,7 @@ AnimatedContainer(
                                               },
                                               child: Container(
                                                 child: TextField(
+                                                  controller: login_pass,
                                                   //textfild-pass
                                                   textInputAction: TextInputAction.send,
                                                   
