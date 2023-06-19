@@ -14,6 +14,7 @@ class Login_desktop extends StatefulWidget {
 class _Login_desktopState extends State<Login_desktop> {
   FocusNode emailFocus = FocusNode();
   FocusNode passFocus = FocusNode();
+  FocusNode reg_passFocus = FocusNode();
 
   FocusNode _forgetpasstextFocusNoode = FocusNode();
   FocusNode _fullnametextFocusNoode = FocusNode();
@@ -44,6 +45,8 @@ class _Login_desktopState extends State<Login_desktop> {
   bool ho_pass = false;
   bool of_email = false;
   bool of_pass = false;
+  bool of_reg_pass = false;
+  bool ho_reg_pass = false;
  
   bool is_pass_hide = true;
   double login_hg = 600;
@@ -57,6 +60,7 @@ class _Login_desktopState extends State<Login_desktop> {
   bool wrong_reg_lastname=false;
   bool wrong_reg_emaile=false;
   bool worng_reg_pass=false;
+  bool wrong_reg_pass=false;
 
   bool isPass_8character=false;
   bool isPass_SmallANDBig=false;
@@ -118,11 +122,18 @@ class _Login_desktopState extends State<Login_desktop> {
 
       print(of_pass);
     }
+void _reg_onPassFocus() {
+      setState(() {
+        of_reg_pass = !of_reg_pass;
+      });
 
+      print(of_reg_pass);
+    }
     customInit() {
       if (isFirst) {
         emailFocus.addListener(_onEmailFocus);
         passFocus.addListener(_onPassFocus);
+        reg_passFocus.addListener(_reg_onPassFocus);
 
         _forgetpasstextFocusNoode.addListener(_onTextFocus);
         _fullnametextFocusNoode.addListener(_OnTextFocus);
@@ -484,10 +495,12 @@ AnimatedContainer(
                                                 color: Colors.white,
                                                 boxShadow: [
                                                   BoxShadow(
-                                                    color: of_pass
-                                                        ? const Color.fromARGB(
-                                                            150, 4, 189, 158)
-                                                        : Colors.transparent,
+                                                    color: wrong_reg_pass ? (of_reg_pass
+                                                    ? Color.fromARGB(255, 231, 6, 6)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!of_reg_pass
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(
+                                                        150, 4, 189, 158)),
                                                     blurRadius: 20.0, // soften the shadow
                                                     spreadRadius:
                                                         -10.0, //extend the shadow
@@ -501,12 +514,13 @@ AnimatedContainer(
                                             child: MouseRegion(
                                               onHover: (value) {
                                                 setState(() {
-                                                  ho_pass = true;
+                                                  ho_reg_pass = true;
+                                                  
                                                 });
                                               },
                                               onExit: (value) {
                                                 setState(() {
-                                                  ho_pass = false;
+                                                  ho_reg_pass = false;
                                                 });
                                               },
                                               child: Container(
@@ -514,13 +528,13 @@ AnimatedContainer(
                                                   //textfild-pass
                                                   textInputAction: TextInputAction.send,
                                                   
-                                                  focusNode: passFocus,
+                                                  focusNode: reg_passFocus,
                                                   
                                                   textAlign: TextAlign.start,
                                                   obscureText: is_pass_hide,
                                                   //https://medium.com/flutter-community/a-visual-guide-to-input-decorations-for-flutter-textfield-706cf1877e25
                                                   decoration: InputDecoration(
-                                                    fillColor: !of_pass
+                                                    fillColor: !of_reg_pass
                                                         ? Color.fromARGB(
                                                             255, 245, 247, 250)
                                                         : Colors.transparent,
@@ -555,23 +569,27 @@ AnimatedContainer(
                                                           const BorderRadius.all(
                                                               Radius.circular(12)),
                                                       borderSide: BorderSide(
-                                                        color: !ho_pass
-                                                            ? const Color.fromARGB(
-                                                                0, 76, 175, 79)
-                                                            : const Color.fromARGB(
-                                                                108, 0, 186, 186),
+                                                        color: wrong_reg_pass? (ho_reg_pass
+                                                    ? Color.fromARGB(255, 255, 0, 0)
+                                                    : Color.fromARGB(149, 186, 0, 0)) :(!ho_reg_pass
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(108, 0, 186, 186)),
                                                         width: 0.0,
                                                       ),
                                                     ),
                                                   
                                                     focusedBorder:
-                                                        const OutlineInputBorder(
+                                                         OutlineInputBorder(
                                                       borderRadius: BorderRadius.all(
                                                           Radius.circular(12)),
                                                       borderSide: BorderSide(
                                                         style: BorderStyle.solid,
-                                                        color: Color.fromARGB(
-                                                            255, 0, 186, 186),
+                                                        color: wrong_reg_pass? (of_reg_pass
+                                                    ? Color.fromARGB(255, 243, 46, 46)
+                                                    : Color.fromARGB(0, 90, 0, 0)) : (!of_reg_pass
+                                                    ? Colors.transparent
+                                                    : const Color.fromARGB(
+                                                       255, 0, 186, 186)),
                                                         width: 1.0,
                                                       ),
                                                     ),
@@ -740,6 +758,7 @@ AnimatedContainer(
                                                       wrong_reg_name=true;
                                                       wrong_reg_lastname=true;
                                                       wrong_reg_emaile=true;
+                                                      wrong_reg_pass=true;
                                                       // wrong_reg_pass=true
                                                       // login_hg =460 ;
                                                       // error_hg = 70;
@@ -752,6 +771,7 @@ AnimatedContainer(
                                                       wrong_reg_name=false;
                                                       wrong_reg_lastname=false;
                                                       wrong_reg_emaile=false;
+                                                      wrong_reg_pass=false;
 
                                                       // login_hg =400 ;
                                                       // error_hg = 15;
