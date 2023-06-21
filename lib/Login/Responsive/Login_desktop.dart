@@ -3,7 +3,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
- import 'package:test_responsive/widgets/ArvanTextField.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:test_responsive/widgets/ArvanTextField.dart';
 
 class Login_desktop extends StatefulWidget {
   const Login_desktop({super.key});
@@ -82,7 +83,7 @@ class _Login_desktopState extends State<Login_desktop> {
   double error_hg = 15;
   bool login_error = false;
   bool forgetpass_error = false;
-  int map = 2;
+  int map = 0;
   double opp = 1;
   bool wrong_error = false;
   bool wrong_reg_name = false;
@@ -101,7 +102,13 @@ class _Login_desktopState extends State<Login_desktop> {
 
   bool send_email = false;
   bool timerend=false;
+  
+  String Email_verify_title="تایید ایمیل";
+  String forgetpass_verify_title="تایید هویت";
+  String Verify_title="";
 
+  bool reg_name_empty=false;
+  bool reg_lastname_empty=false;
   
   late Timer _timer;
 int _start = 10;
@@ -121,6 +128,7 @@ void startTimer() {
         });
       }
       if(_start==0){timerend=true;}
+
     },
   );
 }
@@ -291,8 +299,14 @@ void startTimer() {
 
 
     regester_email.addListener(() { 
-
-       RegExp regex_MailCheck = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+        if (regester_email.text=="") {
+          setState(() {
+  wrong_reg_emaile=false;
+  reg_email_empty=true;
+});
+        }
+       else  {
+         RegExp regex_MailCheck = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
        if (regex_MailCheck.hasMatch(regester_email.text))
            {  
              setState(() {
@@ -309,13 +323,8 @@ void startTimer() {
               print(regester_email.text);
        }
 
-        if (regester_email=="") {
-          reg_email_empty=true;
-          
-        }
-        else{
-          reg_email_empty=false;
-        }
+        
+       }
 
     });
 
@@ -344,7 +353,7 @@ void startTimer() {
         OnHoverForgetPassTextShadow = !OnHoverForgetPassTextShadow;
       });
 
-      print(OnHoverForgetPassTextShadow);
+      // print(OnHoverForgetPassTextShadow);
     }
 
     void _nameTextFocus() {
@@ -352,7 +361,7 @@ void startTimer() {
         OnHoverlastnameTextShadow = !OnHoverlastnameTextShadow;
       });
 
-      print(OnHoverFullnameTextShadow);
+      // print(OnHoverFullnameTextShadow);
     }
 
     void _emailTextFocus() {
@@ -360,7 +369,7 @@ void startTimer() {
         OnHoveremailTextShadow = !OnHoveremailTextShadow;
       });
 
-      print(OnHoveremailTextShadow);
+      // print(OnHoveremailTextShadow);
     }
 
     void _OnTextFocus() {
@@ -368,7 +377,7 @@ void startTimer() {
         OnHoverFullnameTextShadow = !OnHoverFullnameTextShadow;
       });
 
-      print(OnHoverFullnameTextShadow);
+      // print(OnHoverFullnameTextShadow);
     }
 
     void _onEmailFocus() {
@@ -376,7 +385,7 @@ void startTimer() {
         of_email = !of_email;
       });
 
-      print(of_email);
+      // print(of_email);
     }
 
     void _onPassFocus() {
@@ -384,7 +393,7 @@ void startTimer() {
         of_pass = !of_pass;
       });
 
-      print(of_pass);
+      // print(of_pass);
     }
 
     void _reg_onPassFocus() {
@@ -392,7 +401,7 @@ void startTimer() {
         of_reg_pass = !of_reg_pass;
       });
 
-      print(of_reg_pass);
+      // print(of_reg_pass); 000000
     }
 
     customInit() {
@@ -456,9 +465,9 @@ void startTimer() {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Container(
-                                  margin: const EdgeInsets.only(right: 210),
-                                  // child: SvgPicture.asset(
-                                  //     "assets/images/Banner.svg"),
+                                  margin:  EdgeInsets.only(right: 210),
+                                  child: SvgPicture.asset(
+                                      "assets/images/Banner.svg"),
                                   // color: Colors.black,
                                   width: wh * 100,
                                   height: hg * 70,
@@ -614,6 +623,7 @@ void startTimer() {
                                             height: 45,
                                             // color: Colors.black,
                                             child: _name.ADTextfield(
+                                              
                                               TextFildController: regester_name,
                                               onHover: (a) {
                                                 setState(() {
@@ -774,8 +784,8 @@ void startTimer() {
                                                   ? (_emailhoverborder
                                                       ? const Color.fromARGB(
                                                           255, 255, 0, 0)
-                                                      : const Color.fromARGB(
-                                                          149, 186, 0, 0))
+                                                      : !reg_email_empty? Colors.transparent :(const Color.fromARGB(
+                                                          149, 186, 0, 0)))
                                                   : (!_emailhoverborder
                                                       ? Colors.transparent
                                                       : const Color.fromARGB(
@@ -1321,18 +1331,10 @@ void startTimer() {
                                                 });
                                                 setState(() {
                                                   if (send_email) {
-                                                    isPass_8character = true;
-                                                    isPass_HaveNumbers = true;
-                                                    isPass_HaveSymblCharacter =
-                                                        true;
-                                                    isPass_SmallANDBig = true;
-                                                    wrong_reg_name = true;
-                                                    wrong_reg_lastname = true;
-                                                    wrong_reg_emaile = true;
-                                                    wrong_reg_pass = true;
-                                                    // wrong_reg_pass=true
-                                                    // login_hg =460 ;
-                                                    // error_hg = 70;
+                                                    Verify_title="تایید هویت";
+                                                    login_hg = 550;
+                                                    error_hg = 70;
+                                                    map = 2;
                                                   } else {
                                                     isPass_8character = false;
                                                     isPass_HaveNumbers = false;
@@ -1535,7 +1537,7 @@ void startTimer() {
                                                     : (!OnHoverForgetPassTextShadow
                                                         ? Colors.transparent
                                                         : const Color.fromARGB(
-                                                            255, 76, 175, 137)),
+                                                          255, 0, 186, 186)),
                                                 boxShadowColor: wrong_error
                                                     ? (OnHoverForgetPassTextShadow
                                                         ? const Color.fromARGB(
@@ -1588,6 +1590,7 @@ void startTimer() {
                                                 onPressed: () {
                                                   setState(() {
                                                     startTimer();
+                                                    Verify_title="تایید ایمیل";
                                                     forgetpass_error =
                                                         !forgetpass_error;
                                                   });
@@ -1734,8 +1737,8 @@ void startTimer() {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          const Text(
-                                            "تایید ایمیل",
+                                           Text(
+                                            Verify_title,
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 0, 186, 186),
@@ -2279,19 +2282,30 @@ void startTimer() {
                                                     ))),
                                                 onPressed: () {
                                                   setState(() {
-                                                    login_hg = 400;
+                                                    if (Verify_title=="تایید هویت") {
+                                                      login_hg = 710;
 
+                                                    map = 3;
+                                                    for (var i = 0; i < 6; i++) {
+                                                      Email_Verify_Code[i].text="";
+                                                      
+                                                    }
+                                                    forgetpass_error = false;
+                                                    wrong_error = false;
+                                                      
+                                                    }
+                                                    else{
+                                                      login_hg = 400;
+                                                    for (var i = 0; i < 6; i++) {
+                                                      Email_Verify_Code[i].text="";
+                                                      
+                                                    }
                                                     map = 1;
                                                     opp = 1;
                                                     forgetpass_error = false;
                                                     wrong_error = false;
-                                                    // if (error) {
-                                                    //   login_hg = login_hg  -200;
-
-                                                    // } else {
-                                                    //   login_hg = login_hg + 200;
-                                                    //   error_hg = 15;
-                                                    // }
+                                                    }
+                                            
                                                   });
                                                 }),
                                           ),
