@@ -1,7 +1,9 @@
 // ignore_for_file: sort_child_properties_last
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:test_responsive/widgets/ArvanTextField.dart';
+ import 'package:test_responsive/widgets/ArvanTextField.dart';
 
 class Login_desktop extends StatefulWidget {
   const Login_desktop({super.key});
@@ -23,7 +25,7 @@ class _Login_desktopState extends State<Login_desktop> {
   TextEditingController login_email = TextEditingController();
   TextEditingController login_pass = TextEditingController();
   TextEditingController forgatpass_email = TextEditingController();
-  TextEditingController regester_email = TextEditingController();
+  TextEditingController regester_email = TextEditingController(text:"");
   TextEditingController regester_name = TextEditingController();
   TextEditingController regester_lastnaem = TextEditingController();
   TextEditingController regester_pass = TextEditingController();
@@ -36,6 +38,9 @@ class _Login_desktopState extends State<Login_desktop> {
     TextEditingController(text: ""),
     TextEditingController(text: ""),
   ];
+
+  TextEditingController _Pass_Security_Code=TextEditingController(text: "");
+  
 
   List<bool> Verify_focus = [true, false, false, false, false, false];
 
@@ -71,7 +76,7 @@ class _Login_desktopState extends State<Login_desktop> {
   bool of_pass = false;
   bool of_reg_pass = false;
   bool ho_reg_pass = false;
-
+  double Verfy_code_DPading=100;
   bool is_pass_hide = true;
   double login_hg = 600;
   double error_hg = 15;
@@ -85,7 +90,8 @@ class _Login_desktopState extends State<Login_desktop> {
   bool wrong_reg_emaile = false;
   bool worng_reg_pass = false;
   bool wrong_reg_pass = false;
-
+  bool pass_is_strong=false;
+  bool reg_email_empty=false;
   bool email_code_error = false;
 
   bool isPass_8character = false;
@@ -94,13 +100,40 @@ class _Login_desktopState extends State<Login_desktop> {
   bool isPass_HaveSymblCharacter = false;
 
   bool send_email = false;
+  bool timerend=false;
+
+  
+  late Timer _timer;
+int _start = 10;
+
+void startTimer() {
+  const oneSec = Duration(seconds: 1);
+  _timer = Timer.periodic(
+    oneSec,
+    (Timer timer) {
+      if (_start == 0) {
+        setState(() {
+          timer.cancel();
+        });
+      } else {
+        setState(() {
+          _start--;
+        });
+      }
+      if(_start==0){timerend=true;}
+    },
+  );
+}
+
+
+
 
   @override
   void initState() {
     super.initState();
 
     Email_Verify_Code[0].addListener(() {
-      print(Email_Verify_Code[0].text);
+      // print(Email_Verify_Code[0].text);1
       for (var i = 0; i < 6; i++) {
         setState(() {
           Verify_focus[i] = false;
@@ -113,7 +146,7 @@ class _Login_desktopState extends State<Login_desktop> {
     });
 
     Email_Verify_Code[1].addListener(() {
-      print(Email_Verify_Code[1].text);
+      // print(Email_Verify_Code[1].text);
       for (var i = 0; i < 6; i++) {
         setState(() {
           Verify_focus[i] = false;
@@ -126,7 +159,7 @@ class _Login_desktopState extends State<Login_desktop> {
     });
 
     Email_Verify_Code[2].addListener(() {
-      print(Email_Verify_Code[2].text);
+      // print(Email_Verify_Code[2].text);
       for (var i = 0; i < 6; i++) {
         setState(() {
           Verify_focus[i] = false;
@@ -139,7 +172,7 @@ class _Login_desktopState extends State<Login_desktop> {
     });
 
     Email_Verify_Code[3].addListener(() {
-      print(Email_Verify_Code[3].text);
+      // print(Email_Verify_Code[3].text);
       for (var i = 0; i < 6; i++) {
         setState(() {
           Verify_focus[i] = false;
@@ -152,7 +185,7 @@ class _Login_desktopState extends State<Login_desktop> {
     });
 
     Email_Verify_Code[4].addListener(() {
-      print(Email_Verify_Code[4].text);
+      // print(Email_Verify_Code[4].text);
       for (var i = 0; i < 6; i++) {
         setState(() {
           Verify_focus[i] = false;
@@ -167,7 +200,7 @@ class _Login_desktopState extends State<Login_desktop> {
     Email_Verify_Code[5].addListener(() {
 
 
-      print(Email_Verify_Code[5].text);
+      // print(Email_Verify_Code[5].text);
       for (var i = 0; i < 6; i++) {
         setState(() {
           Verify_focus[i] = false;
@@ -176,8 +209,129 @@ class _Login_desktopState extends State<Login_desktop> {
       }
 
 
+    _Pass_Security_Code.addListener(() {
+      // print(Email_Verify_Code[1].text);
+       RegExp regex_8Char = RegExp(r'^.{8,}$');
+       if (regex_8Char.hasMatch(_Pass_Security_Code.text))
+           {  
+             setState(() {
+                 isPass_8character=true;
+                });       
+           }
+ 
+       else{
+             setState(() {
+                isPass_8character=false;
+              });
+       }
+
+
+
+       RegExp regex_SPChar = RegExp(r'(?=.*?[^A-Za-z0-9])');
+       if (regex_SPChar.hasMatch(_Pass_Security_Code.text))
+           {  
+             setState(() {
+                 isPass_HaveSymblCharacter=true;
+                });       
+           }
+ 
+       else{
+             setState(() {
+                isPass_HaveSymblCharacter=false;
+              });
+       }
+
+
+
+       RegExp regex_NUChar = RegExp(r'^(?=.*?[0-9]).{0,}$');
+       if (regex_NUChar.hasMatch(_Pass_Security_Code.text))
+           {  
+             setState(() {
+                 isPass_HaveNumbers=true;
+                });       
+           }
+ 
+       else{
+             setState(() {
+                isPass_HaveNumbers=false;
+              });
+       }
+
+
+       RegExp regex_LOChar = RegExp(r'^(?=.*?[a-z]).{0,}$');
+       RegExp regex_UPChar = RegExp(r'^(?=.*?[A-Z]).{0,}$');
+
+       if (regex_LOChar.hasMatch(_Pass_Security_Code.text)&& regex_UPChar.hasMatch(_Pass_Security_Code.text))
+           {  
+             setState(() {
+                 isPass_SmallANDBig=true;
+                });       
+           }
+ 
+       else{
+             setState(() {
+                isPass_SmallANDBig=false;
+              });
+       }
+
+
+       
+        if (isPass_8character==true && isPass_HaveNumbers==true && isPass_HaveSymblCharacter==true && isPass_SmallANDBig==true) {
+          pass_is_strong=true;
+          
+        }
+        else{pass_is_strong=false;}
+       
+
+
+
+
+       print(_Pass_Security_Code.text);
+    });
+
+
+    regester_email.addListener(() { 
+
+       RegExp regex_MailCheck = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+       if (regex_MailCheck.hasMatch(regester_email.text))
+           {  
+             setState(() {
+                
+                 wrong_reg_emaile=false;
+                });       
+           }
+ 
+       else{
+             setState(() {
+                wrong_reg_emaile=true;
+              });
+              
+              print(regester_email.text);
+       }
+
+        if (regester_email=="") {
+          reg_email_empty=true;
+          
+        }
+        else{
+          reg_email_empty=false;
+        }
 
     });
+
+      String tv1=Email_Verify_Code[0].text;
+                                                            String tv2=Email_Verify_Code[1].text;
+                                                            String tv3=Email_Verify_Code[2].text;
+                                                            String tv4=Email_Verify_Code[3].text;
+                                                            String tv5=Email_Verify_Code[4].text;
+                                                            String tv6=Email_Verify_Code[5].text;
+                                                            if (tv1!=""&& tv2!=""&& tv3!="" && tv3!="" && tv4!="" && tv5!="" && tv6!="") {
+                                                              String Verify_Code= tv1+tv2+tv3+tv4+tv5+tv6;
+                                                              print(Verify_Code);
+                                                            }
+
+    });
+
   }
 
   @override
@@ -686,7 +840,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                               },
                                               child: Container(
                                                 child: TextField(
-                                                  controller: regester_pass,
+                                                  controller: _Pass_Security_Code,
                                                   //textfild-pass
                                                   textInputAction:
                                                       TextInputAction.send,
@@ -846,19 +1000,19 @@ class _Login_desktopState extends State<Login_desktop> {
                                                           Container(
                                                             width: 8,
                                                             height: 3,
-                                                            color: isPass_8character
+                                                            color:!isPass_8character?const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    151,
+                                                                    151,
+                                                                    151):(pass_is_strong
                                                                 ? const Color
                                                                     .fromARGB(
                                                                         255,
                                                                         16,
                                                                         184,
                                                                         156)
-                                                                : const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    151,
-                                                                    151,
-                                                                    151),
+                                                                : Color.fromARGB(255, 253, 160, 37)),
                                                           ),
                                                           Container(
                                                             margin:
@@ -867,19 +1021,19 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                     left: 2),
                                                             width: 8,
                                                             height: 3,
-                                                            color: isPass_SmallANDBig
+                                                            color: !isPass_SmallANDBig?const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    151,
+                                                                    151,
+                                                                    151):(pass_is_strong
                                                                 ? const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    16,
-                                                                    184,
-                                                                    156)
-                                                                : const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    151,
-                                                                    151,
-                                                                    151),
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        16,
+                                                                        184,
+                                                                        156)
+                                                                : Color.fromARGB(255, 253, 160, 37)),
                                                           ),
                                                           Container(
                                                             margin:
@@ -888,19 +1042,19 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                     left: 2),
                                                             width: 8,
                                                             height: 3,
-                                                            color: isPass_HaveNumbers
+                                                            color: !isPass_HaveNumbers?const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    151,
+                                                                    151,
+                                                                    151):(pass_is_strong
                                                                 ? const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    16,
-                                                                    184,
-                                                                    156)
-                                                                : const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    151,
-                                                                    151,
-                                                                    151),
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        16,
+                                                                        184,
+                                                                        156)
+                                                                : Color.fromARGB(255, 253, 160, 37)),
                                                           ),
                                                           Container(
                                                             margin:
@@ -909,19 +1063,19 @@ class _Login_desktopState extends State<Login_desktop> {
                                                                     left: 2),
                                                             width: 8,
                                                             height: 3,
-                                                            color: isPass_HaveSymblCharacter
+                                                            color: !isPass_HaveSymblCharacter?const Color
+                                                                        .fromARGB(
+                                                                    255,
+                                                                    151,
+                                                                    151,
+                                                                    151):(pass_is_strong
                                                                 ? const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    16,
-                                                                    184,
-                                                                    156)
-                                                                : const Color
-                                                                        .fromARGB(
-                                                                    255,
-                                                                    151,
-                                                                    151,
-                                                                    151),
+                                                                    .fromARGB(
+                                                                        255,
+                                                                        16,
+                                                                        184,
+                                                                        156)
+                                                                : Color.fromARGB(255, 253, 160, 37)),
                                                           ),
                                                         ],
                                                       ),
@@ -1162,6 +1316,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   ))),
                                               onPressed: () {
                                                 setState(() {
+                                                  
                                                   send_email = !send_email;
                                                 });
                                                 setState(() {
@@ -1432,10 +1587,12 @@ class _Login_desktopState extends State<Login_desktop> {
                                                     ))),
                                                 onPressed: () {
                                                   setState(() {
+                                                    startTimer();
                                                     forgetpass_error =
                                                         !forgetpass_error;
                                                   });
                                                   setState(() {
+
                                                     if (forgetpass_error) {
                                                       wrong_error = true;
                                                       login_hg = 550;
@@ -1596,8 +1753,12 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           ),
+
+                                          SizedBox(
+                                            height: Verfy_code_DPading,
+                                          ),
                                           Container(
-                                            margin: const EdgeInsets.only(top: 100),
+                                            margin: const EdgeInsets.only(top: 0),
                                             width: 330,
                                             height: 60,
                                             // color: Colors.black,
@@ -1612,6 +1773,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   child:
                                                       _Forgetpass.ADTextfield(
                                                           autofocus: true,
+                                                         
                                                           TextFocusNoode:
                                                               Verify_Node[0],
                                                           isCollapsed: true,
@@ -1893,7 +2055,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                                       _Forgetpass.ADTextfield(
                                                           autofocus: true,
                                                           TextFocusNoode:
-                                                              Verify_Node[5],
+                                                          Verify_Node[5],
                                                           isCollapsed: true,
                                                           Continer_Padding:
                                                               const EdgeInsets.only(
@@ -1944,15 +2106,14 @@ class _Login_desktopState extends State<Login_desktop> {
                                             ),
                                           ),
                                           Container(
-                                            margin: const EdgeInsets.only(top: 20),
+                                            margin:  EdgeInsets.only(top: 20),
                                             width: 40,
                                             height: 20,
                                             // color: Colors.black,
-                                            child: const Text(
-                                              "0:00",
-                                              style: TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0),
+                                            child:  Text(
+                                              "0:"+_start.toString(),
+                                              style: const TextStyle(
+                                                  color: Color.fromARGB(255, 78, 78, 78),
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w400),
                                             ),
@@ -1962,7 +2123,8 @@ class _Login_desktopState extends State<Login_desktop> {
                                             width: 100,
                                             height: 30,
                                             child: TextButton(
-                                                child: const Row(
+                                              
+                                                child:  Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   textDirection:
@@ -1970,19 +2132,14 @@ class _Login_desktopState extends State<Login_desktop> {
                                                   children: [
                                                     Icon(
                                                       Icons.refresh,
-                                                      color: Colors.blueGrey,
+                                                      color:!timerend?  Color.fromARGB(255, 168, 168, 168): Color.fromARGB(255, 16, 163, 173),
                                                     ),
                                                     Text("ارسال دوباره",
                                                         style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.w600,
                                                             fontSize: 13,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    124,
-                                                                    124,
-                                                                    124))),
+                                                            color:!timerend?  Color.fromARGB(255, 168, 168, 168): Color.fromARGB(255, 16, 163, 173))),
                                                   ],
                                                 ),
                                                 style: ButtonStyle(
@@ -2005,22 +2162,23 @@ class _Login_desktopState extends State<Login_desktop> {
                                                               100.0),
                                                       // side: BorderSide(color: Colors.red)
                                                     ))),
-                                                onPressed: () {
+                                                onPressed: timerend? ()  {
                                                   setState(() {
-                                                    email_code_error =
-                                                        !email_code_error;
-                                                    // if (error) {
-                                                    //   login_hg = login_hg  -200;
-
-                                                    // } else {
-                                                    //   login_hg = login_hg + 200;
-                                                    //   error_hg = 15;
-                                                    // }
+                                                   
+                                                    email_code_error=!email_code_error;
+                                                    Verfy_code_DPading=50;
+                                                    if (Verfy_code_DPading==50) {
+                                                      Verfy_code_DPading+10;
+                                                    }
+                                                    
+                                                    
                                                   });
-                                                }),
+                                                
+
+                                                }:null),
                                           ),
                                           const SizedBox(
-                                            height: 50,
+                                            height: 10,
                                           ),
                                           Visibility(
                                             maintainAnimation: true,
@@ -2029,7 +2187,7 @@ class _Login_desktopState extends State<Login_desktop> {
                                             child: AnimatedContainer(
                                               duration:
                                                   const Duration(milliseconds: 50),
-                                              margin: const EdgeInsets.only(top: 15),
+                                              margin: const EdgeInsets.only(top: 0),
                                               width: 284,
                                               height: 60,
                                               decoration: const BoxDecoration(

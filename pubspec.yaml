@@ -38,6 +38,7 @@ dependencies:
   responsive_framework: ^1.0.0
   flutter_svg: ^2.0.6
   url_launcher: ^6.1.11
+  async: ^2.11.0
 
 dev_dependencies:
   flutter_test:
