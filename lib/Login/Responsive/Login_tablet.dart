@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_verification_code/flutter_verification_code.dart';
 import 'package:test_responsive/widgets/ArvanTextField.dart';
 class Login_tablet extends StatefulWidget {
   const Login_tablet({super.key});
@@ -90,6 +91,8 @@ class _Login_tabletState extends State<Login_tablet> {
   bool reg_email_empty=false;
   bool email_code_error = false;
 
+bool _onEditing = true;
+  String? _code;
   bool isPass_8character = false;
   bool isPass_SmallANDBig = false;
   bool isPass_HaveNumbers = false;
@@ -106,7 +109,7 @@ class _Login_tabletState extends State<Login_tablet> {
   bool reg_lastname_empty=false;
   
   late Timer _timer;
-int _start = 10;
+int _start = 59;
 
 void startTimer() {
   const oneSec = Duration(seconds: 1);
@@ -1201,6 +1204,7 @@ void startTimer() {
                                                 });
                                                 setState(() {
                                                   if (send_email) {
+                                                    startTimer();
                                                     Verify_title="تایید هویت";
                                                     login_hg = 550;
                                                     error_hg = 70;
@@ -1630,354 +1634,402 @@ void startTimer() {
                                           SizedBox(
                                             height: Verfy_code_DPading,
                                           ),
-                                          Container(
-                                            margin: const EdgeInsets.only(top: 0),
-                                            width: 330,
-                                            height: 60,
-                                            // color: Colors.black,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                SizedBox(
-                                                  // margin: EdgeInsets.only(left: 0,right: 0),
-                                                  width: 46,
-                                                  // color: const Color.fromARGB(255, 250, 0, 0),
-                                                  child:
-                                                      _Forgetpass.ADTextfield(
-                                                          autofocus: true,
+                                          // Container(
+                                          //   margin: const EdgeInsets.only(top: 0),
+                                          //   width: 330,
+                                          //   height: 60,
+                                          //   // color: Colors.black,
+                                          //   child: Row(
+                                          //     mainAxisAlignment:
+                                          //         MainAxisAlignment.spaceAround,
+                                          //     children: [
+                                          //       SizedBox(
+                                          //         // margin: EdgeInsets.only(left: 0,right: 0),
+                                          //         width: 46,
+                                          //         // color: const Color.fromARGB(255, 250, 0, 0),
+                                          //         child:
+                                          //             _Forgetpass.ADTextfield(
+                                          //                 autofocus: true,
                                                          
-                                                          TextFocusNoode:
-                                                              Verify_Node[0],
-                                                          isCollapsed: true,
-                                                          Continer_Padding:
-                                                              const EdgeInsets.only(
-                                                                  left: 3,
-                                                                  top: 17,
-                                                                  right: 0,
-                                                                  bottom: 13),
-                                                          InTextStyle:
-                                                              const TextStyle(
-                                                            fontSize: 22,
-                                                          ),
-                                                          IntextAlign:
-                                                              TextAlign.center,
-                                                          MaxLenth: 1,
-                                                          TextFildController:
-                                                              Email_Verify_Code[
-                                                                  0],
-                                                          onHover: (a) {
-                                                            setState(() {
-                                                              _Forgetpasshoverborder =
-                                                                  true;
-                                                            });
-                                                          },
-                                                          onExit: (a) {
-                                                            _Forgetpasshoverborder =
-                                                                false;
-                                                          },
-                                                          borderside:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  35,
-                                                                  207,
-                                                                  179),
-                                                          boxShadowColor:
-                                                              const Color.fromARGB(
-                                                                  0, 76, 175, 137),
-                                                          BorderColor:
-                                                              const Color.fromARGB(0,
-                                                                  76, 175, 137),
-                                                          fillColor:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  246,
-                                                                  246,
-                                                                  246)),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      left: 0, right: 0),
-                                                  width: 46,
-                                                  // color: const Color.fromARGB(255, 250, 0, 0),
-                                                  child:
-                                                      _Forgetpass.ADTextfield(
-                                                          autofocus: true,
-                                                          TextFocusNoode:
-                                                              Verify_Node[1],
-                                                          isCollapsed: true,
-                                                          Continer_Padding:
-                                                              const EdgeInsets.only(
-                                                                  left: 3,
-                                                                  top: 17,
-                                                                  right: 0,
-                                                                  bottom: 13),
-                                                          InTextStyle:
-                                                              const TextStyle(
-                                                            fontSize: 22,
-                                                          ),
-                                                          IntextAlign:
-                                                              TextAlign.center,
-                                                          MaxLenth: 1,
-                                                          TextFildController:
-                                                              Email_Verify_Code[
-                                                                  1],
-                                                          onHover: (a) {
-                                                            setState(() {
-                                                              _Forgetpasshoverborder =
-                                                                  true;
-                                                            });
-                                                          },
-                                                          onExit: (a) {
-                                                            _Forgetpasshoverborder =
-                                                                false;
-                                                          },
-                                                          borderside:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  35,
-                                                                  207,
-                                                                  179),
-                                                          boxShadowColor:
-                                                              const Color.fromARGB(
-                                                                  0, 76, 175, 137),
-                                                          BorderColor:
-                                                              const Color.fromARGB(0,
-                                                                  76, 175, 137),
-                                                          fillColor:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  246,
-                                                                  246,
-                                                                  246)),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      left: 0, right: 0),
-                                                  width: 46,
-                                                  // color: const Color.fromARGB(255, 250, 0, 0),
-                                                  child:
-                                                      _Forgetpass.ADTextfield(
-                                                          autofocus: true,
-                                                          TextFocusNoode:
-                                                              Verify_Node[2],
-                                                          isCollapsed: true,
-                                                          Continer_Padding:
-                                                              const EdgeInsets.only(
-                                                                  left: 3,
-                                                                  top: 17,
-                                                                  right: 0,
-                                                                  bottom: 13),
-                                                          InTextStyle:
-                                                              const TextStyle(
-                                                            fontSize: 22,
-                                                          ),
-                                                          IntextAlign:
-                                                              TextAlign.center,
-                                                          MaxLenth: 1,
-                                                          TextFildController:
-                                                              Email_Verify_Code[
-                                                                  2],
-                                                          onHover: (a) {
-                                                            setState(() {
-                                                              _Forgetpasshoverborder =
-                                                                  true;
-                                                            });
-                                                          },
-                                                          onExit: (a) {
-                                                            _Forgetpasshoverborder =
-                                                                false;
-                                                          },
-                                                          borderside:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  35,
-                                                                  207,
-                                                                  179),
-                                                          boxShadowColor:
-                                                              const Color.fromARGB(
-                                                                  0, 76, 175, 137),
-                                                          BorderColor:
-                                                              const Color.fromARGB(0,
-                                                                  76, 175, 137),
-                                                          fillColor:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  246,
-                                                                  246,
-                                                                  246)),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      left: 0, right: 0),
-                                                  width: 46,
-                                                  // color: const Color.fromARGB(255, 250, 0, 0),
-                                                  child:
-                                                      _Forgetpass.ADTextfield(
-                                                          autofocus: true,
-                                                          TextFocusNoode:
-                                                              Verify_Node[3],
-                                                          isCollapsed: true,
-                                                          Continer_Padding:
-                                                              const EdgeInsets.only(
-                                                                  left: 3,
-                                                                  top: 17,
-                                                                  right: 0,
-                                                                  bottom: 13),
-                                                          InTextStyle:
-                                                              const TextStyle(
-                                                            fontSize: 22,
-                                                          ),
-                                                          IntextAlign:
-                                                              TextAlign.center,
-                                                          MaxLenth: 1,
-                                                          TextFildController:
-                                                              Email_Verify_Code[
-                                                                  3],
-                                                          onHover: (a) {
-                                                            setState(() {
-                                                              _Forgetpasshoverborder =
-                                                                  true;
-                                                            });
-                                                          },
-                                                          onExit: (a) {
-                                                            _Forgetpasshoverborder =
-                                                                false;
-                                                          },
-                                                          borderside:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  35,
-                                                                  207,
-                                                                  179),
-                                                          boxShadowColor:
-                                                              const Color.fromARGB(
-                                                                  0, 76, 175, 137),
-                                                          BorderColor:
-                                                              const Color.fromARGB(0,
-                                                                  76, 175, 137),
-                                                          fillColor:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  246,
-                                                                  246,
-                                                                  246)),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      left: 0, right: 0),
-                                                  width: 46,
-                                                  // color: const Color.fromARGB(255, 250, 0, 0),
-                                                  child:
-                                                      _Forgetpass.ADTextfield(
-                                                          autofocus: true,
-                                                          TextFocusNoode:
-                                                              Verify_Node[4],
-                                                          isCollapsed: true,
-                                                          Continer_Padding:
-                                                              const EdgeInsets.only(
-                                                                  left: 3,
-                                                                  top: 17,
-                                                                  right: 0,
-                                                                  bottom: 13),
-                                                          InTextStyle:
-                                                              const TextStyle(
-                                                            fontSize: 22,
-                                                          ),
-                                                          IntextAlign:
-                                                              TextAlign.center,
-                                                          MaxLenth: 1,
-                                                          TextFildController:
-                                                              Email_Verify_Code[
-                                                                  4],
-                                                          onHover: (a) {
-                                                            setState(() {
-                                                              _Forgetpasshoverborder =
-                                                                  true;
-                                                            });
-                                                          },
-                                                          onExit: (a) {
-                                                            _Forgetpasshoverborder =
-                                                                false;
-                                                          },
-                                                          borderside:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  35,
-                                                                  207,
-                                                                  179),
-                                                          boxShadowColor:
-                                                              const Color.fromARGB(
-                                                                  0, 76, 175, 137),
-                                                          BorderColor:
-                                                              const Color.fromARGB(0,
-                                                                  76, 175, 137),
-                                                          fillColor:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  246,
-                                                                  246,
-                                                                  246)),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      left: 0, right: 0),
-                                                  width: 46,
-                                                  // color: const Color.fromARGB(255, 250, 0, 0),
-                                                  child:
-                                                      _Forgetpass.ADTextfield(
-                                                          autofocus: true,
-                                                          TextFocusNoode:
-                                                          Verify_Node[5],
-                                                          isCollapsed: true,
-                                                          Continer_Padding:
-                                                              const EdgeInsets.only(
-                                                                  left: 3,
-                                                                  top: 17,
-                                                                  right: 0,
-                                                                  bottom: 13),
-                                                          InTextStyle:
-                                                              const TextStyle(
-                                                            fontSize: 22,
-                                                          ),
-                                                          IntextAlign:
-                                                              TextAlign.center,
-                                                          MaxLenth: 1,
-                                                          TextFildController:
-                                                              Email_Verify_Code[
-                                                                  5],
-                                                          onHover: (a) {
-                                                            setState(() {
-                                                              _Forgetpasshoverborder =
-                                                                  true;
-                                                            });
-                                                          },
-                                                          onExit: (a) {
-                                                            _Forgetpasshoverborder =
-                                                                false;
-                                                          },
-                                                          borderside:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  35,
-                                                                  207,
-                                                                  179),
-                                                          boxShadowColor:
-                                                              const Color.fromARGB(
-                                                                  0, 76, 175, 137),
-                                                          BorderColor:
-                                                              const Color.fromARGB(0,
-                                                                  76, 175, 137),
-                                                          fillColor:
-                                                              const Color.fromARGB(
-                                                                  255,
-                                                                  246,
-                                                                  246,
-                                                                  246)),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                          //                 TextFocusNoode:
+                                          //                     Verify_Node[0],
+                                          //                 isCollapsed: true,
+                                          //                 Continer_Padding:
+                                          //                     const EdgeInsets.only(
+                                          //                         left: 3,
+                                          //                         top: 17,
+                                          //                         right: 0,
+                                          //                         bottom: 13),
+                                          //                 InTextStyle:
+                                          //                     const TextStyle(
+                                          //                   fontSize: 22,
+                                          //                 ),
+                                          //                 IntextAlign:
+                                          //                     TextAlign.center,
+                                          //                 MaxLenth: 1,
+                                          //                 TextFildController:
+                                          //                     Email_Verify_Code[
+                                          //                         0],
+                                          //                 onHover: (a) {
+                                          //                   setState(() {
+                                          //                     _Forgetpasshoverborder =
+                                          //                         true;
+                                          //                   });
+                                          //                 },
+                                          //                 onExit: (a) {
+                                          //                   _Forgetpasshoverborder =
+                                          //                       false;
+                                          //                 },
+                                          //                 borderside:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         35,
+                                          //                         207,
+                                          //                         179),
+                                          //                 boxShadowColor:
+                                          //                     const Color.fromARGB(
+                                          //                         0, 76, 175, 137),
+                                          //                 BorderColor:
+                                          //                     const Color.fromARGB(0,
+                                          //                         76, 175, 137),
+                                          //                 fillColor:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         246,
+                                          //                         246,
+                                          //                         246)),
+                                          //       ),
+                                          //       Container(
+                                          //         margin: const EdgeInsets.only(
+                                          //             left: 0, right: 0),
+                                          //         width: 46,
+                                          //         // color: const Color.fromARGB(255, 250, 0, 0),
+                                          //         child:
+                                          //             _Forgetpass.ADTextfield(
+                                          //                 autofocus: true,
+                                          //                 TextFocusNoode:
+                                          //                     Verify_Node[1],
+                                          //                 isCollapsed: true,
+                                          //                 Continer_Padding:
+                                          //                     const EdgeInsets.only(
+                                          //                         left: 3,
+                                          //                         top: 17,
+                                          //                         right: 0,
+                                          //                         bottom: 13),
+                                          //                 InTextStyle:
+                                          //                     const TextStyle(
+                                          //                   fontSize: 22,
+                                          //                 ),
+                                          //                 IntextAlign:
+                                          //                     TextAlign.center,
+                                          //                 MaxLenth: 1,
+                                          //                 TextFildController:
+                                          //                     Email_Verify_Code[
+                                          //                         1],
+                                          //                 onHover: (a) {
+                                          //                   setState(() {
+                                          //                     _Forgetpasshoverborder =
+                                          //                         true;
+                                          //                   });
+                                          //                 },
+                                          //                 onExit: (a) {
+                                          //                   _Forgetpasshoverborder =
+                                          //                       false;
+                                          //                 },
+                                          //                 borderside:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         35,
+                                          //                         207,
+                                          //                         179),
+                                          //                 boxShadowColor:
+                                          //                     const Color.fromARGB(
+                                          //                         0, 76, 175, 137),
+                                          //                 BorderColor:
+                                          //                     const Color.fromARGB(0,
+                                          //                         76, 175, 137),
+                                          //                 fillColor:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         246,
+                                          //                         246,
+                                          //                         246)),
+                                          //       ),
+                                          //       Container(
+                                          //         margin: const EdgeInsets.only(
+                                          //             left: 0, right: 0),
+                                          //         width: 46,
+                                          //         // color: const Color.fromARGB(255, 250, 0, 0),
+                                          //         child:
+                                          //             _Forgetpass.ADTextfield(
+                                          //                 autofocus: true,
+                                          //                 TextFocusNoode:
+                                          //                     Verify_Node[2],
+                                          //                 isCollapsed: true,
+                                          //                 Continer_Padding:
+                                          //                     const EdgeInsets.only(
+                                          //                         left: 3,
+                                          //                         top: 17,
+                                          //                         right: 0,
+                                          //                         bottom: 13),
+                                          //                 InTextStyle:
+                                          //                     const TextStyle(
+                                          //                   fontSize: 22,
+                                          //                 ),
+                                          //                 IntextAlign:
+                                          //                     TextAlign.center,
+                                          //                 MaxLenth: 1,
+                                          //                 TextFildController:
+                                          //                     Email_Verify_Code[
+                                          //                         2],
+                                          //                 onHover: (a) {
+                                          //                   setState(() {
+                                          //                     _Forgetpasshoverborder =
+                                          //                         true;
+                                          //                   });
+                                          //                 },
+                                          //                 onExit: (a) {
+                                          //                   _Forgetpasshoverborder =
+                                          //                       false;
+                                          //                 },
+                                          //                 borderside:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         35,
+                                          //                         207,
+                                          //                         179),
+                                          //                 boxShadowColor:
+                                          //                     const Color.fromARGB(
+                                          //                         0, 76, 175, 137),
+                                          //                 BorderColor:
+                                          //                     const Color.fromARGB(0,
+                                          //                         76, 175, 137),
+                                          //                 fillColor:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         246,
+                                          //                         246,
+                                          //                         246)),
+                                          //       ),
+                                          //       Container(
+                                          //         margin: const EdgeInsets.only(
+                                          //             left: 0, right: 0),
+                                          //         width: 46,
+                                          //         // color: const Color.fromARGB(255, 250, 0, 0),
+                                          //         child:
+                                          //             _Forgetpass.ADTextfield(
+                                          //                 autofocus: true,
+                                          //                 TextFocusNoode:
+                                          //                     Verify_Node[3],
+                                          //                 isCollapsed: true,
+                                          //                 Continer_Padding:
+                                          //                     const EdgeInsets.only(
+                                          //                         left: 3,
+                                          //                         top: 17,
+                                          //                         right: 0,
+                                          //                         bottom: 13),
+                                          //                 InTextStyle:
+                                          //                     const TextStyle(
+                                          //                   fontSize: 22,
+                                          //                 ),
+                                          //                 IntextAlign:
+                                          //                     TextAlign.center,
+                                          //                 MaxLenth: 1,
+                                          //                 TextFildController:
+                                          //                     Email_Verify_Code[
+                                          //                         3],
+                                          //                 onHover: (a) {
+                                          //                   setState(() {
+                                          //                     _Forgetpasshoverborder =
+                                          //                         true;
+                                          //                   });
+                                          //                 },
+                                          //                 onExit: (a) {
+                                          //                   _Forgetpasshoverborder =
+                                          //                       false;
+                                          //                 },
+                                          //                 borderside:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         35,
+                                          //                         207,
+                                          //                         179),
+                                          //                 boxShadowColor:
+                                          //                     const Color.fromARGB(
+                                          //                         0, 76, 175, 137),
+                                          //                 BorderColor:
+                                          //                     const Color.fromARGB(0,
+                                          //                         76, 175, 137),
+                                          //                 fillColor:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         246,
+                                          //                         246,
+                                          //                         246)),
+                                          //       ),
+                                          //       Container(
+                                          //         margin: const EdgeInsets.only(
+                                          //             left: 0, right: 0),
+                                          //         width: 46,
+                                          //         // color: const Color.fromARGB(255, 250, 0, 0),
+                                          //         child:
+                                          //             _Forgetpass.ADTextfield(
+                                          //                 autofocus: true,
+                                          //                 TextFocusNoode:
+                                          //                     Verify_Node[4],
+                                          //                 isCollapsed: true,
+                                          //                 Continer_Padding:
+                                          //                     const EdgeInsets.only(
+                                          //                         left: 3,
+                                          //                         top: 17,
+                                          //                         right: 0,
+                                          //                         bottom: 13),
+                                          //                 InTextStyle:
+                                          //                     const TextStyle(
+                                          //                   fontSize: 22,
+                                          //                 ),
+                                          //                 IntextAlign:
+                                          //                     TextAlign.center,
+                                          //                 MaxLenth: 1,
+                                          //                 TextFildController:
+                                          //                     Email_Verify_Code[
+                                          //                         4],
+                                          //                 onHover: (a) {
+                                          //                   setState(() {
+                                          //                     _Forgetpasshoverborder =
+                                          //                         true;
+                                          //                   });
+                                          //                 },
+                                          //                 onExit: (a) {
+                                          //                   _Forgetpasshoverborder =
+                                          //                       false;
+                                          //                 },
+                                          //                 borderside:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         35,
+                                          //                         207,
+                                          //                         179),
+                                          //                 boxShadowColor:
+                                          //                     const Color.fromARGB(
+                                          //                         0, 76, 175, 137),
+                                          //                 BorderColor:
+                                          //                     const Color.fromARGB(0,
+                                          //                         76, 175, 137),
+                                          //                 fillColor:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         246,
+                                          //                         246,
+                                          //                         246)),
+                                          //       ),
+                                          //       Container(
+                                          //         margin: const EdgeInsets.only(
+                                          //             left: 0, right: 0),
+                                          //         width: 46,
+                                          //         // color: const Color.fromARGB(255, 250, 0, 0),
+                                          //         child:
+                                          //             _Forgetpass.ADTextfield(
+                                          //                 autofocus: true,
+                                          //                 TextFocusNoode:
+                                          //                 Verify_Node[5],
+                                          //                 isCollapsed: true,
+                                          //                 Continer_Padding:
+                                          //                     const EdgeInsets.only(
+                                          //                         left: 3,
+                                          //                         top: 17,
+                                          //                         right: 0,
+                                          //                         bottom: 13),
+                                          //                 InTextStyle:
+                                          //                     const TextStyle(
+                                          //                   fontSize: 22,
+                                          //                 ),
+                                          //                 IntextAlign:
+                                          //                     TextAlign.center,
+                                          //                 MaxLenth: 1,
+                                          //                 TextFildController:
+                                          //                     Email_Verify_Code[
+                                          //                         5],
+                                          //                 onHover: (a) {
+                                          //                   setState(() {
+                                          //                     _Forgetpasshoverborder =
+                                          //                         true;
+                                          //                   });
+                                          //                 },
+                                          //                 onExit: (a) {
+                                          //                   _Forgetpasshoverborder =
+                                          //                       false;
+                                          //                 },
+                                          //                 borderside:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         35,
+                                          //                         207,
+                                          //                         179),
+                                          //                 boxShadowColor:
+                                          //                     const Color.fromARGB(
+                                          //                         0, 76, 175, 137),
+                                          //                 BorderColor:
+                                          //                     const Color.fromARGB(0,
+                                          //                         76, 175, 137),
+                                          //                 fillColor:
+                                          //                     const Color.fromARGB(
+                                          //                         255,
+                                          //                         246,
+                                          //                         246,
+                                          //                         246)),
+                                          //       ),
+                                          //     ],
+                                          //   ),
+                                          // ),
+
+                                        VerificationCode(
+                                        itemSize: 50,
+                                        underlineUnfocusedColor: Colors.transparent,                                        
+                                        fillColor: Color.fromARGB(255, 250, 250, 250),
+                                        digitsOnly: true,
+                                        textStyle: TextStyle(
+                                        fontSize: 20.0,
+                                        color: const Color.fromARGB(255, 0, 186, 186)),
+                                        keyboardType: TextInputType.number,
+                                        underlineColor: Color.fromARGB(255, 0, 186, 186), // If this is null it will use primaryColor: Colors.red from Theme
+                                        length: 6,
+                                        cursorColor: Color.fromARGB(255, 0, 186, 186), // If this is null it will default to the ambient
+                                        // clearAll is NOT required, you can delete it
+                                        // takes any widget, so you can implement your design
+
+
+                                        // clearAll: Padding(
+                                        //   padding: const EdgeInsets.all(8.0),
+                                        //   child: Text(
+                                        //     'clear all',
+                                        //     style: TextStyle(
+                                        //         fontSize: 14.0,
+                                        //         decoration:
+                                        //             TextDecoration.underline,
+                                        //         color: Colors.blue[700]),
+                                        //   ),
+                                        // ),
+
+
+                                        // onCompleted: (String value) {setState(() {
+                                        //   email_code_error=true;
+                                        // });
+                                        // },
+                                        // onEditing: (bool value) {},
+                                        onCompleted: (String value) {
+                                          setState(() {
+                                            email_code_error=true;
+                                            _code = value;
+                                          });
+                                        },
+                                        onEditing: (bool value) {
+                                          setState(() {
+                                            _onEditing = value;
+                                          });
+                                          if (!_onEditing) FocusScope.of(context).unfocus();
+                                        },
+                                      ),
                                           Container(
                                             margin:  EdgeInsets.only(top: 20),
                                             width: 40,
@@ -2037,8 +2089,10 @@ void startTimer() {
                                                     ))),
                                                 onPressed: timerend? ()  {
                                                   setState(() {
-                                                   
-                                                    email_code_error=!email_code_error;
+                                                   timerend=false;
+                                                      _start = 59;
+                                                      startTimer();
+                                                    email_code_error=false;
                                                     Verfy_code_DPading=50;
                                                     if (Verfy_code_DPading==50) {
                                                       Verfy_code_DPading+10;

@@ -1922,6 +1922,8 @@ bool _onEditing = true;
                                       //   ),
                                       // ),
                                       VerificationCode(
+                                        autofocus: true,
+                                        
                                         itemSize: 50,
                                         underlineUnfocusedColor: Colors.transparent,                                        
                                         fillColor: Color.fromARGB(255, 250, 250, 250),
@@ -1957,6 +1959,7 @@ bool _onEditing = true;
                                         // onEditing: (bool value) {},
                                         onCompleted: (String value) {
                                           setState(() {
+                                            email_code_error=true;
                                             _code = value;
                                           });
                                         },
@@ -2045,7 +2048,7 @@ bool _onEditing = true;
                                                       _start = 59;
                                                       startTimer();
                                                       email_code_error =
-                                                      !email_code_error;
+                                                      false;
                                                       Verfy_code_DPading = 50;
                                                       if (Verfy_code_DPading ==
                                                           50) {
