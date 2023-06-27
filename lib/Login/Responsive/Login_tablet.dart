@@ -2019,6 +2019,7 @@ void startTimer() {
                                         // onEditing: (bool value) {},
                                         onCompleted: (String value) {
                                           setState(() {
+                                            
                                             email_code_error=true;
                                             _code = value;
                                           });

@@ -1939,17 +1939,17 @@ bool _onEditing = true;
                                         // takes any widget, so you can implement your design
 
 
-                                        // clearAll: Padding(
-                                        //   padding: const EdgeInsets.all(8.0),
-                                        //   child: Text(
-                                        //     'clear all',
-                                        //     style: TextStyle(
-                                        //         fontSize: 14.0,
-                                        //         decoration:
-                                        //             TextDecoration.underline,
-                                        //         color: Colors.blue[700]),
-                                        //   ),
-                                        // ),
+                                        clearAll: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            'پاک کردن',
+                                            style: TextStyle(
+                                                fontSize: 14.0,
+                                                decoration:
+                                                    TextDecoration.underline,
+                                                color: Colors.blue[700]),
+                                          ),
+                                        ),
 
 
                                         // onCompleted: (String value) {setState(() {
